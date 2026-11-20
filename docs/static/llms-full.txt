@@ -5786,11 +5786,9 @@ Only `completed` produces a pass. On `failed`, or if the author closes the check
 
 ### Redeeming a pass
 
-After uploading, publish with the pre-check session id as the answer at the index of each pass-capable challenge that applies to the publication. For example, use `challengeRequest: { challengeAnswers: [pass] }` when the spam blocker is `community.challenges[0]`.
+After uploading, publish with the pre-check session id as the pre-answer of each pass-capable challenge that applies to the publication. Pre-answers are keyed by challenge index, the position in `community.challenges` as a decimal string. For example, use `challengeRequest: { challengeAnswers: { "2": pass } }` when the spam blocker is `community.challenges[2]`. Include only the challenges you pre-answer; the others get no entry.
 
-Every slot before that index must hold an answer its challenge accepts. Challenges that ignore pre-supplied answers (such as pkc-js `fail`) take any string. A challenge that publishes its own `challenge` text (pkc-js `question`) reads its slot as the author's answer, so do not pre-check a community where such a challenge would receive the pass.
-
-`getChallenge()` looks at its `challengeIndex` for a value matching `^precheck-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$` and posts a community-signed `/evaluate` request with `precheckSessionId`. What happens next depends on the returned `status`:
+`getChallenge()` reads its own pre-answer: `challengeAnswer` on pkc-js 0.0.152 and later, or `challengeAnswers[challengeIndex]` from the positional array that older nodes send. When it matches `^precheck-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$`, it posts a community-signed `/evaluate` request with `precheckSessionId`. What happens next depends on the returned `status`:
 
 | Result                                             | Community behavior                                                                                      |
 | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
@@ -6628,6 +6626,146 @@ npm run build
 
 GPL-3.0-or-later, the same as pkc-js.
 
+### @bitsocial/base64-challenge
+
+Repository: bitsocialnet/base64-challenge
+Source: https://github.com/bitsocialnet/base64-challenge#readme
+Description: A pkc js challenge that rejects publications embedding base64 data, such as data: URI images, in any text field.
+
+# @bitsocial/base64-challenge
+
+A pkc-js challenge that rejects publications embedding base64 data, such as `data:` URI images, in any text field.
+
+## Why
+
+pkc-js limits `link` and gallery URLs to 2000 characters, and the community only accepts `https:` links there, so a `data:` URI cannot get in through them. `content` and `title` have no length limit of their own, only the 40 KB limit on the whole publication. That is room for a roughly 29 KB image as base64: small, but recognizable. A community that accepts it signs it, stores it and serves it over IPFS, whether or not any client renders it.
+
+AI moderation cannot judge it either. A text model sees a wall of characters, not the image, and pays tokens for every one of them. This challenge is deterministic, cheap, and runs no model.
+
+## What it rejects
+
+A publication is rejected when any string in it, at any depth and including object keys, contains either:
+
+1. **A `data:` URI with a payload of 64 characters or more.** This applies to any media type, base64 or not, so percent-encoded SVG counts too. Matching ignores case. Whitespace anywhere in a base64 payload is skipped, as browsers skip it, and percent-escapes count. The cost is that a sentence spelling out `data:image/png;base64,` followed by 64 or more letters and digits, with no punctuation, is rejected too. Payloads under 64 characters pass: no meaningful image fits (a 1x1 GIF is 56 characters), and posts about data URIs, like `data:image/png;base64,...`, stay postable.
+2. **A run of base64 of `maxLength` characters or more** (default 512). A run is standard base64 (`A-Z a-z 0-9 + /`, with optional `=` padding). Whitespace between segments of 32 or more characters continues a run, so base64 wrapped at 64 or 76 characters a line (PEM, MIME) counts as one. Whitespace is not counted toward the length. A run made entirely of hex (optionally `0x`-prefixed) passes, because hashes, signatures and transaction calldata are ordinary on crypto boards.
+
+Every string means every string: content, title, link, flair text, gallery alt text, display names, the comment embedded in a crosspost, edit and moderation reasons, community edits. A list of fields would need updating whenever pkc-js adds free text, and any field missing from it would be somewhere to put an image.
+
+It checks all five publication types: `comment`, `vote`, `commentEdit`, `commentModeration` and `communityEdit`. Use the challenge's `exclude` settings to exempt moderators.
+
+Every publication carries base64 its author did not choose, an 88-character signature and a 44-character public key. These stay well under the minimum `maxLength` of 128.
+
+## What it does not catch
+
+- **base64url.** It swaps `+` and `/` for `-` and `_`, the same characters as a long hyphenated URL slug, so counting it would reject ordinary links. A `data:` URI cannot carry base64url, so nothing renders it as an image.
+- **Other encodings.** Hex, base32, base85 and anything custom. A determined uploader can always encode data somehow. The 40 KB publication limit is what bounds that.
+- **A `data:` URI with an unencoded payload** that has whitespace, a quote, a parenthesis or an angle bracket in its first 64 characters, such as raw `<svg xmlns=...>`. This only matters to a client that renders raw HTML.
+- **Raw base64 split into segments shorter than 32 characters.** Ordinary text is short runs of letters and digits separated by spaces, so short segments cannot be joined into a run without rejecting prose. Inside a `data:` URI this does not apply, since the payload rule skips all whitespace.
+- A line-wrapped run's final line is not counted when it is shorter than 32 characters, so a run can be reported up to 31 characters short.
+
+Clients should not render `data:` URIs from publications either. This challenge keeps them off the community. It does not make rendering them safe.
+
+## Install
+
+### With bitsocial-cli
+
+```bash
+bitsocial challenge install @bitsocial/base64-challenge
+```
+
+```bash
+bitsocial community edit your-community.bso \
+  '--settings.challenges[0].name' @bitsocial/base64-challenge
+```
+
+### With pkc-js over RPC
+
+Install the challenge on the RPC server, then set it on your community by name. Nothing has to be installed on the client side:
+
+```bash
+bitsocial challenge install @bitsocial/base64-challenge
+```
+
+### With pkc-js (TypeScript)
+
+Running your own node locally, without RPC:
+
+```bash
+npm install @bitsocial/base64-challenge
+```
+
+```ts
+import PKC from "@pkcprotocol/pkc-js";
+import { base64Challenge } from "@bitsocial/base64-challenge";
+
+PKC.challenges["@bitsocial/base64-challenge"] = base64Challenge;
+```
+
+## Configuration
+
+```json
+{
+  "name": "@bitsocial/base64-challenge",
+  "options": {
+    "maxLength": "512",
+    "error": "Embedded base64 data and data: URIs aren't allowed. Upload the file to a media host and post the link instead."
+  }
+}
+```
+
+### Options
+
+| Option | Default | Description |
+|---|---|---|
+| `maxLength` | `512` | Longest run of base64 allowed, in characters, whitespace not counted. A whole number of at least 128. It does not affect `data:` URIs, which are rejected from a 64-character payload whatever it is set to. |
+| `error` | `Embedded base64 data and data: URIs aren't allowed. Upload the file to a media host and post the link instead.` | The error shown to the author. |
+
+Neither option needs to be in `publicOptions`. Publishing them is the owner's call.
+
+### Validation
+
+`validateChallengeSettings` rejects a `maxLength` that is not a whole number, including an empty string, or that is below 128. A lower limit would reject every author, since every publication carries an 88-character signature.
+
+A `maxLength` saved before this check existed makes `getChallenge` fail every publication with `Invalid base64 challenge settings: ...` rather than silently fall back to the default.
+
+## For UI client developers
+
+`findBase64` imports nothing, so a client can run the community's check before signing and tell the author what is wrong instead of waiting for a rejection:
+
+```ts
+import { findBase64 } from "@bitsocial/base64-challenge";
+
+const finding = findBase64({ text: content, maxLength: 512 });
+// undefined, or { kind: "dataUri" | "base64Run", index, length }
+```
+
+Use `community.challenges[i].publicOptions.maxLength` if the owner published it, and the default otherwise.
+
+## Development
+
+```bash
+npm install
+npm run typecheck
+npm test
+npm run build
+```
+
+`npm install` needs npm 11. npm 10's arborist crashes on this package's peer dependency set with `Cannot read properties of null (reading 'edgesOut')`.
+
+## Releasing
+
+Bump `version` in `package.json` on `master`. `.github/workflows/publish-challenge.yml` publishes it to npm through trusted publishing (OIDC, with provenance) and skips a version that already exists.
+
+The first version was published by hand, because npm only lets a trusted publisher be configured on a package that exists. It is configured as: publisher GitHub Actions, organization `bitsocialnet`, repository `base64-challenge`, workflow `publish-challenge.yml`, no environment.
+
+```bash
+npm trust github @bitsocial/base64-challenge --repo bitsocialnet/base64-challenge --file publish-challenge.yml --allow-publish
+```
+
+## License
+
+GPL-3.0-or-later
+
 ### @bitsocial/captcha-canvas-challenge
 
 Repository: bitsocialnet/captcha-canvas-challenge
@@ -7433,6 +7571,21 @@ Supported 5chan request strings:
 - `flag:pol:AC`
 - `flag:pony:AJ`
 
+A client can also pre-answer this challenge with a request string prefixed by `bitsocial-flags:5chan:`. On pkc-js 0.0.152 and later, `challengeAnswers` is a record keyed by the challenge's index in `community.challenges`; on 0.0.151 and older it is a positional array, and the challenge finds the answer in any slot:
+
+```js
+// pkc-js 0.0.152+, with this challenge at index 1
+challengeRequest: {
+  challengeAnswers: { 1: "bitsocial-flags:5chan:flag:country:auto" },
+}
+// pkc-js 0.0.151 and older
+challengeRequest: {
+  challengeAnswers: ["bitsocial-flags:5chan:flag:country:auto"],
+}
+```
+
+The challenge works on both node versions. It reads the flag from, in order: its own pre-answer (`challengeAnswer`, passed by pkc-js 0.0.152+), any other prefixed pre-answer in `challengeAnswers` (array or record), then the comment's `flag`, `flair` and `flairs`. Pre-answers without the prefix are ignored.
+
 Country flags use `auto` because the issuer service must derive the country from the challenge iframe request IP. The challenge does not trust a client-provided country code as proof of location. `/pol/` memeflags and `/mlp/` pony flags are free user choices, so they do not require the iframe flow.
 
 ## Verified Comment Shape
@@ -8030,7 +8183,7 @@ EXAMPLES
   $ bitsocial challenge install ./my-local-challenge
 ```
 
-_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/challenge/install.ts)_
+_See code: [src/cli/commands/challenge/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/challenge/install.ts)_
 
 ## `bitsocial challenge list`
 
@@ -8056,7 +8209,7 @@ EXAMPLES
   $ bitsocial challenge list -q
 ```
 
-_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/challenge/list.ts)_
+_See code: [src/cli/commands/challenge/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/challenge/list.ts)_
 
 ## `bitsocial challenge ls`
 
@@ -8116,7 +8269,7 @@ EXAMPLES
   $ bitsocial challenge remove my-challenge --force
 ```
 
-_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/challenge/remove.ts)_
+_See code: [src/cli/commands/challenge/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/challenge/remove.ts)_
 
 ## `bitsocial challenge rm NAME`
 
@@ -8248,7 +8401,7 @@ EXAMPLES
     $ bitsocial community create --jsonFile ./create-options.json
 ```
 
-_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/community/create.ts)_
+_See code: [src/cli/commands/community/create.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/community/create.ts)_
 
 ## `bitsocial community delete ADDRESSES`
 
@@ -8273,7 +8426,7 @@ EXAMPLES
   $ bitsocial community delete 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/community/delete.ts)_
+_See code: [src/cli/commands/community/delete.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/community/delete.ts)_
 
 ## `bitsocial community edit ADDRESS`
 
@@ -8350,7 +8503,7 @@ EXAMPLES
     $ bitsocial community edit bitsocial.bso --jsonFile ./edit-options.json
 ```
 
-_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/community/edit.ts)_
+_See code: [src/cli/commands/community/edit.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/community/edit.ts)_
 
 ## `bitsocial community export [ADDRESS]`
 
@@ -8391,7 +8544,7 @@ EXAMPLES
   $ bitsocial community export --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/community/export.ts)_
+_See code: [src/cli/commands/community/export.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/community/export.ts)_
 
 ## `bitsocial community get [ADDRESS]`
 
@@ -8422,7 +8575,7 @@ EXAMPLES
   $ bitsocial community get --publicKey 12D3KooWG3XbzoVyAE6Y9vHZKF64Yuuu4TjdgQKedk14iYmTEPWu
 ```
 
-_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/community/get.ts)_
+_See code: [src/cli/commands/community/get.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/community/get.ts)_
 
 ## `bitsocial community list`
 
@@ -8445,7 +8598,7 @@ EXAMPLES
   $ bitsocial community list
 ```
 
-_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/community/list.ts)_
+_See code: [src/cli/commands/community/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/community/list.ts)_
 
 ## `bitsocial community start ADDRESSES`
 
@@ -8479,7 +8632,7 @@ EXAMPLES
     $ bitsocial community start $(bitsocial community list -q) --concurrency 1
 ```
 
-_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/community/start.ts)_
+_See code: [src/cli/commands/community/start.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/community/start.ts)_
 
 ## `bitsocial community stop ADDRESSES`
 
@@ -8504,7 +8657,7 @@ EXAMPLES
   $ bitsocial community stop Qmb99crTbSUfKXamXwZBe829Vf6w5w5TktPkb6WstC9RFW
 ```
 
-_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/community/stop.ts)_
+_See code: [src/cli/commands/community/stop.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/community/stop.ts)_
 
 ## `bitsocial daemon`
 
@@ -8554,7 +8707,7 @@ EXAMPLES
   $ bitsocial daemon --no-allowPrivateKeyExport
 ```
 
-_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/daemon.ts)_
+_See code: [src/cli/commands/daemon.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/daemon.ts)_
 
 ## `bitsocial help [COMMAND]`
 
@@ -8618,7 +8771,7 @@ EXAMPLES
   $ bitsocial logs --stdout -f
 ```
 
-_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/logs.ts)_
+_See code: [src/cli/commands/logs.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/logs.ts)_
 
 ## `bitsocial page-sort add PACKAGE`
 
@@ -8710,7 +8863,7 @@ EXAMPLES
   $ bitsocial page-sort install ./my-local-page-sort
 ```
 
-_See code: [src/cli/commands/page-sort/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/page-sort/install.ts)_
+_See code: [src/cli/commands/page-sort/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/page-sort/install.ts)_
 
 ## `bitsocial page-sort list`
 
@@ -8736,7 +8889,7 @@ EXAMPLES
   $ bitsocial page-sort list -q
 ```
 
-_See code: [src/cli/commands/page-sort/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/page-sort/list.ts)_
+_See code: [src/cli/commands/page-sort/list.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/page-sort/list.ts)_
 
 ## `bitsocial page-sort ls`
 
@@ -8794,7 +8947,7 @@ EXAMPLES
   $ bitsocial page-sort remove @pkcprotocol/active-page-sort --force
 ```
 
-_See code: [src/cli/commands/page-sort/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/page-sort/remove.ts)_
+_See code: [src/cli/commands/page-sort/remove.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/page-sort/remove.ts)_
 
 ## `bitsocial page-sort rm NAME`
 
@@ -8915,7 +9068,7 @@ EXAMPLES
   $ bitsocial reachability disable --purge
 ```
 
-_See code: [src/cli/commands/reachability/disable.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/reachability/disable.ts)_
+_See code: [src/cli/commands/reachability/disable.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/reachability/disable.ts)_
 
 ## `bitsocial reachability enable`
 
@@ -8935,7 +9088,7 @@ EXAMPLES
   $ bitsocial reachability enable
 ```
 
-_See code: [src/cli/commands/reachability/enable.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/reachability/enable.ts)_
+_See code: [src/cli/commands/reachability/enable.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/reachability/enable.ts)_
 
 ## `bitsocial reachability setup`
 
@@ -8972,7 +9125,7 @@ EXAMPLES
   $ bitsocial reachability setup --non-interactive
 ```
 
-_See code: [src/cli/commands/reachability/setup.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/reachability/setup.ts)_
+_See code: [src/cli/commands/reachability/setup.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/reachability/setup.ts)_
 
 ## `bitsocial reachability status`
 
@@ -8998,7 +9151,7 @@ EXAMPLES
   $ bitsocial reachability status --json
 ```
 
-_See code: [src/cli/commands/reachability/status.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/reachability/status.ts)_
+_See code: [src/cli/commands/reachability/status.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/reachability/status.ts)_
 
 ## `bitsocial update check`
 
@@ -9015,7 +9168,7 @@ EXAMPLES
   $ bitsocial update check
 ```
 
-_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/update/check.ts)_
+_See code: [src/cli/commands/update/check.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/update/check.ts)_
 
 ## `bitsocial update install [VERSION]`
 
@@ -9047,7 +9200,7 @@ EXAMPLES
   $ bitsocial update install --no-restart-daemons
 ```
 
-_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/update/install.ts)_
+_See code: [src/cli/commands/update/install.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/update/install.ts)_
 
 ## `bitsocial update versions`
 
@@ -9069,7 +9222,7 @@ EXAMPLES
   $ bitsocial update versions --limit 5
 ```
 
-_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.143/src/cli/commands/update/versions.ts)_
+_See code: [src/cli/commands/update/versions.ts](https://github.com/bitsocialnet/bitsocial-cli/blob/v0.19.144/src/cli/commands/update/versions.ts)_
 
 ## Contribution
 
@@ -9909,6 +10062,238 @@ built on open Ethereum.
 ## License
 
 [GPL-3.0-or-later](https://github.com/bitsocialnet/bitsocial-indexer/blob/HEAD/LICENSE). Brand assets belong to Bitsocial Forge.
+
+### bitsocial-discovery
+
+Repository: bitsocialnet/bitsocial-discovery
+Source: https://github.com/bitsocialnet/bitsocial-discovery#readme
+Description: Finds Bitsocial communities that no list has
+
+# bitsocial-discovery
+
+Finds [Bitsocial](https://bitsocial.net) communities that no list has
+carried yet, checks which ones are alive, and serves what it found as a JSON
+API that clients, indexers and review tools can read.
+
+Bitsocial has no global community index: a client opens any community whose
+address it knows, and today the known addresses come from hand-maintained
+lists. This service starts from those lists (or anything else you give it)
+and follows the pointers communities leave to each other.
+
+> **It ships idle.** With nothing configured to start from, it does nothing.
+> The operator chooses the sources, and decides what the API shows.
+
+## How it finds communities
+
+| Source | Config | What it reads |
+|---|---|---|
+| Seeds | `SEEDS`, `SEEDS_SOURCES` | Addresses, or JSON lists such as [`bitsocialnet/lists`](https://github.com/bitsocialnet/lists) files |
+| Submissions | `SUBMISSIONS_SOURCE`, `SUBMISSIONS_PER_HOUR` | A JSON list of addresses people sent the operator, and addresses posted to `POST /api/submissions` |
+| Indexers | `INDEXER_URLS` | A [bitsocial-indexer](https://github.com/bitsocialnet/bitsocial-indexer) API: its communities, and the signed comments it archived |
+| ENS | `ETH_RPC_URL` | Every ENS name whose resolver ever set a `bitsocial` text record (how `.bso` names resolve) |
+| Mentions | always on | Addresses written in community descriptions, rules, post titles, bodies and links |
+| Crossposts | always on | The community of every crossposted original |
+| Author chains | `AUTHOR_CHAIN_DEPTH` | `author.previousCommentCid`: an author's previous comment, often in another community |
+
+The last three run on every community that resolves, using its record and the
+first page of posts the record already carries. Every address found becomes a
+candidate; candidates that resolve are checked again every
+`RECHECK_INTERVAL_MS`, and ones that fail back off exponentially. Discovery
+keeps growing as communities link to each other, and keeps track of which
+ones are still alive.
+
+Discovery stores community metadata (title, description, owner-declared
+features) and how each address was found. It never stores posts.
+
+Limits worth knowing:
+
+- Pseudonymous communities (every 5chan board) strip author data, so author
+  chains never pass through them. 5chan boards are found through ENS,
+  mentions, crossposts and submissions.
+- Author chains only work when clients put `author.previousCommentCid` on
+  new comments.
+- The ENS scan sees only resolvers that emit `TextChanged` logs; offchain
+  (CCIP-read) resolvers do not.
+- An author's address mentioned in a post looks like a community address. It
+  is checked like any candidate and backs off once it fails to resolve.
+
+## Fetch-only node
+
+Every candidate is fetched through `PKC_RPC_URL`, and candidates are by
+definition communities nobody has reviewed. A normal IPFS node keeps what it
+fetches and serves it to other peers, so **pointing discovery at a node that
+also hosts or seeds communities makes that node redistribute whatever
+discovery fetched**, illegal content included.
+
+Run a separate `bitsocial-cli` daemon for discovery and turn kubo into a
+client-only node before its first fetch. Start it once to create its repo,
+stop it, then set in `<data path>/.bitsocial-cli.ipfs/config` (kubo ≥ 0.36):
+
+```json
+{
+  "Bitswap": { "ServerEnabled": false },
+  "Provide": { "Enabled": false }
+}
+```
+
+`Bitswap.ServerEnabled=false` answers "don't have" to every block request;
+`Provide.Enabled=false` stops announcing blocks to the routing system.
+bitsocial-cli keeps both settings across restarts. Check them on the running
+node:
+
+```bash
+curl -s -X POST "http://127.0.0.1:50019/api/v0/config?arg=Bitswap.ServerEnabled"
+```
+
+## Quickstart
+
+```bash
+npm ci --legacy-peer-deps
+SEEDS_SOURCES=https://raw.githubusercontent.com/bitsocialnet/lists/master/seedit-default-subscriptions.json \
+PKC_RPC_URL=ws://localhost:9138 \
+npm run dev
+curl -s http://127.0.0.1:4100/api/communities
+```
+
+Docker: `docker-compose.yml` runs the published image
+(`ghcr.io/bitsocialnet/bitsocial-discovery`), with the API bound to the host's
+loopback.
+
+## Configuration
+
+All configuration is environment variables; [`.env.example`](https://github.com/bitsocialnet/bitsocial-discovery/blob/HEAD/.env.example)
+lists every one with its default.
+
+| Var | Default | Meaning |
+|---|---|---|
+| `PKC_RPC_URL` | `ws://localhost:9138` | The fetch-only daemon's PKC RPC endpoint |
+| `SEEDS` | _(empty)_ | Comma-separated addresses to start from |
+| `SEEDS_SOURCES` | _(empty)_ | Comma-separated URLs/paths of JSON lists: `["a.bso", …]`, `{ "communities": [...] }` or `{ "boards": [...] }`; entries' `address` and `publicKey` are both used |
+| `SUBMISSIONS_SOURCE` | _(empty)_ | Same format; recorded as `submission` |
+| `SUBMISSIONS_PER_HOUR` | `0` | New addresses `POST /api/submissions` accepts per hour, across all callers; `0` = no endpoint (below) |
+| `INDEXER_URLS` | _(empty)_ | Comma-separated bitsocial-indexer API base URLs |
+| `ETH_RPC_URL` | _(empty)_ | Ethereum JSON-RPC for the ENS scan; empty = no scan |
+| `ENS_FROM_BLOCK` | `23085558` | First block scanned when no cursor is saved |
+| `ENS_MAX_BLOCK_RANGE` | `50000` | Largest `eth_getLogs` span; halves on its own when refused |
+| `SOURCES_REFRESH_MS` | `3600000` | How often every source is read again |
+| `CHECK_CONCURRENCY` | `2` | Communities fetched at once |
+| `CHECK_TIMEOUT_MS` | `120000` | Cap on one check, author-chain hops included |
+| `RECHECK_INTERVAL_MS` | `21600000` | Wait before a resolved community is checked again |
+| `RETRY_MIN_MS` / `RETRY_MAX_MS` | 15 min / 7 days | Backoff bounds after failed checks |
+| `AUTHOR_CHAIN_DEPTH` | `3` | `previousCommentCid` hops followed per comment; `0` turns chains off |
+| `MAX_CHAINS_PER_CHECK` | `50` | Chains started per community check |
+| `OVERRIDES_SOURCE` | _(empty)_ | The operator review file (below) |
+| `PUBLIC_LISTING` | `all` | `all`: every resolved community not hidden or blocked. `reviewed`: only `approved` and `listed` |
+| `ADMIN_TOKEN` | _(empty)_ | Bearer token that sees everything, including `/api/candidates` |
+| `PORT` / `HOST` | `4100` / `127.0.0.1` | API listen address |
+| `ALLOWED_ORIGINS` | `*` | CORS allow-list, same syntax as bitsocial-indexer |
+| `DB_PATH` | `./data/discovery.db` | SQLite file |
+
+### ENS
+
+The scan asks for `TextChanged` logs whose key topic is `bitsocial`, from any
+contract, then reads each name's current record from its current resolver.
+It needs only an Ethereum RPC, but the RPC has to accept topic-only
+`eth_getLogs` over thousands of blocks. As of 2026-10-27: `rpc.mevblocker.io`
+accepted 50,000-block spans; `eth.drpc.org`'s public tier was rate-limited;
+`ethereum-rpc.publicnode.com` requires an `address` filter; `1rpc.io` caps
+spans at 50 blocks. A paid or self-hosted endpoint is the reliable choice.
+The first scan reads from `ENS_FROM_BLOCK` to head; later scans resume from
+the saved cursor.
+
+## Operator review file
+
+Discovery finds communities nobody has looked at. `OVERRIDES_SOURCE` is how
+an operator records what they decided, by any address a community has (name,
+key, or an alias it was found under):
+
+```json
+[
+  { "address": "memes.bso", "status": "approved" },
+  { "address": "12D3KooW…", "status": "listed", "nsfw": true },
+  { "address": "spam.bso", "status": "hidden", "reason": "spam" },
+  { "address": "12D3KooW…", "status": "blocked", "reason": "report 2026-11-02" }
+]
+```
+
+| Status | Shown publicly | Fetched again | Harvested |
+|---|---|---|---|
+| `approved` (content checked) | yes | yes | yes |
+| `listed` (title/description checked) | yes | yes | yes |
+| _(none)_ = `unreviewed` | only with `PUBLIC_LISTING=all` | yes | yes |
+| `hidden` | no | yes | yes |
+| `blocked` | no | no, once its key is known | no |
+
+When aliases of one community disagree, the strictest status wins. `nsfw`
+overrides the owner's `features.safeForWork`. `reason` is only returned to
+admin requests. The file is re-read whenever it changes.
+
+## API
+
+CORS-enabled. Read-only, except `POST /api/submissions` when it is turned on.
+
+| Endpoint | Description |
+|---|---|
+| `GET /api/health` | Counts, last source refresh, ENS cursor |
+| `POST /api/submissions` | Propose a community address (below). Only exists when `SUBMISSIONS_PER_HOUR` is above 0 |
+| `GET /api/communities` | Resolved communities. `sort=new\|updated\|created\|title` (`new` = first resolved by this instance), `review=approved,listed,unreviewed`, `pseudonymous=true\|false`, `nsfw=true\|false`, `uiType` (default leaves out `author` profiles; `any` = all), `limit` + `page` (no `limit` = everything) |
+| `GET /api/communities/:address` | One community, by name, key or alias |
+| `GET /api/candidates` | Admin only: every known address with its check state, error and sources |
+
+Each community carries `address`, `publicKey`, `name`, `aliases`, `title`,
+`description`, `createdAt`, `updatedAt`, `firstSeenAt`, `lastResolvedAt`,
+`pseudonymityMode`, `safeForWork`, `uiType`, `review`, `nsfw`
+(`true`/`false`/`null`) and `sources` (`type`, `via`, `firstSeenAt`).
+
+### Submissions
+
+A community with no name, that no list carries and nothing links to, has no
+other way in. Anyone can send its address:
+
+```bash
+curl -s -X POST http://127.0.0.1:4100/api/submissions \
+  -H 'content-type: application/json' \
+  -d '{"address":"12D3KooW…"}'
+```
+
+The body is `{ "address": … }`: a `.bso`/`.eth` name or an IPNS public key.
+The answer is `202 { "address": … }` for new and already-known addresses
+alike, `400` for anything that is not an address, and `429` with `Retry-After`
+once the last hour took `SUBMISSIONS_PER_HOUR` new addresses. Resubmitting an
+address never uses the allowance.
+
+A submission becomes an ordinary candidate recorded as `submission` via `api`:
+it is listed only once it resolves, and the review file applies to it like any
+other. An address that only the API ever pointed at and that fails 10 checks
+in a row without ever resolving (about five days with the default backoff) is
+forgotten and can be submitted again. The cap is global, not per caller, so it
+bounds the fetch work strangers can queue; one caller can still use up an
+hour's allowance. The API listens on loopback by default, so a reverse proxy
+decides whether the endpoint is reachable from outside.
+
+### Feeding an indexer
+
+`GET /api/communities` without `limit` returns `{ "communities": [{ "address": … }] }`,
+the shape bitsocial-indexer reads from `COMMUNITIES_SOURCE`, so a filtered URL
+can drive an archive directly, for example only reviewed, non-pseudonymous
+communities:
+
+```
+COMMUNITIES_SOURCE=http://127.0.0.1:4100/api/communities?review=approved&pseudonymous=false
+```
+
+## Development
+
+```bash
+npm ci --legacy-peer-deps
+npm run typecheck
+npm test
+npm run build
+```
+
+## License
+
+GPL-3.0-or-later. See [LICENSE](https://github.com/bitsocialnet/bitsocial-discovery/blob/HEAD/LICENSE).
 
 ### bitsocial-previewer
 
@@ -11066,6 +11451,868 @@ Tests are unit tests of the factory and the scorer against pkc-js's own types (`
 
 GPL-3.0-or-later.
 
+### @pkcprotocol/active-page-sort
+
+Repository: pkcprotocol/active-page-sort
+Source: https://github.com/pkcprotocol/active-page-sort#readme
+Description: Bump order for pkc js communities where a reply that says sage (or any keyword the board picks) does not bump its thread. It is the built in active sort with one extra rule, packaged as a configurable page sort (pkc js 73) so an imageboard such as 5chan can run the real thing instead of faking it in the UI.
+
+# @pkcprotocol/active-page-sort
+
+Bump order for [pkc-js](https://github.com/pkcprotocol/pkc-js) communities where a reply that says `sage` (or any keyword the board picks) does not bump its thread. It is the built-in `active` sort with one extra rule, packaged as a configurable page sort ([pkc-js#73](https://github.com/pkcprotocol/pkc-js/issues/73)) so an imageboard such as 5chan can run the real thing instead of faking it in the UI.
+
+## What it does
+
+A board's catalog shows threads in bump order: the thread with the newest reply is first. On imageboards, a reply whose options say `sage` is a reply that must not bump the thread. This package implements exactly that, on the community side, where the order is decided:
+
+- A thread's **bump time** is the newest of the post's own timestamp and the timestamps of its replies that are **not** no-bump replies.
+- A **no-bump reply** is a reply whose content has a whole line equal to one of the configured keywords. The match is exact and case-sensitive: a content of `sage`, or a multi-line content with a line that is exactly `sage`, does not bump. `sage is overused` in prose, `Sage`, `#sage` and ` sage` all bump.
+- Replies **under** a no-bump reply still count, at any depth. Someone answering a saged reply bumps the thread as usual.
+- A reply the sort's exclusion options drop (by default: removed, deleted, disapproved or pending approval) does not bump the thread, but the present replies under it still do, at any depth: a removed or deleted reply is a **tombstone**, not a cut. This is pkc-js's [Which replies count](https://github.com/pkcprotocol/pkc-js/blob/master/docs/protocol/comment-lifecycle.md#which-replies-count) rule, the one the built-in `active` follows through `lastReplyTimestamp`. A board that turns a flag off (`excludeDeletedComments: "false"`) lets those replies bump again.
+- With a **bump limit** set, only a thread's first `bumpLimit` counted replies can bump it. Past the limit the thread stays open and keeps taking replies, but none of them bump it, so it sinks, the imageboard bump limit. Every counted reply counts toward the limit, saged or not, at any depth. "First" is by reply timestamp, ties broken by the reply's CID.
+- A saged thread, or one past its bump limit, **sinks, it is never hidden**. The sort ranks, it does not filter.
+- With both options unset the sort is plain bump order, identical to pkc-js's built-in `active`.
+
+The sort publishes under the wire key `active` by default, the same key as the built-in, so a UI that already reads `community.posts.pages.active` shows the saged order without any change. The community also publishes what the key means in `community.pageSorts.posts`, including the keyword list, so a UI can tell this sort from the built-in and render a sage marker on matching replies. The owner can publish the sort under another key (see [Choosing the wire key](#choosing-the-wire-key)), so a UI recognises it by what is published under the key, never by the key itself.
+
+The word `sage` appears nowhere in this package. The board supplies its vocabulary through the `noBumpKeywords` option, and its limit through `bumpLimit`.
+
+## How the sorting works
+
+pkc-js regenerates a community's post pages on every publish cycle. For each configured sort it calls the sort file's `score` once per post, higher scores first, equal scores in insertion order. Because this sort declares `requireReplies`, pkc-js hands `score` every descendant of the post as one flat list. pkc-js drops only replies from another community and replies with no CommentUpdate yet; removed, deleted, disapproved and pending replies all arrive, and the sort applies its `exclude*` options to them itself ([pkc-js#407](https://github.com/pkcprotocol/pkc-js/issues/407)). The score is:
+
+```
+counted = replies no exclude* option that is on drops (each judged on its own)
+within  = counted sorted by (timestamp, cid), the first bumpLimit of them (all of them without a limit)
+max(post.timestamp, ...within.filter(not no-bump).map(reply => reply.timestamp))
+```
+
+Each reply is judged on its own, so a skipped reply never hides the replies under it. The reply pages a UI walks keep removed and deleted replies as tombstones too, so a raw walk scores like the community (see [Re-sort a page locally](#4-re-sort-a-page-locally-optional)). That is the whole algorithm. pkc-js owns everything around it: pinned threads first (`pinnedFirst`), the optional age window (`maxAge`), chunking into pages, the moderation exclusions on the threads being ranked. The file contains no date arithmetic and never sees a pinned flag.
+
+The same `score` function runs on a client that installed this package, so a UI can re-sort a page it holds and land on the community's order. See [For UI developers](#for-ui-developers).
+
+### Cost on the community
+
+The built-in `active` reads one number off each post's CommentUpdate (`lastReplyTimestamp`). This sort has to look at the replies, so each post-page generation reads each post's reply rows once more. pkc-js streams them one batch of posts at a time, so the cost is extra database reads per generation, not memory. Post pages are rebuilt on every publish and at least every 15 minutes. On a small or medium board this is not measurable; the pkc-js benchmark for the shape of this sort is `test/benchmarks/page-generation-bench.mjs` in the pkc-js repository.
+
+## Requirements
+
+- pkc-js `>=0.0.114` on the machine running the community (configurable page sorts, `settings.pages`, the page sort types exported from the root, and tombstone replies passed to `score`, pkc-js#407)
+- pkc-js `>=0.0.143` to publish the sort under a key other than `active` (an entry's `sortName`)
+- Node.js `>=22.19` on the machine running the community (what pkc-js requires since 0.0.132)
+- ESM-only environment
+
+## Install and configure on your community
+
+`settings.pages` works like `settings.challenges`: a list of entries per scope, each naming a sort by registry `name` or by file `path`, with string options. `settings` is replaced wholesale on edit, so pass the existing settings along. Any change to `settings.pages` regenerates every CommentUpdate once on the next pass; that is the one-time cost of the edit.
+
+### With pkc-js (TypeScript), running your own node
+
+```bash
+npm install @pkcprotocol/active-page-sort
+```
+
+Register the factory under a name when creating the PKC instance, then name it in the community's settings:
+
+```ts
+import PKC from "@pkcprotocol/pkc-js";
+import activePageSort from "@pkcprotocol/active-page-sort";
+
+const pkc = await PKC({
+    // ...your options
+    pageSorts: { "@pkcprotocol/active-page-sort": activePageSort }
+});
+
+const community = await pkc.createCommunity({ address: "yourboard.bso" });
+await community.edit({
+    settings: {
+        ...community.settings,
+        pages: {
+            posts: [{ name: "@pkcprotocol/active-page-sort", options: { noBumpKeywords: "sage" }, preloaded: true }],
+            replies: [{ name: "old", preloaded: true }]
+        }
+    }
+});
+```
+
+`replies: [{ name: "old", preloaded: true }]` is what an imageboard shows inside a thread (oldest first). Leave `replies` unset to keep pkc-js's five default reply sorts.
+
+### By file path
+
+A `path` entry loads a file from the filesystem of the process running the community (the RPC server, under RPC). Point it at this package's entry file:
+
+```ts
+await community.edit({
+    settings: {
+        ...community.settings,
+        pages: {
+            posts: [
+                {
+                    path: "/absolute/path/to/node_modules/@pkcprotocol/active-page-sort/dist/index.js",
+                    options: { noBumpKeywords: "sage" },
+                    preloaded: true
+                }
+            ],
+            replies: [{ name: "old", preloaded: true }]
+        }
+    }
+});
+```
+
+A `path` entry publishes no `name` in `community.pageSorts` (the client cannot know which package a path is). Prefer the registry `name` when you can.
+
+Without a `name`, a UI can only recognise the sort by its options: an entry with no `name` that publishes `noBumpKeywords` or `bumpLimit` is taken to be this sort. So a `path` entry with both options unset, or both listed in `privateOptions`, is not recognised as this sort by any UI. The order still applies; the UI just has nothing to show for it.
+
+### With bitsocial-cli
+
+bitsocial-cli installs challenge packages into the data path and registers them by name; the equivalent `bitsocial page-sort install` command is planned on the same registry. Until it ships, use the `path` form above against the RPC server's filesystem:
+
+```bash
+bitsocial community edit yourboard.bso \
+  '--settings.pages.posts[0].path' /absolute/path/to/node_modules/@pkcprotocol/active-page-sort/dist/index.js \
+  '--settings.pages.posts[0].options.noBumpKeywords' sage \
+  '--settings.pages.posts[0].preloaded' true \
+  '--settings.pages.replies[0].name' old \
+  '--settings.pages.replies[0].preloaded' true
+```
+
+### Choosing the wire key
+
+The sort publishes under `active` unless the entry sets its own `sortName` (pkc-js `>=0.0.143`). That also lets you list the sort more than once, each entry under its own key:
+
+```ts
+pages: {
+    posts: [
+        { name: "@pkcprotocol/active-page-sort", options: { noBumpKeywords: "sage", bumpLimit: "300" }, preloaded: true }, // key: active
+        { name: "@pkcprotocol/active-page-sort", sortName: "activeNoLimit", options: { noBumpKeywords: "sage" } }           // key: activeNoLimit
+    ]
+}
+```
+
+Two entries resolving to the same key are rejected (`ERR_PAGE_SORT_DUPLICATE_SORT_NAME`). Renaming a key is a `settings.pages` edit like any other: the old key is gone from the record, with no alias. A UI that only reads `community.posts.pages.active` does not show a sort published under another key, so keep the default unless you know your users' UIs follow `community.pageSorts`. The key never changes the order: `score` does not read it.
+
+### Options
+
+Page sort options are strings, like challenge options. Unlike challenge options they are **public by default**: everything set in `options` is published in `community.pageSorts.posts[key].publicOptions` (`key` is `active` unless the entry sets its own `sortName`) unless its name is listed in the entry's `privateOptions`.
+
+| Option | Required | Published in `publicOptions` | Default | Description |
+|---|---|---|---|---|
+| `noBumpKeywords` | no | yes, unless listed in `privateOptions` | unset (plain bump order) | Comma-separated keywords, e.g. `sage` or `sage,nobump`. A reply whose content has a whole line equal to one of these does not bump its thread. Exact and case-sensitive |
+| `bumpLimit` | no | yes, unless listed in `privateOptions` | unset (no limit) | A positive integer, e.g. `"300"`. Only a thread's first this many counted replies, saged or not, can bump it; past the limit it sinks while staying open. Counted replies are the ones the `exclude*` options keep, the same set as the thread's `replyCount` |
+| `maxAge` | no | always (reserved) | none | pkc-js reserved: a sliding window such as `"36h"`, `"7d"`, `"2w"`, `"1M"`, `"1y"`. Threads older than the window drop out of the pages (pinned threads bypass it) |
+| `pinnedFirst` | no | always (reserved) | `"true"` | pkc-js reserved: pinned threads first and outside the window. `"false"` treats them as ordinary threads |
+| `excludeRemovedComments`, `excludeDeletedComments`, `excludeCommentPendingApproval`, `excludeCommentWithApprovedFalse` | no | always (reserved) | `"true"` for the `posts` scope | pkc-js reserved moderation filters on the threads the sort ranks. `score` also applies them to the replies: a reply one of them drops does not bump, the replies under it still do. Replies that do not belong to the community never reach `score`: pkc-js drops them itself (the always-on community identity rule since pkc-js 0.0.120, which replaced the `excludeCommentsWithDifferentCommunityAddress` option, [pkc-js#401](https://github.com/pkcprotocol/pkc-js/issues/401)) |
+
+Keep `noBumpKeywords` public unless you have a reason not to: a UI reads it to know the board supports sage, to put the keyword on the wire the way the sort reads it, and to mark saged replies. With the option private the order still applies but UIs cannot do any of that. The same goes for `bumpLimit`: a UI compares it to a thread's `replyCount` to show that the thread no longer bumps. The reserved options cannot be made private (`ERR_PAGE_SORT_RESERVED_OPTION_CANNOT_BE_PRIVATE`): a client re-sorting a page must know how its comment set was filtered. Their full semantics are in the pkc-js page sorts doc, "Reserved options". If pkc-js adds a reserved exclusion, this package needs a release that applies it to replies too.
+
+### Validation
+
+The entry is validated when the community is created, on every edit (rejecting the whole write) and on start. This package rejects:
+
+- `noBumpKeywords` set but holding no keyword (`""`, `" , ,"`): that would silently be plain bump order. Unset it instead.
+- More than 64 keywords, or a keyword over 128 characters.
+- A keyword containing a line break, which can never equal a line.
+- `bumpLimit` set to anything but a positive integer (`"0"`, `"-1"`, `"1.5"`, `"300 replies"`, `""`). Surrounding whitespace is trimmed. Unset it for no limit.
+
+Failures surface as `ERR_PAGE_SORT_SETTINGS_VALIDATION_FAILED` inside pkc-js's aggregated `ERR_PAGE_SORT_SETTINGS_VALIDATION_FAILED_FOR_PAGE_SORTS`.
+
+### What is published
+
+```ts
+community.pageSorts = {
+    posts: {
+        active: { // the wire key: the entry's `sortName` when it sets one
+            name: "@pkcprotocol/active-page-sort", // absent for a path entry
+            description: "Bump order where a reply whose content has a line equal to a configured keyword does not bump its thread, with an optional bump limit",
+            publicOptions: {
+                noBumpKeywords: "sage",
+                bumpLimit: "300",
+                pinnedFirst: "true",
+                excludeRemovedComments: "true",
+                excludeDeletedComments: "true",
+                excludeCommentPendingApproval: "true",
+                excludeCommentWithApprovedFalse: "true"
+            }
+        }
+    }
+};
+```
+
+Add `noBumpKeywords` to the entry's `privateOptions` to keep the list out of the record. UIs then cannot mark saged replies; the order still applies.
+
+## For UI developers
+
+Nothing here is required to display the board: the community publishes the pages already ordered. These are the extras a UI can offer.
+
+### 1. Know the board supports sage
+
+```ts
+import { findPublishedActivePageSorts } from "@pkcprotocol/active-page-sort";
+
+const [published] = findPublishedActivePageSorts(community.pageSorts?.posts); // undefined on a board without this sort
+const keywords = published?.publicOptions.noBumpKeywords; // "sage"
+const pages = published && community.posts.pages[published.sortName]; // the key is `active` unless the owner chose another
+```
+
+Do not read `community.pageSorts.posts.active` directly. The key is a label the owner chooses: this sort may be published under another key, and on a board that publishes `pageSorts` a key named `active` may be any sort. `findPublishedActivePageSorts` recognises the sort by what is published under the key: a `name` of `@pkcprotocol/active-page-sort`, or, for a sort the community loaded by file path (which publishes no `name`), a `noBumpKeywords` or `bumpLimit` among its `publicOptions`. It returns every match in the community's order, each with its `sortName` (the wire key), `name` and `publicOptions`: an owner can list the sort more than once with different options, and a reply is saged relative to one of them. A published sort need not have pages of its own: when a board's whole comment set fits its preloaded pages, pkc-js publishes only those (its single-chunk shortcut), and a UI derives the other sorts locally (step 4).
+
+A board that never configured `settings.pages` has no `pageSorts`; its `active` is the built-in and `sage` is just text.
+
+### 2. Put `sage` on the wire the way the sort reads it
+
+The convention is a whole line of the reply's `content` equal to the keyword. When the user types `sage` in an Options field, append it to the content as its own line:
+
+```ts
+const content = userText.trimEnd() ? `${userText.trimEnd()}\nsage` : "sage";
+```
+
+The sort file is the contract. A board that wants another convention edits the keyword list, not the UI.
+
+### 3. Mark saged replies
+
+```ts
+import { isNoBumpReplyForOptions } from "@pkcprotocol/active-page-sort";
+
+const saged = isNoBumpReplyForOptions(reply.content, published?.publicOptions); // `published` from step 1
+```
+
+`isNoBumpContent(content, keywords)` and `splitKeywords(raw)` are the same test without the options lookup, and `bumpTimestamp({ postTimestamp, replies, keywords, options, bumpLimit })` gives a thread's effective bump time from a reply tree walked from reply pages, tombstones included, with the published `publicOptions` as `options` and `parseBumpLimit(publicOptions.bumpLimit)` as `bumpLimit`. `isCountedReply(reply, options)` is the exclusion check on its own. `src/no-bump.ts`, which also holds `findPublishedActivePageSorts`, imports nothing and bundles for a browser.
+
+### 4. Re-sort a page locally (optional)
+
+pkc-js exports no sorter: the package's `score` is the whole contract. A UI that wants to re-order threads between community publishes (a user's own reply just landed, say) applies `score` itself. This sort declares `requireReplies`, so it needs each thread's replies: walk a flat reply sort (`newFlat` / `oldFlat`) when the post carries one, otherwise the nested sort's pages recursively, at every depth. Walk all of it: every page of every chain, for every thread you re-sort. `score` receives a plain list and cannot tell a partial walk from a complete one, so a thread whose newest bump is on a page you did not fetch ranks too low, with no error. Hand each post its descendants by `parentCid`, as walked, tombstones included, and pass the published `publicOptions` as `options`. `score` skips what the published `exclude*` options drop, keeping the replies under it, so no filtering is needed on the UI side. Pass the options as published: without the `exclude*` flags nothing is skipped. Reply pages keep removed and deleted replies only while the reply sort's `excludeRemovedComments` and `excludeDeletedComments` are `"false"` (the default). A reply sort with either turned on leaves tombstones out, and a nested one loses the replies under them too, so check `community.pageSorts.replies` and walk a published reply sort that keeps them. If none does, a client cannot reproduce the community's order. The worked example of the walk and the re-sort is `test/node-and-browser/pages/page-sorts-client-test-util.ts` in pkc-js; this package's own copy of the re-sort is `test/unit/resort-like-a-ui.ts`. A re-sorted page is still one slice of one sort: re-sorting it gives that slice in another order, not the whole board.
+
+```ts
+import activePageSort, { PACKAGE_NAME, findPublishedActivePageSorts } from "@pkcprotocol/active-page-sort";
+
+const [published] = findPublishedActivePageSorts(community.pageSorts?.posts);
+if (!published) throw Error("this board does not publish the sort");
+// The sort's own page: preloaded, or fetched from pageCids[published.sortName]. When it has neither, the board's
+// preloaded page holds the whole comment set (pkc-js's single-chunk shortcut) and is the input to re-sort.
+const cid = community.posts.pageCids[published.sortName];
+const page = community.posts.pages[published.sortName] ?? (cid ? await community.posts.getPage({ cid }) : Object.values(community.posts.pages)[0]);
+if (!page) throw Error("the board has no page to re-sort yet");
+const file = activePageSort({ pageSortSettings: { name: PACKAGE_NAME, options: published.publicOptions } });
+const scored = page.comments.map((pageComment, index) => {
+    const { replies, ...commentUpdate } = pageComment.raw.commentUpdate; // score never sees the preloaded reply slice
+    return { pageComment, index, score: file.score({ comment: pageComment.raw.comment, commentUpdate, options: published.publicOptions, baseTimestamp: Math.round(Date.now() / 1000), replies: descendantsOf(pageComment.cid) }) };
+});
+scored.sort((a, b) => b.score! - a.score! || a.index - b.index); // then hoist pinned unless publicOptions.pinnedFirst === "false"
+```
+
+Treat `community.pageSorts[].name` as data: look it up in your own registry, never import from it.
+
+## Exports
+
+| Export | What it is |
+|---|---|
+| `default` / `activePageSort` | The `PageSortFileFactory` pkc-js calls |
+| `SORT_NAME`, `DESCRIPTION`, `optionInputs`, `validatePageSortSettings` | The file's declared surface, for config UIs and tests. `SORT_NAME` (`active`) is the default wire key, not necessarily the one a board publishes under |
+| `PACKAGE_NAME`, `findPublishedActivePageSorts` | `"@pkcprotocol/active-page-sort"`, and the lookup of this sort in `community.pageSorts.posts` whatever key it is published under. Import-free |
+| `NO_BUMP_KEYWORDS_OPTION`, `BUMP_LIMIT_OPTION` | `"noBumpKeywords"` and `"bumpLimit"`, the option keys. Renaming one is a new contract |
+| `splitKeywords`, `isNoBumpContent`, `parseBumpLimit`, `bumpTimestamp`, `isNoBumpReplyForOptions` | The matching rules, import-free, for browsers |
+| `isCountedReply`, `EXCLUSION_OPTIONS` | Whether a reply can bump at all: the published `exclude*` options checked against its own CommentUpdate, never its ancestors. Import-free |
+| `PageSortFile`, `PageSortFileInput`, `PageSortFileFactory`, `PageSortFileFactoryInput`, `PageSortFileFactoryArgs`, `PageSortScoreArgs`, `PageSortReplyEntry`, `PageSortScope`, `CommunityPageSortSetting` | Re-exported pkc-js types (root exports since pkc-js 0.0.110) |
+| `PageSortSettingsEntry` | Alias of `CommunityPageSortSetting`, the `settings.pages` entry the factory receives |
+
+## Development
+
+```bash
+npm install
+npm run typecheck
+npm test            # unit tests: no network, no daemon
+npm run test:e2e    # builds, starts a throwaway kubo daemon, runs a real community with this sort
+```
+
+| Path | What it is |
+|---|---|
+| `src/active-page-sort.ts` | The factory: `sortName`, `scope`, `requireReplies`, `optionInputs`, `score`, `validatePageSortSettings` |
+| `src/no-bump.ts` | Keyword splitting, the line match, the tombstone rule, the bump-time fold. Imports nothing |
+| `src/types.ts` | Re-exports of the pkc-js page sort types |
+| `test/unit/` | The contract: match semantics, scorer, validation, and a client re-sort reproducing the community order |
+| `test/e2e/` | A kubo daemon from the `kubo` npm package on ports 15301/18380/24301 (override with `KUBO_E2E_*_PORT`), a pkc-js community configured by `path`, `sage` and normal replies at depths 1 to 3, author deletions, including a deleted sage reply whose answer still bumps, read back by a second PKC over IPNS and re-sorted from the walked reply tree |
+
+The e2e writes everything under `.tmp/` in the repository and removes it afterwards.
+
+## License
+
+GPL-3.0-or-later, the same as pkc-js.
+
+### @bitsocial/tipping-challenge
+
+Repository: bitsocialnet/tipping-challenge
+Source: https://github.com/bitsocialnet/tipping-challenge#readme
+Description: A pkc js challenge that lets a community show verified tips. It implements the tipping/v1 contract, which is what publishing clients code against.
+
+# @bitsocial/tipping-challenge
+
+A [pkc-js](https://github.com/pkcprotocol/pkc-js) challenge that lets a community show verified tips. It implements the [`tipping/v1` contract](#the-tippingv1-contract), which is what publishing clients code against.
+
+> **Status: experimental.** This README is the spec, and `src/` follows it. The package is published to npm as `@bitsocial/tipping-challenge`. The contract will be proposed as a BSIP only after it has been used in production.
+
+## What it does
+
+An author tips another author by sending them a token directly, wallet to wallet, and then replying to the comment being tipped. The reply is published with the hash of the transaction as a challenge pre-answer. The community node looks the transaction up on chain and, if it really is a transfer from the replier's wallet to the wallet of the author being replied to, accepts the reply and writes the verified amount into that reply's comment update.
+
+There is no tipping contract and no chain of its own. The payment is an ERC-20 transfer, ERC-721 transfer or native coin send, with a short suffix naming the parent comment appended to its data.
+
+Four things follow from that design:
+
+- **The community cannot intercept a tip.** The money moves before the reply is published, straight to the recipient.
+- **The community can hide a tip but cannot fake one.** The verified result includes the transaction hash, so any client can check it against the chain.
+- **A payment is made for one comment.** The transaction carries a suffix naming the parent comment, so it cannot back a tip on another comment or in another community. See [The parent binding](#the-parent-binding).
+- **Replies without a tip are not affected.** The challenge never prompts anyone. It passes everything that carries no tip claim.
+
+## The `tipping/v1` contract
+
+A client has to recognise "this community accepts tips, in these tokens" from the published community record alone. The record does not say which challenge package produced it: `name` and `options` are stripped, and only `publicOptions` survives. So the signal is an option key that names a **contract** rather than a package:
+
+| Public option | Required | Meaning |
+|---|---|---|
+| `tipping/v1/tokens` | yes | JSON array of the accepted tokens. Its presence is what identifies the contract |
+| `tipping/v1/feeRecipient` | when any token has a fee | The address that receives the community fee |
+
+This package is one implementation. Anything that publishes `tipping/v1/tokens` with the semantics below claims the contract.
+
+`community.wallets` does not exist in the protocol today. If it is added, a later version of the contract may read the fee address from there instead of `tipping/v1/feeRecipient`.
+
+### The token list
+
+`tipping/v1/tokens` is a JSON array. Each entry:
+
+| Field | Required | Meaning |
+|---|---|---|
+| `chainId` | yes | The numeric chain ID, as a JSON number: `1` for Ethereum mainnet, `8453` for Base. A positive integer, never a string |
+| `type` | yes | `native`, `erc20` or `erc721` |
+| `address` | for `erc20` and `erc721` | The token contract. Left out for `native` |
+| `minAmount` | no | Smallest tip accepted. Not allowed for `erc721` |
+| `fee` | no | The community fee for a tip in this token. Leave out to charge nothing |
+
+`fee` is one of:
+
+| Shape | Allowed for | Meaning |
+|---|---|---|
+| `{ "percent": "2.5" }` | `native`, `erc20` | A percentage of the tip, paid in the same token, on top of the tip. At most 4 decimal places, greater than 0, at most 100 |
+| `{ "amount": "500" }` | `native`, `erc20` | A flat amount per tip, paid in the same token |
+| `{ "amount": "1000000", "token": "0x…" }` | `erc721` | A flat amount per tip, paid in the named ERC-20. `token` is required here and not allowed elsewhere |
+
+Chains are identified by chain ID only. There is no `chainTicker` anywhere in this contract: a ticker is a label that anyone can reuse for another network, while a chain ID is what a wallet and an RPC actually agree on. An entry that carries `chainTicker` is invalid.
+
+Rules that apply to the whole list:
+
+- Every amount is a **string holding an unsigned integer in the token's smallest unit** (wei for ETH, 6-decimal units for a 6-decimal token). There are no decimals, so there is no rounding.
+- A token appears once. Two entries with the same `chainId` and contract (compared without regard to case), or two `native` entries on one chain ID, are rejected.
+- Addresses are literal `0x` addresses, never names. A mixed-case address must carry a valid EIP-55 checksum; all lowercase is accepted.
+- At most 64 entries. Unknown keys are rejected.
+
+A percentage fee is rounded **down**: `fee = floor(amount × percent / 100)`. A client may pay more. When the result is 0, no fee is owed.
+
+Example. The first ERC-20 is Bitsocial's $BSO on Ethereum mainnet. The other contract addresses are placeholders, not real tokens:
+
+```json
+[
+  { "chainId": 1, "type": "native", "minAmount": "1000000000000000", "fee": { "percent": "2" } },
+  { "chainId": 1, "type": "erc20", "address": "0xB50cea4c109dc223A10d44c14f521CaeD91DaB5A", "fee": { "percent": "2.5" } },
+  { "chainId": 1, "type": "erc20", "address": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa0002", "fee": { "amount": "500000000000000000" } },
+  { "chainId": 1, "type": "erc721", "address": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb0001", "fee": { "amount": "1000000", "token": "0xB50cea4c109dc223A10d44c14f521CaeD91DaB5A" } },
+  { "chainId": 1, "type": "erc721", "address": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb0002" }
+]
+```
+
+### The tip claim
+
+A tip is a **reply** to the comment being tipped. The client sends the tip claim as a **challenge pre-answer**: an entry in the `challengeAnswers` of the publish request, keyed by the index of the tipping challenge, holding the claim as JSON text.
+
+```js
+challengeAnswers: {
+  "2": JSON.stringify({ chainId: 1, txHash: "0x…", feeTxHash: "0x…" })
+}
+```
+
+| Field | Required | Meaning |
+|---|---|---|
+| `chainId` | yes | The numeric chain ID the transaction is on, as a number |
+| `txHash` | yes | The transaction that carries the tip |
+| `feeTxHash` | no | The transaction that carries the fee, when it is not the same one. Left out when no fee is owed or when the fee is in the tip's own transaction |
+
+**Which index.** `challengeAnswers` is a record keyed by the position of a challenge in `community.challenges`, as a decimal string (pkc-js 0.0.152 and later; earlier versions used a positional array and cannot carry this). Find the entry whose `publicOptions` carry `tipping/v1/tokens` and use its position. The claim is never sent under any other key: the challenge reads only its own index.
+
+**What the challenge reads.** pkc-js hands the challenge the answer at its own index as `challengeAnswer`. No answer means no claim, and the reply passes untouched. The claim is not part of the signed comment, so it is not stored with the reply and not visible to other peers. Only the community node that receives the request sees it.
+
+The claim carries only those three keys. Any other key is rejected, so a claim cannot carry fields that look like the verified result. An answer that is not JSON, or not an object, is rejected.
+
+### What a valid tip is
+
+For a reply that carries a claim, all of these must hold. Each is a separate rejection with its own message.
+
+1. The publication is a reply, not a post. The recipient is the author of the parent comment.
+2. The community accepts at least one token on `chainId`.
+3. The parent comment exists in this community.
+4. The tipper is not the recipient: the two signing keys differ.
+5. The tipper has at least one valid entry in `author.wallets`. See [Which wallets count](#which-wallets-count).
+6. The parent comment's author has at least one valid entry in `author.wallets` that the tipper has not also proven as their own.
+7. The RPC the community uses for `chainId` reports that chain ID. See [The chain](#the-chain).
+8. The transaction is mined and succeeded.
+9. The transaction was sent by one of the tipper's wallets. See [Who sends the transaction](#who-sends-the-transaction).
+10. The transaction ends with the [parent binding](#the-parent-binding) for this reply's `parentCid`.
+11. The transaction moves an accepted token from one of the tipper's wallets to one of the recipient's wallets. See [Finding the tip](#finding-the-tip).
+12. The amount is at least the token's `minAmount`, if set.
+13. The fee, if the token has one and it does not round down to 0, was paid. See [The fee](#the-fee).
+14. Neither the tip transaction nor the fee transaction has backed another tip on that chain ID in this community.
+
+### Which wallets count
+
+`author.wallets` is keyed by a ticker the author chose, and this contract does not use tickers. So the key is ignored:
+
+- **Every validly proven entry counts**, whatever key it sits under. A [wallet proof](#wallet-proofs) shows control of an address, and an address is the same on every EVM chain.
+- **An entry that fails verification is ignored.** It does not cause a rejection, so one stale entry does not stop an author who also has a good one.
+- **The transfer's sender** must equal the address of some valid entry of the tipper. **The transfer's receiver** must equal the address of some valid entry of the author being tipped.
+- **A wallet the tipper has proven as their own is never a receiver**, even if the tipped author lists it too.
+- The tip is rejected only when no valid entry matches.
+
+### The chain
+
+The same token address, and even the same transaction hash, can exist on two chains and mean different things. So the community node never verifies a transfer on an RPC it has not checked:
+
+- Before reading anything, it asks the RPC configured for the claim's `chainId` for its chain ID (`eth_chainId`).
+- If the answer differs, or the RPC cannot be asked, the tip is rejected with a message saying so. No transaction is read.
+- A confirmation is remembered for the life of the process. A failure is not, so it is checked again on the next tip.
+
+### The parent binding
+
+A claim names a transaction, and a plain transfer names no comment. So every transaction a claim names, the tip transaction and the fee transaction if there is one, must **end with a fixed 65-byte suffix** that names the parent comment of the reply. The binding is part of the contract, not an option: a community cannot turn it off, and a client must build its own transaction to produce it.
+
+What it closes:
+
+- A payment cannot back a tip on another comment, in the same community or in another one. A transaction ends with one suffix only, and a comment CID is derived from content that includes the community address.
+- An unrelated payment cannot be claimed as a tip. Only the payer writes the suffix, so a payment that carries a comment's CID was made for that comment. The suffix says nothing about when the comment was published, and no rule compares the block time with the comment's `timestamp`.
+- A community cannot attach a real payment to a parent it was not made for.
+
+**The suffix.** It is an [ERC-8021](https://eip.tools/eip/8021) schema-2 suffix whose CBOR map holds one metadata entry, `m["bso-tip"]`, with the 32 raw bytes of the hash:
+
+```
+hash   = keccak256(UTF-8 bytes of parentCid)
+suffix = a1 61 6d                  CBOR map with 1 entry, the key "m"
+         a1 67 62736f2d746970      CBOR map with 1 entry, the key "bso-tip" (7 bytes of text)
+         58 20 <hash>              CBOR byte string of 32 bytes
+         00 2e                     length of the CBOR data: 46, two bytes
+         02                        ERC-8021 schema ID
+         8021 8021 8021 8021 8021 8021 8021 8021      ERC-8021 marker, 16 bytes
+```
+
+`parentCid` is the string exactly as it appears in the signed reply's `parentCid`. It is hashed as written, never parsed or re-encoded, so a CIDv0 and a CIDv1 of the same content bind differently.
+
+Test vector. The string is only an example input, and need not be a CID that exists:
+
+```
+parentCid = QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
+hash      = 0x9e70d347eb27e5edfa2b03409b020ecdaba0997a7a4806a5c441694ea6bf9b5d
+suffix    = 0xa1616da16762736f2d74697058209e70d347eb27e5edfa2b03409b020ecdaba0997a7a4806a5c441694ea6bf9b5d002e0280218021802180218021802180218021
+```
+
+**The check.** The community node reads the transaction's `input` and requires its last 65 bytes to equal the suffix built from this reply's `parentCid`. It does not decode CBOR. Nothing may follow the suffix, so a transaction that carries an ERC-8021 builder code after it does not verify, and a builder code cannot be added to the same map. The suffix is valid ERC-8021 schema 2, so ERC-8021 indexers read it.
+
+**Where it goes.**
+
+- **Native coin:** the transaction's `data` is the suffix. A receiver that has code runs that code on a send that carries data, and may revert. A wallet that has delegated to a smart account through EIP-7702 has code too. See [the fee](#the-fee) for what that means for a fee recipient.
+- **ERC-20 and ERC-721:** the normal `transfer` or `transferFrom` calldata, followed by the suffix. Solidity's ABI decoder ignores extra trailing calldata, so the call executes as usual. A token contract that rejects trailing calldata cannot be tipped.
+- **Batched transactions:** the rule is the same: the outer transaction's `input` must end with the suffix, and the tipper must send it. See [Who sends the transaction](#who-sends-the-transaction).
+
+It adds 65 bytes. One is always zero. The other 64 are non-zero, except for any zero byte in the hash (about one hash in eight has one). A zero byte costs less, so the figures below are upper bounds.
+
+- On a token transfer that is at most 1,028 gas. A batch with a lot of calldata can reach the EIP-7623 calldata floor, and the suffix then costs the same as on a native coin send.
+- On a native coin send it is at most 2,570 gas. A plain send has no execution gas, so the EIP-7623 calldata floor applies: 10 gas for each zero byte and 40 for each non-zero byte, on top of the 21,000-gas base cost. This holds on chains that have adopted EIP-7623.
+
+### Who sends the transaction
+
+Every transaction a claim names, tip or fee, must be **sent by one of the tipper's proven wallets**: the transaction's own `from`, not only the `from` of a `Transfer` event inside it.
+
+The reason is the suffix. It sits in the outer transaction's `input`, and only the account that sends a transaction signs its `input`. If anyone could send it, a relayer could append a suffix the tipper never chose. With this rule the tipper's own key has signed the binding.
+
+What this excludes:
+
+- **Sponsored and relayed transactions**, where another account pays the gas and submits the transaction.
+- **ERC-4337 user operations.** The outer transaction is the bundler's `handleOps` call. The bundler sends it, and it does not end with the suffix.
+- **EIP-5792 `wallet_sendCalls`**, when the wallet behind it submits through a bundler or a relayer, or does not append the suffix.
+
+What still works: a transaction the tipper's wallet sends itself, including an EIP-7702 batch the tipper sends to their own account, as long as the outer `input` ends with the suffix.
+
+This rule is strict on purpose. Accepting any sender later would not invalidate a tip that passes today, so it can be relaxed without breaking anything. The reverse is not true.
+
+### Finding the tip
+
+The claim does not name a token, so the rule for which transfer is the tip is part of the contract:
+
+1. If the native coin is accepted on that chain ID, and the transaction itself was sent by one of the tipper's wallets to one of the recipient's wallets with a value above 0, the tip is that value.
+2. Otherwise the tip is the first `Transfer` event in the transaction, in log order, that is emitted by a token contract accepted on that chain ID, goes from one of the tipper's wallets to one of the recipient's wallets, and has the shape of that entry's `type`.
+
+`from` in rule 2 is the sender in the event. It need not be the wallet that sent the transaction, but both must be wallets of the tipper: [the tipper sends every claimed transaction](#who-sends-the-transaction). So a tipper with two proven wallets can move a token out of one with a `transferFrom` sent by the other. A tip submitted by a relayer, a bundler or any other account does not verify.
+
+An ERC-20 `Transfer` has two indexed arguments and the amount in the data. An ERC-721 `Transfer` has three indexed arguments, the last being the token ID. An event of one shape on an entry of the other type is ignored.
+
+Native coin is recognised only as a **direct send**. Coin moved by an inner call of a batched transaction emits no event and is invisible to a standard RPC, so it cannot be verified. Supporting it is future work.
+
+### The fee
+
+The fee is a second transfer, on the same chain ID, from any of the tipper's valid wallets to `tipping/v1/feeRecipient`, of at least the owed amount. It need not come from the wallet that sent the tip. It is paid on top of the tip: the tip is whatever reached the recipient.
+
+| Fee is paid in | Where the challenge looks |
+|---|---|
+| An ERC-20 | A `Transfer` event of that token from one of the tipper's wallets to the fee recipient, in `feeTxHash` if given, else in `txHash`. It must be a different event from the tip itself |
+| The native coin | `feeTxHash` must be given and must differ from `txHash`. That transaction must be sent by one of the tipper's wallets to the fee recipient with a value of at least the fee |
+
+So an ERC-20 or ERC-721 tip can carry its fee in the same transaction only when the client builds a batch itself and the tipper's wallet sends it. Otherwise the fee is a separate transaction. A native coin fee is always its own transaction.
+
+The fee transaction must pass the same checks as the tip transaction: mined, succeeded, [sent by one of the tipper's wallets](#who-sends-the-transaction), and ending with the [parent binding](#the-parent-binding).
+
+When no fee is owed, a `feeTxHash` in the claim is ignored: the transaction is not read, not checked and not marked as used. A client that rounds a percentage fee up may pay a fee the community rounds down to 0, and that tip still verifies.
+
+**A native fee recipient must accept a send that carries data.** The fee transaction's `data` is the suffix. An address with no code accepts it. An address with code runs that code and may revert, and then nobody can pay that community's native fee. That covers a contract, such as a multisig treasury, and also an ordinary wallet that has delegated to a smart account through EIP-7702. A community that charges a fee in the native coin sets `tipping/v1/feeRecipient` to a wallet with no code, or to a contract or delegate known to accept a send that carries data. The node cannot check this when settings are saved, and a delegation added later can break native fees that worked before. An ERC-20 fee is not affected: that call goes to the token contract.
+
+Without a contract the fee is enforced by display only. The recipient keeps the tip either way; the community just does not show a tip that skipped the fee.
+
+### The verified result
+
+On success the challenge writes this into the reply's comment update:
+
+```js
+commentUpdate.tip = {
+  contract: "tipping/v1", // the contract, with its version, that the tip was verified under
+  chainId: 1,
+  txHash: "0x…",
+  type: "erc20",          // "native" | "erc20" | "erc721"
+  token: "0x…",           // the token contract; absent for native
+  from: "0x…",            // the tipper's wallet the transfer came from
+  to: "0x…",              // the recipient's wallet it went to
+  amount: "5000000",      // native and erc20: smallest unit, as a string
+  tokenId: "4242",        // erc721 only, in place of amount
+  fee: {                  // only when a fee was owed
+    txHash: "0x…",
+    to: "0x…",            // the fee recipient
+    amount: "125000",     // what was actually paid
+    token: "0x…"          // the fee token; absent for a native fee
+  }
+}
+```
+
+Addresses are written with their EIP-55 checksum. Hashes are lowercase.
+
+`contract` names the rules, not the software: any implementation of this contract writes `"tipping/v1"`. A community can move to a later version while its older comment updates still hold tips verified under this one, so a client that checks a tip itself reads `contract` to know which rules to apply, and treats a value it does not know as a tip it cannot check.
+
+It lives in the comment update, not in the comment, so a community that later stops showing tips can drop it. The reply itself, with its claim, is permanent.
+
+### Wallet proofs
+
+A tip is only meaningful if both wallets really belong to the two authors. pkc-js checks only the shape of `author.wallets`, so this challenge verifies each proof itself.
+
+The rules are those of [BSIP-22, Author Wallet Proofs](https://github.com/bitsocialnet/BSIPs/blob/master/BSIPS/bsip-22.md). An entry is `{ address, timestamp, signature: { signature, type } }`. Verifying it has one of three outcomes: valid, invalid or unknown.
+
+First, whatever its type, the entry must have the right shape: `address` is a string, `timestamp` is an integer, and `signature` is an object whose `signature` and `type` are strings. An entry without this shape is **invalid**. Other members are ignored.
+
+Then, when `signature.type` is any string other than `eip191`, the entry is **unknown**: no further rule applies to it, and it is neither valid nor invalid.
+
+An `eip191` entry is **valid** when all of these hold, and **invalid** otherwise:
+
+- `address` is a literal `0x` address (40 hex digits, any letter case), not a name.
+- `timestamp` is not negative and is not more than 300 seconds later than the verifier's clock. The allowance is fixed.
+- `signature.signature` is 65 bytes, `r || s || v`, written as `0x` followed by 130 hex digits, where:
+  - `v`, the last byte, is `0x1b` or `0x1c` (27 or 28). The `0`/`1` form is rejected. A client whose signer returns `0` or `1` adds 27 before storing the signature.
+  - `s` is in the lower half of the curve order: `s <= 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5D576E7357A4501DDFE92F46681B20A0`. The high-`s` form of the same signature recovers the same address and is rejected anyway, so every proof has one accepted encoding.
+- the address recovered from that signature, as an EIP-191 personal message over exactly this string, equals `address`:
+
+```
+{"domainSeparator":"bitsocial-author-wallet","authorPublicKey":"<key address>","walletAddress":"<wallet address>","timestamp":<timestamp>}
+```
+
+`authorPublicKey` is the **key address** of the author's signing key: the `12D3KooW…` form derived from `signature.publicKey`. It is never `author.address`, which is `author.name || keyAddress` and follows a name when the name is repointed.
+
+`walletAddress` is the entry's `address` with its hex digits in **lowercase**, whatever case the entry uses. The wallet signs its own address, so nobody can make up 65 bytes first and list whatever address they recover to.
+
+The field order is fixed and there is no whitespace.
+
+Only a valid entry is a proven wallet. An invalid or unknown entry is skipped: it can neither pay a tip nor receive one, and it does not stop the author's other entries from counting. BSIP-22 also asks community nodes to reject any publication that carries an invalid entry. That is the node's rule, not this challenge's; once pkc-js applies it, the check here becomes a second line of defence.
+
+Verification is stateless. There is no "newest timestamp wins" rule, and no RPC is needed. Signatures from contract accounts (ERC-1271) are not `eip191` proofs and do not verify.
+
+The `v` and `s` rules are checked before recovery, because recovery libraries (viem included) accept the other forms. BSIP-22's test vectors are part of this package's tests.
+
+Proofs signed with the earlier draft string that does not name `walletAddress`, with the older `pkc-author-wallet` or `plebbit-author-wallet` strings, or over `author.address`, do not verify. Authors re-sign.
+
+## Future work
+
+- **Let a verified tip skip the community's other challenges.** A community could treat a tip that passes this challenge as proof of effort and excuse that author from its other challenges (a captcha, a question) for that reply. pkc-js has no way for one challenge to excuse the others today, so this needs support there first. It must stay opt-in per community, since a tip proves a payment and not good behaviour.
+- **Tipping through a separate connected wallet.** v1 assumes a wallet inside the client. A later version could support a client that builds the transaction, with the parent binding in its data, and hands it to a connected wallet such as MetaMask to sign and send. That needs checking which wallets pass the data through unchanged, and how they treat a send that carries data.
+
+## Known gaps
+
+- **The tipper does not sign which reply a payment is for.** The [parent binding](#the-parent-binding) names the parent comment, not the reply. The claim travels in the publish request, not in the signed comment, so a community could attach a real payment to a different reply by the same tipper to the same parent. One transaction still backs one reply, and the community cannot invent a payment: the verified result names the transaction, and the transfer must run between the two authors' proven wallets.
+- **Collusion between a community owner and an author is not prevented.** Both can embed the parent CID. A colluding owner can tip itself in a loop: the owner receives the fee, so it pays the fee to itself. A second key and wallet pass every check, and the owner can accept a worthless token it minted. The cost is gas only. This is a non-goal of the challenge. Defences belong in clients: weight a tip by value, count recognised tokens only, and discount A→B→A loops.
+- **Tipping is designed for a wallet inside the client.** The parent binding needs a suffix that a wallet's own send screen will not add, so a plain wallet app, an exchange withdrawal or a contract wallet cannot produce a verifiable tip. `tipping/v1` assumes the client holds the tipping wallet's key itself: the user funds that wallet from another one, and the client builds and sends every tip. Sending through a separate connected wallet, such as MetaMask, is out of scope for v1. No rule rejects such a transaction when the wallet sends the data unchanged, but that path is not designed for or tested. See [Future work](#future-work).
+- **No sponsored gas.** [The tipper sends every claimed transaction](#who-sends-the-transaction), so the tipper's wallet needs the chain's native coin for gas, even for an ERC-20 or ERC-721 tip. Relayers, paymasters and ERC-4337 bundlers cannot submit a tip.
+- **A tip payment is recognisable on chain.** The suffix marks the transaction as a tip, whether or not the community shows it. Anyone who holds a comment's CID can hash it and match the payment to that comment, even when the reply was rejected or the tip is hidden.
+- **Communities that hide authors.** The recipient's wallet proof is checked against the signing key stored with the parent comment. A community that replaces author identities (pseudonymity) may store a different key there, in which case tips are rejected. This combination has not been tested.
+- **Excluded authors.** An author excused from this challenge by an `exclude` rule skips verification. No verified result is written for their reply, so a tip they paid does not show.
+
+## For UI client developers
+
+### 1. Find out whether the community accepts tips
+
+```js
+function getTippingConfig(community) {
+  for (const challenge of community.challenges ?? []) {
+    const raw = challenge.publicOptions?.["tipping/v1/tokens"];
+    if (!raw) continue;
+    try {
+      const tokens = JSON.parse(raw);
+      if (!Array.isArray(tokens)) continue;
+      return { tokens, feeRecipient: challenge.publicOptions["tipping/v1/feeRecipient"] };
+    } catch {
+      // A list you cannot parse costs the tip button, never the community.
+    }
+  }
+  return undefined;
+}
+```
+
+Never look at which package produced the options. The record does not say, and you do not need it. The community node refuses to save a list that breaks the [token list](#the-token-list) rules, so a client reads the entries as they are.
+
+Chains are named by `chainId` only. Offer a tip only when the comment's author has at least one valid `author.wallets` entry, and the user has one too.
+
+### 2. Pick the recipient's wallet, and verify it before sending money
+
+The community verifies the recipient's wallet proof, but it does so after the money has moved. Verify it yourself first, with the [wallet proof](#wallet-proofs) rules, so a user never pays an address the author does not control. For example with viem:
+
+```js
+import { verifyMessage } from "viem";
+
+// Half the secp256k1 curve order: s must not be above it.
+const HALF_ORDER = 0x7fffffffffffffffffffffffffffffff5d576e7357a4501ddfe92f46681b20a0n;
+
+// The exact string the wallet signs. The wallet address goes in lowercase.
+const getWalletMessageToSign = (authorKeyAddress, walletAddress, timestamp) =>
+  `{"domainSeparator":"bitsocial-author-wallet","authorPublicKey":"${authorKeyAddress}","walletAddress":"${walletAddress.toLowerCase()}","timestamp":${timestamp}}`;
+
+// Returns "valid", "invalid" or "unknown". Only "valid" is a wallet you may send to.
+// authorKeyAddress is the key address of the signature.publicKey that signed the comment.
+async function verifyWalletEntry(entry, authorKeyAddress, nowSeconds = Math.floor(Date.now() / 1000)) {
+  const proof = entry?.signature;
+  if (typeof entry?.address !== "string" || !Number.isInteger(entry.timestamp)) return "invalid";
+  if (typeof proof?.signature !== "string" || typeof proof.type !== "string") return "invalid";
+  if (proof.type !== "eip191") return "unknown";
+
+  if (!/^0x[0-9a-fA-F]{40}$/.test(entry.address)) return "invalid";
+  if (entry.timestamp < 0 || entry.timestamp > nowSeconds + 300) return "invalid";
+
+  // viem accepts a v of 0 or 1 and a high s. The rules do not, so check both before recovering.
+  if (!/^0x[0-9a-fA-F]{130}$/.test(proof.signature)) return "invalid";
+  const v = parseInt(proof.signature.slice(130, 132), 16);
+  const s = BigInt(`0x${proof.signature.slice(66, 130)}`);
+  if ((v !== 27 && v !== 28) || s === 0n || s > HALF_ORDER) return "invalid";
+
+  try {
+    const signedByWallet = await verifyMessage({
+      address: entry.address,
+      message: getWalletMessageToSign(authorKeyAddress, entry.address, entry.timestamp),
+      signature: proof.signature
+    });
+    return signedByWallet ? "valid" : "invalid";
+  } catch {
+    return "invalid";
+  }
+}
+```
+
+`authorKeyAddress` is the `12D3KooW…` key address of the comment's `signature.publicKey`, as [BSIP-10](https://github.com/bitsocialnet/BSIPs/blob/master/BSIPS/bsip-10.md#key-addresses) derives it. Do not pass `author.address` or `author.name`. Verify the comment's own signature first: a wallet entry says nothing in a comment whose signature is not valid.
+
+The user's own entry is made the same way. The wallet signs that string as a personal message, and the client stores the result:
+
+```js
+const timestamp = Math.floor(Date.now() / 1000);
+const signature = await walletClient.signMessage({
+  message: getWalletMessageToSign(userKeyAddress, walletClient.account.address, timestamp)
+});
+const entry = { address: walletClient.account.address, timestamp, signature: { signature, type: "eip191" } };
+```
+
+viem signs with a `v` of 27 or 28 and a low `s`. A signer that returns a `v` of 0 or 1 needs 27 added before the signature is stored.
+
+The keys of `author.wallets` do not select a chain, so every client must pick the same entry by the same rule:
+
+1. Send to the tipped author's `eth` entry when it is valid.
+2. Otherwise send to the first valid entry, taking the keys in ascending order.
+
+If no entry is valid, do not offer a tip.
+
+### 3. Send the payment
+
+**Check your own RPC's chain ID first.** Before sending, confirm that the wallet or RPC you send through reports the `chainId` of the token entry (`eth_chainId`). A transfer sent on another chain cannot be verified, and the money is gone either way.
+
+Send the token from a wallet the user has a valid `author.wallets` entry for, to the recipient wallet picked above. If the token has a fee, also send the fee, on the same chain ID, from any of the user's valid wallets to `tipping/v1/feeRecipient`.
+
+- Compute the fee with integers only. A float can round to one unit less than the community requires, and then the tip is not shown:
+
+```js
+// The fee owed for a tip of `amount` (a bigint, in the token's smallest unit) under one token entry.
+// It is paid in the tipped token, except for an erc721 entry, where it is paid in fee.token.
+function getOwedFee(token, amount) {
+  const fee = token.fee;
+  if (!fee) return 0n;
+  if (fee.amount !== undefined) return BigInt(fee.amount);
+  const [whole, fraction = ""] = fee.percent.split(".");
+  const scaled = BigInt(whole + fraction.padEnd(4, "0")); // "2.5" becomes 25000
+  return (amount * scaled) / 1_000_000n; // rounds down, as the community does
+}
+```
+
+  This is the least the community accepts, and paying more is allowed. When it is `0n`, no fee is owed and no fee transaction is needed.
+- **End every transaction with the [parent binding](#the-parent-binding)**, built from the `cid` of the comment being tipped. Both the tip transaction and the fee transaction need it. A wallet's own send screen will not add it, so the client builds and sends the transaction itself, from the wallet it holds for the user. For example with viem:
+
+```js
+import { concatHex, encodeFunctionData, erc20Abi, keccak256, stringToHex } from "viem";
+
+// parentCid is the string exactly as it will appear in the reply's parentCid
+const suffix = concatHex([
+  "0xa1616da167", stringToHex("bso-tip"), "0x5820", keccak256(stringToHex(parentCid)),
+  "0x002e02", `0x${"8021".repeat(8)}`
+]);
+
+// native coin: the suffix is the data
+await walletClient.sendTransaction({ to: recipient, value: amount, data: suffix });
+
+// ERC-20: the transfer calldata, then the suffix
+await walletClient.sendTransaction({
+  to: tokenAddress,
+  data: concatHex([encodeFunctionData({ abi: erc20Abi, functionName: "transfer", args: [recipient, amount] }), suffix])
+});
+```
+
+  The [parent binding](#the-parent-binding) section has a test vector for these 65 bytes.
+
+- **Send every transaction from one of the user's proven wallets.** Do not hand it to a relayer, a paymaster or an ERC-4337 bundler: [the tipper must be the sender](#who-sends-the-transaction). The wallet therefore needs native coin for gas.
+- **Simulate the tip and the fee transaction before sending either** (`eth_estimateGas` or `eth_call`, with the suffix in place). A receiver with code, or a token contract that rejects trailing calldata, makes the transaction revert, and simulating shows that before any money moves.
+- **Check that the balance covers both.** Each simulation runs against the balance as it is now, so two that pass separately can still fail in sequence. Before sending, check that the wallet holds the tip plus the fee, and native coin for the gas of both.
+- **Send the fee first, then the tip.** Send both without waiting for the fee to be mined in between; then wait for both before publishing the claim. From the same wallet, the fee takes the lower nonce. The fee may also come from another of the user's proven wallets, for example when the tip asset and the fee token are held in different ones; the nonces are then independent, so send the fee first and the tip right after. For a token fee, also check that the receipt holds the fee `Transfer`: some tokens return `false` instead of reverting, so the transaction succeeds and nothing moves. Simulation is a check, not a guarantee: the chain can change between the simulation and the send.
+- **A failed fee can be sent again.** If the fee fails, the tip is already out and is not claimable yet: send a new fee transaction, ending with the same suffix, and put its hash in `feeTxHash` before publishing. If the fee transaction is dropped or stuck, which also holds up the tip behind it, replace it at the same nonce with a higher gas price.
+- A fee in the same transaction as the tip needs a batch that the client builds itself and the user's wallet sends, and the outer call must still end with the suffix. Otherwise send the fee as its own transaction, ending with the suffix, and put its hash in `feeTxHash`.
+- A native coin tip and a native coin fee are always two direct sends.
+- Do not append anything after the suffix, such as an ERC-8021 builder code.
+
+### 4. Wait, then publish
+
+Wait until the transaction, and the fee transaction if any, are mined. An unmined transaction is rejected with a message asking the author to publish again.
+
+Then publish the reply with the claim as a pre-answer, keyed by the tipping challenge's index:
+
+```js
+const challengeIndex = community.challenges.findIndex((c) => c.publicOptions?.["tipping/v1/tokens"]);
+
+const reply = await pkc.createComment({
+  communityAddress,
+  parentCid: tippedComment.cid,
+  postCid: tippedComment.postCid,
+  content: "great post",
+  challengeRequest: {
+    challengeAnswers: { [String(challengeIndex)]: JSON.stringify({ chainId: 1, txHash, feeTxHash }) }
+  }
+});
+```
+
+If the publication is rejected for an unrelated reason, publish **the same signed publication** again, with the same pre-answer. A transaction is held for the publication that first claimed it, and released for another publication only after 15 minutes without the first one landing.
+
+### 5. Display verified tips only
+
+Show a tip only when both are true:
+
+- the community publishes `tipping/v1/tokens`, and
+- the reply's **comment update** carries `tip`, as written by the community.
+
+Do not display from the author's claim. In a community that does not run this challenge, anyone can publish a reply with any `tip` field they like, and nothing has checked it.
+
+The claim is not stored with the reply. The verified result sits at the top level of the comment update, so on a `Comment` instance it is `comment.tip`.
+
+Before displaying a tip, verify the wallets it names: `tip.from` must be the address of a valid `author.wallets` entry of the reply's author, and `tip.to` the address of a valid entry of the tipped comment's author. That check needs no network.
+
+A client is **not** required to fetch the transaction. The community node already read it from an RPC whose chain ID it confirmed. A client that wants to be independent of the community can re-check a tip against the chain with its `chainId` and `txHash`, but that is optional.
+
+To show a total on a comment, sum the verified tips of its loaded replies, per `chainId` and token.
+
+## Installation
+
+```bash
+npm install @bitsocial/tipping-challenge
+```
+
+Then register the package with your node the way your pkc-js setup loads challenge packages. To build from a clone instead, run `npm install` and `npm run build`.
+
+## Configuration
+
+Add the challenge to the community's `settings.challenges`. Option values are strings, so the token list is passed as a JSON string:
+
+```js
+{
+  name: "@bitsocial/tipping-challenge",
+  options: {
+    "tipping/v1/tokens": JSON.stringify([
+      { chainId: 1, type: "native", minAmount: "1000000000000000" },
+      { chainId: 1, type: "erc20", address: "0xB50cea4c109dc223A10d44c14f521CaeD91DaB5A", fee: { percent: "2.5" } }
+    ]),
+    "tipping/v1/feeRecipient": "0x…",
+    rpcUrls: JSON.stringify({ "1": "https://your-eth-node.example" })
+  },
+  publicOptions: ["tipping/v1/tokens", "tipping/v1/feeRecipient"]
+}
+```
+
+| Option | Required | Public | Meaning |
+|---|---|---|---|
+| `tipping/v1/tokens` | yes | must be | The token list |
+| `tipping/v1/feeRecipient` | when a token has a fee | must be, when set | Where fees are paid |
+| `rpcUrls` | for chain IDs with no built-in RPC | must not be | JSON-RPC endpoints the node reads transactions from |
+
+`rpcUrls` is a JSON object keyed by chain ID. JSON keys are strings, so the chain ID is written as a string key. Each value is a comma-separated list of URLs. A URL is `http:`, `https:`, `ws:` or `wss:`, and the schemes can be mixed in one list:
+
+```json
+{ "1": "https://a.example,wss://b.example", "8453": "https://c.example" }
+```
+
+A WebSocket connection that drops is reopened every 10 seconds until the endpoint answers again, so an outage does not need a node restart.
+
+A plain comma-separated list of URLs is also accepted, but only when every token entry uses the same single chain ID.
+
+Every endpoint must report the chain ID it is listed under. The node checks this before it verifies a tip and rejects the tip if the RPC is on another chain. With several URLs for one chain ID the node cannot tell which one answered, so list only endpoints for that chain.
+
+Chain IDs with a built-in public RPC: 1 (Ethereum), 10 (OP Mainnet), 56 (BNB Smart Chain), 100 (Gnosis), 137 (Polygon), 250 (Fantom), 324 (ZKsync Era), 8453 (Base), 42161 (Arbitrum One), 42220 (Celo), 43114 (Avalanche), 59144 (Linea), 81457 (Blast), 534352 (Scroll). Those endpoints are shared and rate-limited, so setting your own is recommended.
+
+Settings are checked when they are saved. The edit is rejected when:
+
+- `tipping/v1/tokens` is not in `publicOptions`, or the list is malformed;
+- a token has a fee and `tipping/v1/feeRecipient` is missing, is not an address, or is not in `publicOptions`;
+- `tipping/v1/feeRecipient` is set but no token has a fee;
+- `rpcUrls` is in `publicOptions` (RPC URLs often embed an API key), is malformed, has an entry that is not an `http:`, `https:`, `ws:` or `wss:` URL, has a key that is not a chain ID or that no token uses, is a plain list while the tokens span several chain IDs, or is missing for a chain ID with no built-in RPC.
+
+### Moderation
+
+A tip reply is an ordinary comment. Pending approval, removal and the mod log apply to it like any other. The `pendingApproval` flag on this challenge holds every comment the challenge applied to, not only tip replies.
+
+### State
+
+The challenge remembers which transactions have backed a tip, per community and chain ID, in the node's pkc-js storage (`tipping_challenge_v1_used_tx`). Deleting that storage lets old transactions be claimed again.
+
+## Development
+
+```bash
+npm install
+npm run typecheck
+npm test
+npm run build
+```
+
+Tests run against a fake chain served through a real viem client. They use no network and no funds.
+
+## License
+
+GPL-3.0-or-later
+
 ### 5chan Board Manager
 
 Repository: bitsocialnet/5chan-board-manager
@@ -12171,9 +13418,10 @@ WeTube splits YouTube into its parts and decentralizes each one:
 | Channel hosting | The creator's own full node, or a non-custodial public RPC (e.g. Forge RPC) |
 | Video hosting | A list of redundant embed sources per video (web embeds, IPFS, WebTorrent) |
 | Comments, likes, dislikes | Bitsocial replies and votes, seeded by users peer-to-peer |
-| View counts | Open problem — likely aggregated from each embed source's counter by competing RPC/indexer aggregators |
+| View counts | View providers that viewers choose or turn off, with Forge running the default; providers may also report the embed hosts' own counters |
+| Subscriber counts | Public follows from signed profiles, counted by switchable graph providers |
 | Homepage / trending | Categories: community lists of channels, ranked by users' pubsub votes |
-| Recommendation algorithm | Provided by competing public RPCs; users can switch it or turn it off |
+| Recommendation algorithm | Search and recommendation providers, separate from the node RPC, with a Forge-run default; users can switch them or turn them off |
 | Monetization | Bitsocial Chain: tipping, revenue sharing; ads run by RPCs or by channel owners themselves |
 | Terms of service, global bans | None. Each channel sets its own rules; no one can set rules for all channels |
 
@@ -12684,3 +13932,1045 @@ RPC revenue from ModelSwarm is speculative, not a strong monetization pitch. RPC
 - Indexer: `bitsocialnet/bitsocial-indexer`
 - Bitsocial Chain (names, payments): `bitsocialnet/bitsocial-chain` and https://chain.bitsocial.net
 - Sibling idea-stage repos: [WeTube](https://github.com/bitsocialnet/wetube) (YouTube alternative), [GitCommons](https://github.com/bitsocialnet/gitcommons) (GitHub alternative), [Infinipedia](https://github.com/bitsocialnet/infinipedia) (encyclopedia), [Hopium](https://github.com/bitsocialnet/hopium) (social trading)
+
+### Bitsocial Forum
+
+Repository: bitsocialnet/bitsocial-forum
+Source: https://github.com/bitsocialnet/bitsocial-forum#readme
+Description: The official forum for Bitsocial projects, and the third Bitsocial client after Seedit and 5chan. It will be served at forum.bitsocial.net.
+
+# Bitsocial Forum
+
+The official forum for Bitsocial projects, and the third Bitsocial client after [Seedit](https://github.com/bitsocialnet/seedit) and [5chan](https://github.com/bitsocialnet/5chan). It will be served at `forum.bitsocial.net`.
+
+Bitsocial discussion is currently split across Telegram, Twitter and GitHub. The forum gives every major project a section of its own, in a client that works like Bitsocial's other apps: serverless, with no global admins, and with content loaded peer-to-peer in the browser.
+
+> **Status: private prerelease.** The forum can read any Bitsocial community and shows the section layout, but posting, section communities and profiles are not built yet. The repository stays private until profiles work through Forge RPC. Progress is tracked in [docs/roadmap.md](https://github.com/bitsocialnet/bitsocial-forum/blob/HEAD/docs/roadmap.md).
+
+## How sections work
+
+The forum is not one community. Each section (`/s/bso`, `/s/pkc`, `/s/5chan`, ...) is a [directory](https://docs.bitsocial.net/directories): a topic name that communities compete for. A section opens whichever community currently ranks first for it, and that community's own moderators run it. If a section's community goes away or is run badly, another community can take the section over without anyone's permission, the same way Seedit's and 5chan's directories work.
+
+- The client decides which sections exist. The draft list is in [docs/sections.md](https://github.com/bitsocialnet/bitsocial-forum/blob/HEAD/docs/sections.md).
+- Communities decide what happens inside a section. Flairs label topics by project and type.
+- Topic links always use the community's exact address, so they keep working if a section changes hands.
+
+The reasoning behind this, and the other design decisions, is in [docs/architecture.md](https://github.com/bitsocialnet/bitsocial-forum/blob/HEAD/docs/architecture.md).
+
+## Stack
+
+React 19, TypeScript, Vite, Zustand, React Router (hash routing), [`@bitsocial/bitsocial-react-hooks`](https://github.com/bitsocialnet/bitsocial-react-hooks) over pkc-js, i18next, Tailwind CSS, oxlint, oxfmt and Vitest. The interface has Discourse's forum structure, themed with bitsocial-web's design elements; see [DESIGN.md](https://github.com/bitsocialnet/bitsocial-forum/blob/HEAD/DESIGN.md).
+
+## Development
+
+Requires Node 22 (see `.nvmrc`) and Corepack.
+
+```sh
+corepack yarn install
+corepack yarn start
+```
+
+`yarn start` serves the app at `https://bitsocial-forum.localhost` through Portless. Use `PORTLESS=0 yarn start` to run Vite directly.
+
+| Command | What it does |
+|---|---|
+| `yarn build` | Production build into `build/` |
+| `yarn test` | Vitest (pkc-js is mocked, so tests never reach the network) |
+| `yarn lint` | oxlint plus the `src/` module boundary check |
+| `yarn type-check` | TypeScript |
+| `yarn agent:verify` | Lint, type-check, tests and build in one pass, plus advisory Knip |
+
+Any community can be opened by address while sections have no communities yet, for example `/#/c/askseedit.bso`.
+
+Agents working in this repo follow [AGENTS.md](https://github.com/bitsocialnet/bitsocial-forum/blob/HEAD/AGENTS.md).
+
+## Docs
+
+- [docs/architecture.md](https://github.com/bitsocialnet/bitsocial-forum/blob/HEAD/docs/architecture.md): decisions and their reasons
+- [docs/sections.md](https://github.com/bitsocialnet/bitsocial-forum/blob/HEAD/docs/sections.md): the section taxonomy draft
+- [docs/roadmap.md](https://github.com/bitsocialnet/bitsocial-forum/blob/HEAD/docs/roadmap.md): milestones, progress and open questions
+- [PRODUCT.md](https://github.com/bitsocialnet/bitsocial-forum/blob/HEAD/PRODUCT.md) and [DESIGN.md](https://github.com/bitsocialnet/bitsocial-forum/blob/HEAD/DESIGN.md): product and design references
+
+## License
+
+GPL-3.0-or-later. See [LICENSE](https://github.com/bitsocialnet/bitsocial-forum/blob/HEAD/LICENSE).
+
+### Bitsocial Graph
+
+Repository: bitsocialnet/bitsocial-graph
+Source: https://github.com/bitsocialnet/bitsocial-graph#readme
+Description: Status: thesis / project exploration — no code yet.
+
+# Bitsocial Graph
+
+> **Status:** thesis / project exploration — no code yet.
+> **Date:** 2026-07-13
+> **Last reviewed:** 2026-08-08
+> **One-liner:** an open crawler and graph service that recursively maps the Bitsocial network — authors, communities, interactions — from public protocol data, with **liveness** as a first-class dimension of the graph.
+> **Architecture decision:** [DECISION.md](https://github.com/bitsocialnet/bitsocial-graph/blob/HEAD/DECISION.md) records the accepted direction for profiles, follows, privacy, availability, and graph snapshots. It is pre-BSIP and non-normative.
+
+This is deliberately a docs-first repository. Read this thesis for the research and roadmap, then read [DECISION.md](https://github.com/bitsocialnet/bitsocial-graph/blob/HEAD/DECISION.md) for the accepted architectural boundaries. There is no executable implementation yet.
+
+---
+
+## 1. Thesis
+
+Bitsocial content is ephemeral by design: nothing lives on a blockchain, and a community that loses its owner, its peers, and its seeders becomes unreachable. This is a feature, not a bug — and it has a second-order consequence nobody has built for yet:
+
+**The Bitsocial social graph is self-pruning.** Existence in the graph requires ongoing work (publishing, seeding, staying reachable), so the graph converges on *actually active* humans and communities. Facebook's graph is an archive that includes the dead and the departed; Bitsocial's graph is a living organism whose nodes must metabolize to persist.
+
+Nobody can see this graph today. There is no follow primitive, no in-protocol community enumeration, and discovery runs on a hand-curated GitHub repo. **Bitsocial Graph** is the missing observation layer: a Googlebot-style crawler that recursively constructs the network graph from public data, tracks per-node liveness, and publishes the result as open data and APIs.
+
+---
+
+## 2. The premise, verified: ephemerality is real
+
+Verified against the public [`pkcprotocol/pkc-js`](https://github.com/pkcprotocol/pkc-js) source and protocol docs (source paths below are relative to that repository):
+
+| Mechanism | Behavior | Source |
+|---|---|---|
+| Community record | Owner-signed snapshot published to IPNS; owner republishes at least every **15 min** even without changes | `docs/protocol/data-permanence.md`, `src/runtime/node/community/local-community/ipns-publishing.ts:43-56` |
+| IPNS record TTL | `publishInterval × 3` → **60 s** caching hint; record *validity* follows kubo default (~24 h) and expired records are rejected | `ipns-publishing.ts:313`, `src/util.ts:1240-1253` |
+| HTTP router announcements | Expire after **24 h**; content not re-announced becomes unfindable via routers | `docs/protocol/data-permanence.md:64-67` |
+| Pages (post listings, reply trees) | Regenerated with **new CIDs** on every update; old CIDs unpinned and discarded | `data-permanence.md:28` |
+| Permanent data | Only `CommentIpfs` and `CommentEdit` are immutable — but "permanent" ≠ "available": *"IPFS data can become unavailable if no nodes pin it"* | `data-permanence.md:7-16, 88` |
+
+So the claim holds, with two nuances worth keeping precise:
+
+1. **Death is decay, not deletion.** With the owner offline and nobody seeding, a community degrades over minutes-to-hours (stale pages → expired router announcements → expired IPNS record → unreachable). While *any* copy of the immutable CIDs survives somewhere, the content is revivable.
+2. **The owner key is the heartbeat.** Only the owner can sign community updates. Seeders can keep old content fetchable, but a community whose owner key is gone is frozen forever — it can never accept a new post. Liveness of the mutable pointer, not existence of the data, is what "alive" means.
+
+This gives every node in the network a **native freshness signal** (the `updatedAt` heartbeat, ≤15 min for healthy communities) that Google had to invent for the web. The graph gets it for free.
+
+---
+
+## 3. The self-pruning graph vs. the alternatives
+
+| | **Facebook** | **EFP (Ethereum Follow Protocol)** | **Bitsocial** |
+|---|---|---|---|
+| Persistence model | Database default — accounts persist until someone acts | Current state is mutable; the complete operation history is public onchain | Signed current state is live only while it remains available and valid |
+| Dead/dormant nodes | Accumulate until the platform removes them | Follow lists and their histories outlive abandoned wallets | Stop counting as current after publication expires or becomes unreachable |
+| Identity requirement | Platform account | Ethereum address; ENS is an optional complementary name/profile layer, not a requirement | Free Ed25519/profile keypair; `.bso`/`.eth` names optional |
+| Edge cost | Free click | Wallet interaction and gas for an onchain write; multiple list operations can be batched | Signed P2P state; no per-edge chain fee |
+| Enrollment | Platform controls account creation | Any Ethereum address can be followed, tagged, muted, or blocked without participating | An active profile node requires its own signed publication; inbound references to unpublished identities remain dangling |
+| Safety state | Private to the platform, but platform-controlled | `block` and `mute` are standardized public list-record tags | Blocks, mutes, private groups, and safety notes stay local/private |
+| Global control | Platform operator | Core contracts are pausable by a 3-of-4 team multisig; `brantly.eth` controls two listed signer keys, making the effective quorum that person plus either of two others | No global administrator in the P2P social protocol |
+| Addressable users | Anyone the platform accepts | Ethereum accounts, including raw addresses without ENS | Anyone who can create and publish a keypair |
+
+The EFP contrast is instructive because it makes the *opposite* persistence choice from Bitsocial. Facebook preserves dead **nodes** in a private database; EFP preserves the complete public history of **edges**. EFP does **not** require ENS, and its contracts support batching, but following still means wallet UX, gas, and an onchain record. A social graph should be cheap to write, cheap to stop serving, and should not turn private safety actions into permanent public data. Bitsocial's position: identity begins as a free keypair, public edges are signed current state, and activity must keep that state current.
+
+**What EFP gets right and Bitsocial should reuse at the schema level:**
+
+- a primary list plus optional additional lists;
+- separation between an identity/list owner and a manager authorized to update it;
+- versioned, typed data and batch publication updates, without copying the append-only public operation history;
+- open-source indexers, a documented API, and integration tooling.
+
+Those ideas do not require an NFT or onchain edge storage. In Bitsocial they map to a stable profile/root key, delegated device keys, a signed public follow list, and replaceable graph providers. Public relation tags should be treated conservatively; blocks, mutes, private groups, and private notes are never candidates for the public graph.
+
+One honest flip side of self-pruning: history is only as durable as the communities that hold it. A beloved author's posts survive their absence as long as their communities stay alive — persistence proportional to how much the network values the content, rather than platform policy. That's the right default for a social network, but it means the graph service must decide its own memory policy explicitly (see §9).
+
+---
+
+## 4. What graph exists today (there are no follows)
+
+Verified: **the protocol has no follow/friend/subscribe primitive.** The `pkc-js` API surface (`src/pkc/pkc.ts`) exposes communities, comments, votes, edits, moderation — no social edges. Client "subscriptions" are local app state. Follows are planned for master-plan Phase 2 ("Decentralize Twitter/X" — profile nodes, follows) but no BSIP specifies them yet.
+
+Profile work is active but not settled. [`pkc-js` issue #31](https://github.com/pkcprotocol/pkc-js/issues/31) and [PR #227](https://github.com/pkcprotocol/pkc-js/pull/227) explore profiles using delegated community infrastructure. As of 2026-08-02, the bespoke `AuthorCommunityIpfs` design is paused and superseded in its author-specific parts pending [crossposts (#32)](https://github.com/pkcprotocol/pkc-js/issues/32); the current direction is a profile configured from general community and delegation primitives, not a distinct wire type. Bitsocial Graph therefore depends on profile capabilities, not on one unfinished profile schema.
+
+What a permissionless crawler *can* extract, today, with zero special access:
+
+| Edge / attribute | Source | Notes |
+|---|---|---|
+| author →posts-in→ community | Pages carry each comment's `author.address` (global, derived from the Ed25519 signing key, identical across communities) | The cross-community join key — `src/signer/util.ts:152-181` |
+| author →replies-to→ author | Reply trees (`parentCid`, `postCid`, `depth`) | Interaction graph, thread co-participation |
+| author →moderates→ community | `roles` map is public in every community record | High-signal edge: moderation is costly, hard-to-fake affiliation |
+| author →history→ own past comments | `author.previousCommentCid` chain — explicitly usable to walk "a recent author comment history **in all communities**" | `src/schema/schema.ts:160` — see §5, this is the recursion |
+| author →wallet/avatar→ external chains | `author.wallets` (signed address proofs), `author.avatar` (signed NFT ref) | Opt-in, signed links to crypto identity |
+| author reputation per community | `postScore`, `replyScore`, `firstCommentTimestamp`, flairs in `CommentUpdate.author.community` | Community-scoped karma |
+| community →links→ community | Link fields and community mentions in content; directory candidacy in `lists` | Same trick as web hyperlinks |
+| community vital signs | `updatedAt` heartbeat, published `stats` (hourly→all-time active users/posts), challenge config, features | The liveness layer |
+
+**Not available, by design:** individual votes (only aggregate up/down counts leave the owner's node — there is no vote graph to crawl), private subscription lists, and anything behind pseudonymity:
+
+> **Pseudonymity islands.** When a community sets `features.pseudonymityMode`, the owner re-signs each publication with a fresh alias keypair — on-wire author addresses are unlinkable aliases (`src/runtime/node/community/local-community/publication-store.ts:83-155`). Verified against `lists/5chan-directories/5chan-directories-defaults.json`: **all 63 5chan directory codes specify a pseudonymity mode** (60 per-reply, 3 per-post). So essentially all current 5chan content is deliberately author-unlinkable, and the crawler couldn't defeat that even if it wanted to (the alias map lives only in the owner's private DB). The author-level graph therefore concentrates in Seedit-style communities now and Phase-2 profile surfaces later; 5chan contributes community-level nodes and liveness only. This is a constraint to *embrace* — it proves the protocol lets communities opt out of graphability, which is the ethical answer to §8 built in.
+
+---
+
+## 5. How the crawler works
+
+The Googlebot analogy is right, with one substitution: on the web the recursive unit is the hyperlink; on Bitsocial it is **the author**.
+
+```
+        ┌────────────────────────────────────────────────────────┐
+        │                      frontier                          │
+        │   (community addresses + author addresses to visit)    │
+        └───────┬────────────────────────────────────────────────┘
+                │
+   ┌────────────▼─────────────┐
+   │ FETCH                    │  resolve IPNS → community record
+   │ (reuses indexer's crawl) │  walk posts pages → reply trees
+   └────────────┬─────────────┘
+                │
+   ┌────────────▼─────────────┐
+   │ EXTRACT                  │  author addresses, displayNames, roles,
+   │                          │  wallets, links, parent/child, stats
+   └────────────┬─────────────┘
+                │
+   ┌────────────▼─────────────┐
+   │ EXPAND (the recursion)   │  new frontier entries from:
+   │                          │  a) author.previousCommentCid chains —
+   │                          │     walk an author's history backwards
+   │                          │     into communities we've never seen
+   │                          │  b) links/mentions in content
+   │                          │     (community addrs, .bso/.eth names)
+   │                          │  c) name resolution (.bso/.eth → keys)
+   │                          │  d) curated lists & future multisubs
+   └────────────┬─────────────┘
+                │
+   ┌────────────▼─────────────┐
+   │ LIVENESS PROBE           │  re-resolve IPNS on schedule;
+   │ (the novel part)         │  updatedAt heartbeat → alive / stale /
+   │                          │  dying / dead; decay curves per node
+   └──────────────────────────┘
+```
+
+**Discovery vectors, ranked by cleanliness:**
+
+1. **Seed lists** — the `bitsocialnet/lists` repo (5chan + Seedit directories) is today's entire discovery layer; multisubs (designed but *not yet implemented* in pkc-js — `README.md:283-305`) will add more.
+2. **Author chains** — `author.previousCommentCid` is the killer primitive: every comment is a signed pointer into that author's past, across communities. Crawl a community → harvest authors → walk their chains → discover communities no list has ever mentioned. This is organic, permissionless, in-protocol recursive discovery.
+3. **Content links** — posts/comments referencing other communities, same as web hyperlinks.
+4. **Passive infrastructure telemetry** — HTTP routers/trackers (Forge-adjacent nodes like `routerofbitsocial.xyz`, `bsotracker.online` are already in pkc-js defaults) observe provide-announcements for IPNS names and pubsub topics as a side effect of operating. That's organic enumeration of everything alive — but it's also the vector with real privacy/centralization weight, so it should be a documented, opt-in, aggregate-only input if used at all.
+
+**What already exists to build on** (all verified working code):
+
+- **`bitsocial-indexer`** — a working crawler + SQLite/FTS5 archive that already walks pages/replies and stores `author_address` per comment. `SELECT DISTINCT author_address, community_address FROM comments` is a bootstrap author↔community bipartite graph *today*. The graph project is roughly "the indexer's crawl loop, turned author-centric and cross-community, plus liveness."
+- **`bitsocial-seeder`** — proven daemon-bootstrap (`ensureDaemon` reuse-or-spawn of `bitsocial-cli`), list ingestion (`fetchCommunityListSource`), durable queues/scheduling. The graph crawler is architecturally a sibling: same PKC RPC daemon, different extraction.
+- **`lists`** — the canonical seed set, plus `whitelist-challenge.json` as a trust signal.
+
+---
+
+## 6. What it unlocks
+
+1. **Automated directories and multisubs.** The `lists` README already promises curation "will be automated by voting"; the pkc-js README describes a not-yet-implemented `search` multisub of "thousands of semi-curated communities." A graph service with liveness + activity + interaction-weight signals can *generate* those lists — crawler output becomes multisub input. This is the near-term, ecosystem-needed deliverable: discovery is the acknowledged unsolved gap in the protocol today.
+2. **Cross-network search and profiles.** The indexer searches within communities it's told about; the graph layer adds "which communities exist, which are alive, who is where" — and author pages (for non-pseudonymous surfaces) assembled from chains.
+3. **Follower/following counts and mutuals.** A profile can publish its own signed outbound follow list, but it cannot authoritatively state how many other profiles follow it. That inbound relation is distributed across the network and requires inverse indexing. Bitsocial Graph is therefore necessary infrastructure for familiar social UX even when profiles and follows themselves are pure P2P.
+4. **The substrate for Phase 2 feeds.** "Swappable feeds and algorithms" (Forge master plan) presuppose a graph to compute over. Recommendation-as-a-marketplace needs a commodity graph layer underneath — this is it.
+5. **A network observatory.** Live/dead dashboards, growth and decay curves, seeder coverage maps — the empirical answer to "how does the Bitsocial social graph evolve over time," measured rather than speculated. (Natural fit alongside `stats.bitsocial.net`.)
+6. **Design input for the follows BSIP.** Building the crawler first reveals exactly what Phase-2 profiles should publish to be graphable. Current `pkc-js` work points toward profiles configured from delegated community primitives after crossposts land; the v3 experiment should follow that work without prematurely freezing its wire shape.
+
+### Why counts need graph providers
+
+Counts should be computed from verifiable edges, never accepted as self-reported profile scalars:
+
+| UX value | Derivation | Trust boundary |
+|---|---|---|
+| `followingCount` | Count the profile's newest valid signed outbound edges | Can be derived locally once the complete current follow list is available |
+| `followersCount` | Invert newest valid signed outbound edges published by other profiles | Requires a crawler, indexer, or graph provider with stated coverage |
+| active/weighted followers | Apply liveness, challenge, age, interaction, or optional economic-signal rules | Provider policy; useful for ranking, never protocol consensus |
+
+This prevents a user from spoofing a count by writing `followersCount: 1000000` into their own profile. It does not eliminate sybil inflation: many real keypairs can still publish signed follows. Providers should therefore expose the raw count for ordinary social UX and may additionally expose clearly labeled active or weighted counts. Every response should identify the provider, `asOf` time, ruleset/version, count type, coverage, and enough snapshot or source provenance to reproduce the result.
+
+---
+
+## 7. Fit with Bitsocial Forge
+
+Forge's framing is "the blacksmith, not the landlord" — it forges tools for the network without owning it. A graph service fits, with one hard requirement: **the graph must be a commodity, not a moat.** The site's own competitor critique (Bluesky AppViews, Lens graphs, Farcaster indexers) is that discovery layers become de-facto owners of the network. The design answer:
+
+- **Open-source crawler anyone can run**, empty by default (the indexer's exact stance).
+- **Published current-state and aggregate snapshots as content-addressed datasets** — portable, verifiable, forkable observations with an explicit validity window. Anyone can mirror them or run a competing service from them, but the official publication series must not become a permanent raw history of author-level edges. See the snapshot content policy in §9 and [DECISION.md](https://github.com/bitsocialnet/bitsocial-graph/blob/HEAD/DECISION.md#snapshot-content-policy).
+- **APIs with exit** — same principle as Forge RPC's custody/exit story; a natural product line beside `rpc.bitsocialforge.com`.
+
+Forge can run a convenient default provider, while other companies, communities, and users run competing providers or local instances. A pubsub-voted provider list could help clients discover and rank those services. Voting should select *which provider and ruleset a client trusts*; it must not vote a follower count into truth. Counts remain derived from signed edge records under disclosed currentness and coverage rules.
+
+Master-plan mapping: Phase 2 needs the graph (follows, feeds); Phase 4 explicitly lists **discovery** among the services to pluralize. Bitsocial Graph is the first mover in that category, built to be one-of-many.
+
+---
+
+## 8. What about Bitsocial Chain? What belongs on a ledger
+
+The obvious question: Bitsocial has its own chain — shouldn't the graph live there, as an immutable ledger of who-knows-whom? **No — and Bitsocial Chain's own design docs already commit to the reason.** But the chain does have three real roles in the graph, all as a *signal source*, never as the store.
+
+**What the chain actually is** (verified in the public [`bitsocialnet/bitsocial-chain`](https://github.com/bitsocialnet/bitsocial-chain) repository): an Ethscriptions/Facet-inspired derivation design — intents posted as plain Ethereum L1 calldata to a keyless inbox address, state derived deterministically by anyone, no sequencer, no admin keys. The working POC implements exactly one primitive: the `.bso` name registry (`README.md:3-14`). BSO itself is a fixed-supply (210M), immutable, adminless ERC-20 already live on Ethereum mainnet (per the chain.bitsocial.net site copy). And the repo is emphatic about scope: *"Posts, comments, votes, moderation state, member lists, and feeds never appear in intents, derived state, or the read API — the intent schema has nowhere to put them, by construction"* (`DESIGN.md:19-25`). The phrase "social graph" appears exactly once in the entire repo — in the privacy section, **as the threat model**: the economic layer must not make it easy to "reconstruct a user's social graph and finances" (`DESIGN.md:29`). An onchain social graph wouldn't extend Bitsocial Chain; it would contradict its founding constraint.
+
+**Why "an immutable-but-somewhat-mutable ledger" can't work — three structural reasons:**
+
+1. **Mutable state, immutable history.** On a calldata-derived chain, you can make the *current state* mutable (the `.bso` registry already supports update/transfer/revoke), but every mutation is itself permanent public Ethereum history. An onchain follow graph with deletion still preserves, forever and publicly, the complete edge history of everyone — including inactive or deceased users. That is stricter than a private platform archive: Facebook at least *can* delete (and is sometimes legally forced to); Ethereum cannot, and no deletion key exists by design. "Mutable to some degree" buys you a mutable tip on an immutable archive.
+2. **A ledger is structurally blind to liveness.** A chain can only observe transactions. Dead people don't transact — but neither do billions of living people who will use Bitsocial without ever touching a wallet. So onchain "alive" can only ever mean "paid recently" (name renewal, ENS-style rent), which measures *who pays*, not *who lives*. Meanwhile the P2P layer measures liveness natively and for free: publishing signed content, ≤15-minute community heartbeats. The mutability the graph actually needs is **decay** — and decay is precisely what a ledger cannot do and what the P2P layer cannot help doing. The living-social-fabric property comes from the medium, not from a schema choice.
+3. **Cost physics.** The chain's own economics discussion cites ~$2.94 per user-op on Facet-style chains and concludes future primitives should derive "small economic state, never social content" (`ECONOMICS_DISCUSSION.md`, `DESIGN.md:107-117`). Putting ordinary edges directly on Bitsocial Chain would inherit that cost regime; even a cheaper chain would reintroduce wallet and gas UX. Edges need a chain-free path.
+
+**The layering the ecosystem has already implicitly chosen — made explicit:**
+
+| Layer | Holds | Persistence | On death |
+|---|---|---|---|
+| **Ledger** (Bitsocial Chain) | Property: BSO balances, `.bso` name ownership | Permanent | Correctly outlives you — like estates and deeds |
+| **P2P** (pkc protocol) | Presence: content, gestures, edges | Decays without effort | Correctly dies with you — unless the network deliberately keeps your memory seeded |
+| **Graph** (this project) | Observation: a decaying map of both | Mortal by policy (§9) | Mirrors the network |
+
+There's a historical rhyme worth noticing: land registries and name registries are more or less the *only* social records pre-modern societies committed to permanent ledgers — deeds and parish registers. The living social fabric (who talks to whom, who matters to whom) lived in living memory and died with it. Bitsocial's stack reproduces that division of labor, and it matches how the real world actually works: your property survives your death; your presence does not.
+
+**What the chain genuinely contributes to the graph:**
+
+1. **Optional identity anchoring.** `.bso` names bind a human-readable, ETH-address-owned name to an Ed25519 key (`SPEC.md`) and can point to a rotated key. That makes them useful resolution and continuity signals, but a transferable name is not automatically a stable person identifier: the graph must distinguish profile identity from current name ownership so a name transfer cannot silently transfer followers. A paid registration (plus renewal, per the public site's "registered and renewed in BSO" — note the POC has no renewal yet, `POC_LIMITATIONS.md:14`) can be a weak sybil-costly or economic-liveness signal, never the primary identity or liveness rule.
+2. **Costly-signal edges, when Phase 3 lands.** A tip or award is a social edge with skin in the game — onchain because it *moves value*, not because it's social. These become the highest-weight interaction edges the crawler can ingest. Caveat baked into the chain's privacy mandate: tipping must not force identity linkage (`DESIGN.md:27-41`), so these edges will be partial and opt-in — enrichment for the graph, never its backbone.
+3. **Optional snapshot checkpoints — the only plausible graph→chain write.** A current-state or aggregate snapshot (§7) could be anchored by posting its content hash as a tiny intent: timestamping and integrity without placing edges in chain state. This should remain optional until a concrete verification use case justifies the cost. The checkpoint may outlive the snapshot, but it reveals only that a dataset was published, not its contents.
+
+**Verdict:** the graph is a chain *consumer* and at most a chain *checkpointer*. This is EFP's mistake inverted — put value onchain and edges offchain, never the reverse. The chain holds what should outlive people; the P2P layer holds what shouldn't; the graph watches both and forgets on schedule.
+
+---
+
+## 9. Risks and open questions
+
+- **Surveillance-adjacency.** Assembling cross-community author profiles is search-engine-normal but feels different on a pseudonymous network. Mitigations: index only public protocol data; pseudonymity mode is respected automatically (unlinkable by construction); honor tombstones the way the indexer does (serve-time redaction of removed/deleted); and consider proposing a **`noIndex` community feature — a robots.txt for communities — as a BSIP**, so opting out of graphability becomes protocol-legible rather than crawler-discretionary.
+- **`noIndex` is preference, not privacy.** Cooperative graph services should honor it, but hostile crawlers can ignore any public flag. Pseudonymity mode and withholding/link-separating data are the actual privacy mechanisms; documentation must not imply that public data can be made unobservable by policy.
+- **Sybil pressure.** Keypairs are free, so a raw follower count is useful UI but weak evidence of reputation. Providers may also publish clearly labeled active or weighted counts using interaction edges, challenge-passing, moderation roles, account age (`firstCommentTimestamp`), and optional wallet/NFT proofs. No weighting model is protocol truth.
+- **Sparsity today.** ~70 curated communities, and the author layer is thin until Seedit grows and Phase 2 lands. Honest sequencing: v0 is a *community* graph and liveness observatory; the author graph is the growth curve, not the launch feature.
+- **The current graph must itself be mortal.** If the graph service treats dead nodes as current forever, it becomes the permanent archive it critiques. Nodes decay after N days unreachable and resurrect on reappearance, with the parameter documented. This is a currentness/availability guarantee, not a deletion guarantee: anything public may be archived by third parties.
+- **Snapshot content policy.** The durable official series may contain current community state, liveness measurements, coverage, and aggregates. It must not publish raw historical author-level edge dumps. Public current follow edges may appear only with clear validity/currentness semantics; superseded versions are not part of the official historical product.
+- **Availability without permanent history.** Followers, RPCs, and seeders may cache and serve the latest valid signed profile/follow state until its expiry. They should not be expected to preserve superseded versions indefinitely. A grace window can absorb ordinary downtime without turning an append-only archive into the protocol model.
+- **Centralization gravity.** Even open-source, the best-known graph endpoint accretes power. The snapshot-publishing discipline (§7) is the real mitigation; keep router telemetry (§5.4) disabled unless a documented privacy-preserving design justifies it.
+
+---
+
+## 10. Roadmap sketch
+
+| Stage | Deliverable | Depends on |
+|---|---|---|
+| **v0 — Observatory** | Crawl seed lists; IPNS heartbeat monitor; live/stale/dead states; public dashboard + first published graph snapshot (communities only) | Nothing new — indexer/seeder patterns + pkc-js |
+| **v1 — Community graph** | Recursive expansion via author chains + content links; community↔community edges; shared-author/shared-moderator affinity; **auto-generated directory rankings** offered back to `lists` | v0 |
+| **v2 — Author graph** | Assembled author views on linkable (non-pseudonymous) surfaces; observed interaction graph; optional wallet/`.bso` enrichment from Bitsocial Chain (§8) | v1, Seedit growth |
+| **v3 — Profile-state experiment** | Follow the evolving `pkc-js` profile-as-configured-community design; test signed current state, delegation, expiry/currentness, and cache/seed behavior without standardizing follows prematurely | v1 learnings; crossposts/profile work; no BSIP required for an experiment |
+| **v4 — Follows and provider API** | Ingest standardized public follow lists; expose raw and labeled active/weighted follower counts, mutuals, tips/awards when Phase 3 ships, and feed/recommendation inputs | v3 evidence; follow/profile BSIP; at least two compatible providers |
+
+---
+
+## Contributing
+
+Issues and pull requests are welcome, especially when they add source-backed research, challenge an assumption, specify a reproducible provider rule, or turn a roadmap stage into an implementation plan. Keep proposals non-normative here until the observatory and profile experiments produce enough evidence; protocol standards belong in the [Bitsocial Improvement Proposals](https://github.com/bitsocialnet/BSIPs) process.
+
+## License
+
+This repository is released under the [GNU General Public License v3.0 or later](https://github.com/bitsocialnet/bitsocial-graph/blob/HEAD/LICENSE).
+
+---
+
+## Appendix: research trail (2026-07-13)
+
+Claims above were verified against source, not READMEs alone:
+
+- [`pkc-js`](https://github.com/pkcprotocol/pkc-js) — ephemerality: `docs/protocol/data-permanence.md`; IPNS publish/TTL: `src/runtime/node/community/local-community/ipns-publishing.ts:43-56, 313`; identity: `src/signer/util.ts:152-181`; cross-community author chains: `src/schema/schema.ts:160`; pseudonymity aliasing: `src/runtime/node/community/local-community/publication-store.ts:83-155`; no follow primitive: `src/pkc/pkc.ts` API surface; multisubs unimplemented: `README.md:283-305`; votes aggregate-only: `docs/protocol/comment-lifecycle.md:51`, `src/publications/vote/schema.ts:35-46`. Profile design state re-verified 2026-08-08 from [issue #31](https://github.com/pkcprotocol/pkc-js/issues/31) and [PR #227](https://github.com/pkcprotocol/pkc-js/pull/227): bespoke author-community parts are paused pending crossposts; delegation and read-only primitives survive.
+- `bitsocial-indexer` — working crawler, `comments.author_address` in `server/src/db/schema.sql`, pages-walk in `server/src/crawler/crawler.ts:97-160`.
+- `bitsocial-seeder` — CID-level seeding only (no author data), list ingestion `lib/utils.js:45-103`, daemon bootstrap `lib/daemon.js`.
+- `lists` — curated discovery layer; pseudonymity defaults verified in `5chan-directories/5chan-directories-defaults.json` (63 codes: 60 per-reply, 3 per-post).
+- `BSIPs` — six BSIPs (meta + comments, communities/pages, publishing/challenges, comment updates, votes); no follows/discovery BSIP yet; Application category reserves "profile and identity schemas" and "community list formats" (`bsip-1.md:68`).
+- Forge master plan — `bitsocialforge.com/src/App.tsx:233-312` (Phase 2 follows/profile nodes, Phase 4 discovery services); non-custodial "blacksmith" framing `PRODUCT.md:29-30`.
+- `bitsocial-chain` — Ethscriptions/Facet-inspired L1-calldata derivation; POC implements only the `.bso` registry (`README.md:3-14`); "social data stays P2P … by construction" (`DESIGN.md:19-25`, verified 2026-07-13); "social graph" appears only as a privacy threat (`DESIGN.md:29`); names owned by ETH addresses, resolving to Ed25519/libp2p keys, no renewal/expiry yet (`SPEC.md`, `POC_LIMITATIONS.md:14`); economics: burn as the Stage-2-native sink, ~$2.94/user-op Facet physics, future primitives = "small economic state, never social content" (`ECONOMICS_DISCUSSION.md`, `DESIGN.md:107-117`).
+- Chain public site (`bitsocial-web/chain/src/sections`) — BSO: fixed-supply 210M, immutable adminless ERC-20 live on Ethereum; "Names and identity on the chain, registered and renewed in BSO" (renewal is site-promised but absent from the POC — open design question relevant to §8's economic-liveness signal).
+- EFP (`efp.app`) — re-verified 2026-08-03 against [Introduction](https://docs.efp.app/intro), [FAQ](https://docs.efp.app/faq), [Deployments](https://docs.efp.app/production/deployments), [Infrastructure](https://docs.efp.app/production/infra), [Multisig](https://docs.efp.app/production/multisig), and [`ListRecordsV2`](https://github.com/ethereumfollowprotocol/ListRecordsV2/blob/ac61fa01fbfe778b92382ab6e888558a1feec6b5/src/EFPListRecordsV2.sol#L364-L382): Ethereum-address identity with ENS as an optional complement; primary/multiple list NFTs; ListRecords on Base, OP Mainnet, and Ethereum; batchable onchain list operations; public `block`/`mute` tags; an open-source but operationally substantial indexer/API stack; and a 3-of-4 core-team multisig with pause/configuration powers, where one listed person controls two signer keys.
+
+### Bitsocial Algorithms
+
+Repository: bitsocialnet/bitsocial-algorithms
+Source: https://github.com/bitsocialnet/bitsocial-algorithms#readme
+Description: Status: thesis / project exploration — no provider implementation yet.
+
+# Bitsocial Algorithms
+
+> **Status:** thesis / project exploration — no provider implementation yet.
+> **Date:** 2026-08-13
+> **One-liner:** open architecture for user-selectable feed and recommendation providers across
+> Bitsocial clients.
+> **Architecture decision:** [DECISION.md](https://github.com/bitsocialnet/bitsocial-algorithms/blob/HEAD/DECISION.md) records the accepted boundaries for provider
+> authority, personalization, transparency, ads, and protocol scope. It is pre-BSIP and
+> non-normative.
+
+Bitsocial Algorithms is deliberately a docs-first repository. Read this thesis for the project
+direction, then read [DECISION.md](https://github.com/bitsocialnet/bitsocial-algorithms/blob/HEAD/DECISION.md) for the accepted boundaries and
+[research/x-algorithm-2026.md](https://github.com/bitsocialnet/bitsocial-algorithms/blob/HEAD/research/x-algorithm-2026.md) for the first upstream case study.
+
+---
+
+## 1. Thesis
+
+A peer-to-peer social network still needs useful feeds.
+
+Following feeds, discovery feeds, video recommendations, community directories, search results, and
+spam-aware ranking all require choices about what to show first. If one company permanently owns
+those choices, it can recapture the network even when the posts and profiles remain peer-to-peer.
+
+Bitsocial should therefore treat feed algorithms as **replaceable services**:
+
+- a mainstream client can ship with a strong default;
+- a user can change the feed provider without moving their profile node;
+- a provider can offer several algorithms and versions;
+- a community, company, or anonymous operator can run an alternative;
+- a user can run a personal provider or rank locally;
+- every client retains a provider-free chronological floor where the available protocol data permits
+  it.
+
+The short doctrine is:
+
+> Feed providers discover and rank. They do not own identities, posts, social state, or client
+> policy.
+
+Bitsocial Forge can operate the first default provider. The architecture must still make Forge one
+provider among many.
+
+---
+
+## 2. Why this is a separate project
+
+Recommendation is not only a feature of the future flagship Twitter/X-style client.
+
+- the flagship app needs Following and For You feeds;
+- WeTube can use video and creator recommendations;
+- Seedit can add optional personalized or topic feeds without changing community state;
+- 5chan can experiment with optional discovery surfaces while keeping directory and chronological
+  views;
+- search, discovery, moderation, and AI services can contribute labeled signals without becoming
+  protocol authorities.
+
+The cross-client architecture therefore does not belong to one app or to one commercial provider.
+It also should not be folded into [Bitsocial Graph](https://github.com/bitsocialnet/bitsocial-graph):
+the graph supplies observations and candidate inputs, while an algorithm provider makes a policy
+choice over those inputs.
+
+---
+
+## 3. System boundaries
+
+```text
+signed P2P profiles, communities, posts, follows
+                       │
+              ┌────────▼────────┐
+              │ graph / index   │  observations, search, candidate frontier
+              │ providers       │
+              └────────┬────────┘
+                       │
+              ┌────────▼────────┐
+client context│ feed provider   │  candidate sourcing, scoring, optional labels
+─────────────►│ + algorithm     │
+              └────────┬────────┘
+                       │ feed skeleton: signed-content references + metadata
+              ┌────────▼────────┐
+              │ client          │  hydrate, verify, apply local policy, render
+              └────────┬────────┘
+                       │
+              selected P2P node / public RPC
+```
+
+| Layer | Responsibility | Authority it must not gain |
+| --- | --- | --- |
+| Profile or community node | Publishes signed social state and content | No ranking authority |
+| Node RPC provider | Operates or reaches a P2P node for the user | No mandatory control over feed choice |
+| Graph or index provider | Observes public state and supplies candidate inputs | No protocol truth or canonical reputation |
+| Feed provider | Selects and ranks references under a named algorithm | No ownership of profiles or posts |
+| Label provider | Supplies optional safety, quality, or context signals | No global deletion authority |
+| Client | Verifies content, applies the user's final policy, and renders the feed | Must not present provider policy as protocol consensus |
+
+One operator can bundle several layers. A default client may bundle them into one simple preset. The
+configuration and wire boundaries should nevertheless remain separable so changing a feed does not
+require exporting an identity, rotating a key, or migrating a hosted node.
+
+---
+
+## 4. User experience
+
+The first-run experience should be simple enough for a mainstream user:
+
+```text
+Feed
+  Forge For You
+  Following — chronological
+  Community-curated
+  Custom provider
+  Local / personal algorithm
+```
+
+Advanced settings can expose the provider and algorithm independently:
+
+```text
+Node RPC:       Forge RPC
+Graph source:   Bitsocial Graph provider A
+Feed provider:  Forge Feeds
+Algorithm:      for-you / version 3
+Labels:         provider defaults + local blocks and mutes
+```
+
+A **feed preset** can select a convenient bundle. It must not turn the bundle into one indivisible
+account system.
+
+---
+
+## 5. Feed skeleton, not content custody
+
+The canonical provider response should identify signed Bitsocial content rather than invent a new
+provider-owned post object. A future interface may resemble:
+
+```json
+{
+  "provider": "https://feeds.example",
+  "algorithm": { "id": "for-you", "version": "3" },
+  "asOf": "2026-08-13T18:00:00Z",
+  "items": [
+    {
+      "communityAddress": "example.bso",
+      "commentCid": "bafy...",
+      "score": 0.82,
+      "reasons": ["followed-by-people-you-follow", "topic-match"],
+      "labels": [],
+      "sponsored": false
+    }
+  ],
+  "cursor": "opaque-provider-cursor"
+}
+```
+
+This shape is illustrative, not a specification. The stable ideas are:
+
+- return content references and an opaque pagination cursor;
+- identify the provider, algorithm, and version;
+- distinguish reasons, labels, and sponsorship from signed post data;
+- let the client fetch and verify current content through its selected P2P or RPC path.
+
+A provider may optionally cache or hydrate signed content for performance. Its copy is a convenience,
+not a new source of truth, and clients should be able to verify the original signatures and content
+addresses.
+
+---
+
+## 6. Portable personalization
+
+Modern recommendation models commonly use a viewer's recent action sequence: what they opened,
+liked, replied to, skipped, hid, muted, or followed. Centralized platforms accumulate that sequence
+as surveillance state tied to the platform account.
+
+Bitsocial should start from the opposite direction: **personalization state belongs with the
+client/user**.
+
+Providers and clients can support progressively more revealing modes:
+
+1. **No provider:** chronological feeds derived from known follows, communities, or subscriptions.
+2. **Candidate service only:** the provider supplies candidates and the client ranks locally.
+3. **Ephemeral personalization:** the client sends selected recent actions or preferences with a
+   request; the provider does not need a durable behavioral account.
+4. **Opt-in hosted personalization:** the user authorizes provider-side history for convenience,
+   with clear reset, deletion, export, and retention controls.
+
+The common interface must not require a provider to hold the user's signing keys or permanent social
+identity. Authentication and payment may exist at the service layer without becoming ownership of
+the underlying Bitsocial account.
+
+---
+
+## 7. Candidate inputs
+
+A useful provider needs a candidate frontier before it can rank anything. Bitsocial has pieces of
+that system, but not a global firehose:
+
+- [Bitsocial Graph](https://github.com/bitsocialnet/bitsocial-graph) is a docs-first plan for public
+  social-graph observations, liveness, discovery, and portable snapshots;
+- [bitsocial-indexer](https://github.com/bitsocialnet/bitsocial-indexer) is a working crawler and
+  search API, but it intentionally starts empty and indexes only configured communities;
+- [lists](https://github.com/bitsocialnet/lists) supplies today's curated discovery seeds;
+- future signed profiles and follows can provide in-network candidates;
+- community nodes and normal P2P fetches remain the source of signed content.
+
+Candidate coverage is provider provenance, not protocol truth. Providers should disclose which
+communities, time range, graph snapshot, and source classes they cover.
+
+---
+
+## 8. Ranking is not moderation
+
+A feed provider necessarily chooses what it recommends. That does not make its choice canonical
+moderation.
+
+Bitsocial should keep four decisions distinct:
+
+1. **Protocol validity:** is the object correctly signed and valid under shared protocol rules?
+2. **Community state:** has the community owner or moderators applied signed community policy?
+3. **Provider policy:** does this provider include, demote, label, or exclude it from a particular
+   feed?
+4. **Client/user policy:** do local blocks, mutes, safety settings, or preferences hide it?
+
+"Not recommended by this provider" must never be presented as "removed from Bitsocial." Direct
+addresses, chronological views, other providers, and compatible clients remain separate paths.
+
+---
+
+## 9. Transparency and competition
+
+Switching providers is the structural backstop. It does not eliminate the need for disclosure,
+especially because defaults will serve most users.
+
+A provider manifest should eventually disclose:
+
+- operator and service endpoint;
+- algorithm IDs, versions, and update policy;
+- open-source, source-available, or closed implementation status;
+- candidate coverage and freshness;
+- personalization inputs and retention;
+- ranking objectives and available explanation metadata;
+- label, moderation, and safety dependencies;
+- advertising and sponsorship behavior;
+- payment, authentication, rate-limit, and availability terms.
+
+Open and proprietary providers can compete. The default provider should meet a high disclosure bar,
+and clients should clearly label which provider produced each feed.
+
+---
+
+## 10. Sybil resistance is provider policy
+
+Signed activity proves that a key performed an action; it does not prove that the key represents a
+unique human. Providers may weigh liveness, account age, interaction diversity, community roles,
+moderation history, tips, awards, or other economic signals.
+
+No one signal becomes canonical reputation:
+
+- economic actions cost more to fake but can be wash-traded and can favor wealth;
+- activity and follows can be farmed;
+- centralized identity checks undermine pseudonymity;
+- AI classifiers introduce model and training-data policy.
+
+Providers should identify their ruleset and expose enough provenance for clients to compare results.
+Bitsocial protocol consensus should not choose one Sybil model for every social surface.
+
+---
+
+## 11. What belongs in a future BSIP
+
+The models, scoring weights, training data, ads, and commercial service are not protocol rules.
+
+A future Interface or Application BSIP may standardize only what independent clients and providers
+need for interoperability:
+
+- provider discovery and capability manifests;
+- algorithm identity and versioning;
+- request context and consent semantics;
+- feed-skeleton references and cursors;
+- optional reasons, labels, sponsorship, and provenance;
+- authentication, errors, limits, and privacy expectations.
+
+That BSIP should follow working prototypes and at least one credible alternative implementation. It
+should not freeze a transformer architecture or turn one provider's ranking objective into protocol
+law.
+
+---
+
+## 12. Prior art
+
+- [X For You algorithm, August 13, 2026 release](https://github.com/xai-org/x-algorithm/tree/a389166f6cf5da70a286b568c87695d4dcdce3a1)
+  publishes candidate sourcing, scoring, visibility, labels, and a transparency-report path. See the
+  [research note](https://github.com/bitsocialnet/bitsocial-algorithms/blob/HEAD/research/x-algorithm-2026.md).
+- [Bluesky custom feeds](https://docs.bsky.app/docs/starter-templates/custom-feeds) use a feed
+  generator that returns a skeleton of post references and a cursor for later hydration. This is the
+  closest deployed interface precedent.
+- [Nostr NIP-90 Data Vending Machines](https://github.com/nostr-protocol/nips) explored a paid market
+  for arbitrary services, but is currently marked unrecommended in the official NIPs index. That is
+  a warning to keep the first Bitsocial interface narrow and feed-specific.
+
+---
+
+## 13. Roadmap
+
+1. Record the cross-client architecture and upstream research.
+2. Define a non-normative feed-skeleton experiment.
+3. Build a deterministic reference provider before attempting a large ML model.
+4. Integrate one profile-based client path with a provider-free chronological fallback.
+5. Run the first hosted provider through Forge without coupling it to profile-node custody.
+6. Add a local or independently operated provider and test real switching.
+7. Use implementation evidence to draft a BSIP for the stable interface only.
+
+## Repository contents
+
+| File | Purpose |
+| --- | --- |
+| [README.md](https://github.com/bitsocialnet/bitsocial-algorithms/blob/HEAD/README.md) | Thesis, project boundaries, and roadmap |
+| [DECISION.md](https://github.com/bitsocialnet/bitsocial-algorithms/blob/HEAD/DECISION.md) | Accepted architecture direction, pre-BSIP and non-normative |
+| [research/x-algorithm-2026.md](https://github.com/bitsocialnet/bitsocial-algorithms/blob/HEAD/research/x-algorithm-2026.md) | Dated analysis of the 2026 X algorithm release |
+| [integrations/seedit.md](https://github.com/bitsocialnet/bitsocial-algorithms/blob/HEAD/integrations/seedit.md) | Seedit `best` feed via a provider, and how it relates to pkc-js page sorts |
+
+## Contributing
+
+This repository is at the research and architecture stage. Issues and pull requests should bring
+concrete prior art, privacy and abuse analysis, or implementation evidence. Do not describe an
+unimplemented provider, feed interface, profile format, or marketplace as shipped.
+
+## License
+
+Bitsocial Algorithms is licensed under the [GNU General Public License v3.0 or later](https://github.com/bitsocialnet/bitsocial-algorithms/blob/HEAD/LICENSE).
+
+### Bitsocial Mesh
+
+Repository: bitsocialnet/bitsocial-mesh
+Source: https://github.com/bitsocialnet/bitsocial-mesh#readme
+Description: Bitsocial Mesh is a plan to keep Bitsocial communities working when the internet is gone , whether a government switched it off or a disaster took it down. People in the same place keep reading, posting, replying and moderating in apps such as 5chan and Seedit. When any link to the outside returns, what they wrote reaches the rest of the network.
+
+# Bitsocial Mesh
+
+**Bitsocial Mesh is a plan to keep Bitsocial communities working when the internet is gone**, whether a government switched it off or a disaster took it down. People in the same place keep reading, posting, replying and moderating in apps such as 5chan and Seedit. When any link to the outside returns, what they wrote reaches the rest of the network.
+
+> **Status: idea stage.** This repository reserves the name and collects the design. Nothing here is built or tested. See [ROADMAP.md](https://github.com/bitsocialnet/bitsocial-mesh/blob/HEAD/ROADMAP.md). It fits [Phase 5 of the Bitsocial master plan](https://bitsocial.net/#master-plan-phase-5).
+
+## The Problem
+
+Offline mesh chat already exists. [bitchat](https://github.com/permissionlesstech/bitchat) lets nearby phones talk over Bluetooth with no internet. What a mesh chat does not have is communities: threads that persist, rules, moderators and a defence against spam. In a blackout, a crowd sharing one unmoderated channel is easy to flood and hard to trust.
+
+Bitsocial has communities. What it lacks is a way to run them without the internet.
+
+## Why Bitsocial Can't Copy bitchat
+
+A bitchat message is valid as soon as it is signed, so phones can pass it along to each other. A Bitsocial post has to reach its community's host node, which accepts it, gives it its permanent identifier, runs the anti-spam challenge and applies moderation. If nobody can reach the host, nothing is accepted, and nobody can reply or vote.
+
+So the question is not how phones talk to each other. It is how people reach a host, and how a host reaches the world.
+
+## The Plan
+
+| Stage | What it is | What it needs |
+|---|---|---|
+| **1. The community box** | A laptop or a small computer hosts the community and opens a Wi-Fi hotspot. People nearby join the hotspot and open the app in a browser. Posts are accepted, threaded, challenged and moderated as usual. If no link returns, the box or a copy of its data can be carried to one. | No protocol change. Whether today's software already works this way is untested. |
+| **2. Linking boxes** | Boxes across a city reach each other, and a box with internet relays for the others, over LoRa radios. | Radio hardware, run by a few volunteers. Not something each user carries. |
+| **3. Delayed delivery** | A post signed inside the blackout is carried out by someone else and still accepted by a community hosted elsewhere. | A protocol change with real costs. Not planned until the earlier stages are in use. |
+| **4. Phone to phone** | Phones exchange posts directly over Bluetooth, as bitchat does. | A native Bluetooth mesh in the Android apps. The most work for the shortest range, so it comes last and may be dropped. |
+
+Details are in [how-it-could-work.md](https://github.com/bitsocialnet/bitsocial-mesh/blob/HEAD/how-it-could-work.md).
+
+## What Runs Where
+
+| Piece | Where it would live | What it does |
+|---|---|---|
+| Community box | A desktop app on a laptop, or an image for a small computer such as a Raspberry Pi | Runs the community's node, opens a hotspot and serves the client to browsers on it. |
+| Radio link | Beside a box's node | Carries posts and community updates between boxes. |
+| Delayed delivery | pkc-js, and the clients through bitsocial-react-hooks | Lets a community opt in to older posts, and lets any client carry other people's posts out. Only if Stage 3 is built. |
+| Bluetooth mesh | A Capacitor plugin in the clients' Android builds | Phone-to-phone exchange, if Stage 4 is built. |
+
+## Limits
+
+- **Range.** A hotspot covers a building, a square or a camp. Beyond that it takes more boxes, radio links or people carrying data.
+- **Someone has to run the box.** The community stops if the box is switched off, seized or out of power, and the person running it can be located by its radio signal.
+- **A box has to be prepared before the blackout.** Nobody can download it afterwards. People who only join one need nothing but a browser, if serving the app from the box works.
+- **Privacy.** Joining a hotspot shows the box that a device is there, and every post carries its author's public key.
+
+## Compared With bitchat
+
+bitchat's design is documented in its [whitepaper](https://github.com/permissionlesstech/bitchat/blob/main/WHITEPAPER.md).
+
+| | bitchat | Bitsocial Mesh |
+|---|---|---|
+| What people share | Public chat, end-to-end encrypted private messages and, in the iOS app since July 2026, short signed board notices | Posts, replies and votes in Bitsocial communities and profiles |
+| Needs a host to be reachable | No. A message is valid as soon as it is signed. | Yes, which is why the host has to be nearby. |
+| Needs an app installed | Yes | A browser, for people joining a box |
+| How long it lasts | Public chat history syncs for 6 hours. Board notices are at most 512 bytes and last at most 7 days. | As long as the community keeps it. |
+| Internet path | Nostr relays: location channels and private messages | The community is an ordinary Bitsocial community once it has a link out |
+| Moderation and spam | Users block senders | The community's own rules, moderators and challenges |
+| Private messages | Yes | No. Bitsocial has no DMs yet ([pkc-js#51](https://github.com/pkcprotocol/pkc-js/issues/51)). |
+
+## Later: A Map
+
+Sites such as [bitchatexplorer.com](https://bitchatexplorer.com/) and [bitmap.lat](https://bitmap.lat/) draw bitchat's location channels on a world map. They read those from Nostr relays over the internet, not from the Bluetooth mesh. A Bitsocial map of communities by coarse location is possible the same way, as an opt-in feature that only works online.
+
+## Documents
+
+- [how-it-could-work.md](https://github.com/bitsocialnet/bitsocial-mesh/blob/HEAD/how-it-could-work.md): the four stages, the 5-minute rule, measured sizes and privacy
+- [ROADMAP.md](https://github.com/bitsocialnet/bitsocial-mesh/blob/HEAD/ROADMAP.md): the phases, with a checklist and a pass-or-stop check for each
+- [open-questions.md](https://github.com/bitsocialnet/bitsocial-mesh/blob/HEAD/open-questions.md): decisions not yet made
+
+## License
+
+[GPL-3.0-or-later](https://github.com/bitsocialnet/bitsocial-mesh/blob/HEAD/LICENSE). Two notes for later stages. [bitchat-android](https://github.com/permissionlesstech/bitchat-android)'s licence file has been GPL-3.0 since February 2026, while its README still says public domain, and it does not say whether later GPL versions apply. [Reticulum](https://reticulum.network/) uses its own [Reticulum License](https://reticulum.network/manual/license.html), which adds use restrictions to MIT-style terms. Confirm both before reusing or bundling their code.
+
+## Ecosystem Context
+
+- Bitsocial protocol docs: https://bitsocial.net
+- Bitsocial and Reticulum comparison: https://docs.bitsocial.net/comparisons/reticulum/
+- Bitsocial and Secure Scuttlebutt comparison (the closest Bitsocial-adjacent offline design): https://docs.bitsocial.net/comparisons/scuttlebutt/
+- Protocol implementation: `pkcprotocol/pkc-js`
+- Shared client hooks: `bitsocial-react-hooks`
+- Clients: 5chan (imageboard), Seedit (forum)
+
+### Prediction Markets on Bitsocial
+
+Repository: bitsocialnet/prediction-markets
+Source: https://github.com/bitsocialnet/prediction-markets#readme
+Description: Open research into prediction markets with native, peer to peer communities, discussion, and discovery.
+
+# Prediction Markets on Bitsocial
+
+Open research into prediction markets with native, peer-to-peer communities, discussion, and discovery.
+
+> **Status:** exploration; no implementation or agreed partnership yet.
+> **Started:** 2026-09-10.
+> **First integration candidate:** [Trueo](https://github.com/bitsocialnet/prediction-markets/blob/HEAD/research/trueo.md).
+
+We think prediction markets and decentralized social communities could work well together. This
+repository explores what that could look like on [Bitsocial](https://bitsocial.net), starting with
+Trueo. Contributors are welcome to research, prototype, and lead implementations.
+
+Bitsocial is a grassroots ecosystem. This idea is open for anyone to pursue: an independent
+developer, a community, an existing client team, or a prediction-market project. Publishing it
+makes the opportunity discoverable; it does not assign delivery to Bitsocial Forge or any
+particular maintainer.
+
+## The idea
+
+A prediction market has a question, competing views, evidence, and an eventual outcome. Those are
+also the ingredients of a discussion thread. An app could put the market and its conversation
+together, so people can discover a question, discuss the evidence, take a position, and return for
+the result in the same place.
+
+The opportunity is especially interesting for communities with questions that receive little
+attention elsewhere, including contentious public questions that a centralized venue might
+decline to list. The hypothesis is that community-led discovery and market creation can make
+those markets useful. Each settlement protocol still has its own eligibility rules.
+
+Bitsocial offers a foundation for the social side: independent clients, community-controlled
+publishing, and peer-to-peer content. A prediction-market protocol could supply outcome tokens,
+trading, collateral, and settlement. Existing starting points include
+[5chan](https://github.com/bitsocialnet/5chan), [Seedit](https://github.com/bitsocialnet/seedit), and
+[Bitsocial React Hooks](https://github.com/bitsocialnet/bitsocial-react-hooks).
+
+## What contributors could build
+
+| Direction | Possible experience | First useful experiment |
+| --- | --- | --- |
+| Market cards in an existing client | A thread displays a market, its rules, current state, and a trading link. | Render one real market inside a 5chan or Seedit prototype. |
+| A dedicated prediction-market client | Markets become the main feed, with Bitsocial communities and discussions around them. | Build one market page with a real Bitsocial thread. |
+| A Bitsocial social layer for Trueo | A Trueo-focused app presents markets alongside portable community discussions. | Map one Trueo market to a thread and demonstrate it in two clients. |
+
+These are alternative starting points. A contributor can pursue one without committing to all
+three. Trueo is the first candidate to investigate; research on other settlement protocols is
+welcome.
+
+## Responsibilities
+
+```mermaid
+flowchart LR
+    Person[Participant] --> Client[Bitsocial prediction-market client]
+    Client <--> Social[Bitsocial communities and discussion]
+    Client --> Wallet[Participant wallet]
+    Wallet --> Market[Market contracts and trading]
+    Market --> Oracle[Settlement protocol and oracle]
+    Market --> Client
+    Oracle --> Client
+```
+
+The proposed client joins two systems. Bitsocial carries discussion and community activity. The
+chosen market protocol determines financial outcomes. A community vote or moderator action must
+not be presented as settlement authority. Switching social clients should preserve references to
+the same market and its existing liquidity.
+
+Censorship resistance needs to be assessed across the whole path: community operation, content
+availability, clients, discovery, RPC access, contracts, and resolution. Independent clients and
+replaceable infrastructure can reduce dependencies; a thread alone does not remove every one.
+
+## Start with one community and one market
+
+The first experiment should answer whether an actual community finds the combined experience
+useful. Identify a question people already care about, an understandable resolution process, and
+participants willing to supply liquidity and trade. A hypothetical example is a public software
+release before a specified deadline, with the release tag and official announcement defined as
+evidence.
+
+Start with a readable market card and a working discussion. Add wallet transactions after the
+integration has been investigated. Measure whether people return, discuss evidence, and use the
+market at the sizes they intended. An announcement, token interest, or a controversial topic
+alone does not establish demand.
+
+See [the prototype brief](https://github.com/bitsocialnet/prediction-markets/blob/HEAD/prototype.md) for a bounded first build and its completion criteria.
+
+## Research and contribution map
+
+| Work | Starting point | Status |
+| --- | --- | --- |
+| Trueo integration and possible collaboration | [Research note](https://github.com/bitsocialnet/prediction-markets/blob/HEAD/research/trueo.md) | Candidate documented; integration untested |
+| One-market prototype | [Prototype brief](https://github.com/bitsocialnet/prediction-markets/blob/HEAD/prototype.md) | Open for contributors |
+| Community demand and liquidity | [First experiment](#start-with-one-community-and-one-market) | Community and participants needed |
+| Other settlement protocols | [Contribution guide](https://github.com/bitsocialnet/prediction-markets/blob/HEAD/CONTRIBUTING.md) | Research welcome |
+
+Open an [issue](https://github.com/bitsocialnet/prediction-markets/issues) with the piece you want
+to explore, a question, or a prototype link. Small findings and competing approaches are useful.
+See [CONTRIBUTING.md](https://github.com/bitsocialnet/prediction-markets/blob/HEAD/CONTRIBUTING.md) for suggested first contributions.
+
+The Trueo possibility should be revisited when a contributor takes on the prototype, a community
+brings concrete demand, or Trueo publishes new integration support. Record findings and changes
+here so the opportunity remains visible.
+
+## License
+
+[GPL-3.0-or-later](https://github.com/bitsocialnet/prediction-markets/blob/HEAD/LICENSE), following the existing Bitsocial exploratory project precedent.
+Linked third-party material retains its own license.
+
+### Bitsocial Chain
+
+Repository: bitsocialnet/bitsocial-chain
+Source: https://github.com/bitsocialnet/bitsocial-chain#readme
+Description: Proof of concept for Bitsocial Chain , the proposed Ethereum L2 economic layer for Bitsocial apps (Phase 3 of the master plan).
+
+# Bitsocial Chain
+
+Proof of concept for **Bitsocial Chain**, the proposed Ethereum L2 economic layer for [Bitsocial](https://bitsocial.net) apps ([Phase 3 of the master plan](https://bitsocial.net/#master-plan-phase-3)).
+
+Bitsocial Chain is meant to host `.bso` names, tipping and payments, community tokens, and AgoraSwap. This POC implements exactly one primitive: **decentralized `.bso` names** whose registry state is derived deterministically from Ethereum L1 history, in the spirit of [Ethscriptions](https://github.com/ethscriptions-protocol) and [Facet](https://github.com/0xFacet).
+
+> **This is not production Stage 2; this is a Stage-2-shaped proof of concept for .bso naming.**
+
+## What this POC proves
+
+- A `.bso` name (e.g. `alice.bso`) can be registered, updated, transferred, and revoked using **plain Ethereum L1 transactions** — no sequencer, no admin keys, no contract.
+- Registry state is a **pure function of L1 history**: anyone can run the derivation node and reconstruct byte-identical state (the demo and tests verify matching state hashes across independent derivation runs).
+- A name resolves to a **Bitsocial public key / community address** — the same IPNS-style keys Bitsocial clients resolve through the [`bitsocial` ENS TXT record](https://bitsocial.net/docs/infrastructure/bso-resolver/) today — through a resolver SDK that is shape-compatible with [`@bitsocial/bso-resolver`](https://github.com/bitsocialnet/bso-resolver).
+- Social content stays peer-to-peer: nothing social goes on-chain. Names are a locator/ownership primitive, not a data layer.
+- The long-term posture is **transparent by default, privacy-compatible by design**: this POC does not shield activity, but future tipping/payment schemas should avoid forced linkage between social identity and wallet history, and should leave room for external privacy systems such as shielded pools, stealth addresses, relayers, and zero-knowledge proofs. See [DESIGN.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/DESIGN.md#privacy-compatibility-is-a-design-requirement).
+
+## What it does not prove
+
+- No production proof system, fault proofs, or challenge rules — derived state is verified by re-derivation, not by proofs.
+- No mainnet deployment, no audited code, no economics or pricing, no governance.
+- No built-in privacy system: `.bso` ownership and intent transactions are public in this POC. Privacy is a compatibility requirement for future economic features, not an implemented feature here.
+- See [POC_LIMITATIONS.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/POC_LIMITATIONS.md) for the full honest list.
+
+## Production architecture (open)
+
+This POC proves the `.bso` naming primitive and an L1-derived pattern that suits it. It does not settle the architecture for the rest of the chain. Community tokens, payments at scale, and AgoraSwap need batching, cheap data availability, full EVM execution, and a sequencing decision that L1-calldata derivation does not provide (see [ECONOMICS_DISCUSSION.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/ECONOMICS_DISCUSSION.md)).
+
+Under evaluation:
+
+- **Native rollups (leading candidate):** an L2 whose blocks Ethereum verifies with its own EVM proof program, so there is no bespoke verifier to govern. The design supports BSO as the gas token and custom fee handling. Native rollups are not yet part of any scheduled Ethereum hard fork, and the public [devnet](https://nativerollups.fyi/) still mocks the proof and the L1 proof check. See [RESEARCH_NATIVE_ROLLUPS.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/RESEARCH_NATIVE_ROLLUPS.md).
+- **Ethereum Economic Zone (second candidate):** a rollup framework that needs no hard fork and lets L2 contracts call L1 contracts in the same transaction, so an L2 order can fill against L1 liquidity. Its contracts are upgradeable and unaudited, proofs are ECDSA attestations rather than ZK, and the first production network (Gnosis Chain, 2027) launches with a centralized sequencer. See [RESEARCH_EEZ.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/RESEARCH_EEZ.md).
+- **Sequencing:** based sequencing (no operator, 12-second blocks) versus a sequencer with preconfirmations and forced inclusion. Open, and tied to AgoraSwap's mechanism design.
+- **EVM upgrades:** a native rollup either follows L1's EVM through the EIP-8357 verification key registry or pins one version, and an ownerless rollup contract fixes that choice at deployment. Following is the recommended direction; it needs provers ready at every L1 fork.
+- **Names:** [BSIP-13](https://bsips.bitsocial.net/bsip-13) (Draft) specifies an interim `.bso` registry on Ethereum mainnet: an ownerless, non-upgradeable fork of the [.gwei name service](https://github.com/lucadonnoh/gwei-names) with expiring, renewable names, seeded from the `.bso` names in use through ENS. Unlike upstream GNS, it sends fees to a fixed multisig instead of burning them. When Bitsocial Chain launches, the registry can be frozen and its state imported onto the chain. From then on the intent is that name fees no longer fund the maintainers and are burned, or buy back and burn BSO by contract; the mechanism is open ([ECONOMICS_DISCUSSION.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/ECONOMICS_DISCUSSION.md), question 21). Its registry rules would replace this POC's.
+- **Privacy:** transparent by default, with a private-payments lane; Aztec is the leading candidate (see [RESEARCH_AZTEC_VS_FACET.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/RESEARCH_AZTEC_VS_FACET.md)).
+- **Requirement for whichever design wins:** no trust assumptions beyond Ethereum L1. L2BEAT's Stage 2 is the floor, not the target: it still allows upgrades behind a 30-day exit window and a Security Council that can act on bugs detected on chain. Bitsocial Chain should have neither, and no privileged operator in the trust path.
+
+None of these is decided.
+
+## How it works
+
+```
+        register / update / transfer / revoke intents
+        (calldata: data:application/vnd.bso.intent+json,{...}
+         sent to the inbox address 0x…b50b50)
+                            │
+                            ▼
+ ┌──────────────────────────────────────────────────────┐
+ │                    Ethereum L1                       │
+ │   (the only source of truth; POC runs a local chain) │
+ └──────────────────────────────────────────────────────┘
+                            │  blocks + transactions, in order
+                            ▼
+ ┌──────────────────────────────────────────────────────┐
+ │   derivation node  (node/)        — anyone can run   │
+ │   deterministic state transition over L1 history     │
+ │   → .bso registry + state hash, persisted locally    │
+ └──────────────────────────────────────────────────────┘
+                            │  read API (HTTP/JSON)
+                            ▼
+ ┌──────────────────────────────────────────────────────┐
+ │   resolver SDK  (resolver/)                          │
+ │   alice.bso → { owner, publicKey, metadataUri, … }   │
+ └──────────────────────────────────────────────────────┘
+                            │
+                            ▼
+        Bitsocial clients (Seedit, 5chan, flagship app, …)
+        use the public key to find communities/identities
+        over the existing P2P protocol — content stays off-chain
+```
+
+There is deliberately **no L1 contract** in the intent path: an intent is any transaction to the designated inbox address whose calldata carries the documented data URI. Validity is decided entirely by the open derivation rules in [SPEC.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/SPEC.md), so there is nothing on L1 to upgrade, censor, or seize. (An immutable Solidity inbox emitting events was the considered alternative; see [DESIGN.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/DESIGN.md).)
+
+## Repository layout
+
+| Directory   | Package                           | What it is |
+| ----------- | --------------------------------- | ---------- |
+| `protocol/` | `@bitsocial/bso-chain-protocol` | Deterministic core: intent calldata codec, name normalization, state transition rules, canonical state hash |
+| `node/`     | `@bitsocial/bso-chain-node`     | Derivation node: follows L1 over JSON-RPC, applies the protocol, persists state, serves the read API, handles reorgs |
+| `resolver/` | `@bitsocial/bso-chain-resolver` | Minimal resolver SDK, shape-compatible with `@bitsocial/bso-resolver` |
+| `demo/`     | `@bitsocial/bso-chain-demo`     | Runnable end-to-end demo on a local L1 dev chain |
+
+Docs: [SPEC.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/SPEC.md) (normative protocol rules) · [DESIGN.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/DESIGN.md) (rationale and roadmap fit) · [POC_LIMITATIONS.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/POC_LIMITATIONS.md) (shortcuts taken).
+
+Research: [RESEARCH_NATIVE_ROLLUPS.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/RESEARCH_NATIVE_ROLLUPS.md) (production architecture candidate and a `.gwei` fork for names) · [RESEARCH_EEZ.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/RESEARCH_EEZ.md) (Ethereum Economic Zone, synchronous composability with L1) · [RESEARCH_AZTEC_VS_FACET.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/RESEARCH_AZTEC_VS_FACET.md) (privacy lane) · [RESEARCH_INTERFOLD_CRISP.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/RESEARCH_INTERFOLD_CRISP.md) (sealed-bid auctions, secret ballots) · [ECONOMICS_DISCUSSION.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/ECONOMICS_DISCUSSION.md) (burn vs. liquidity, AgoraSwap, community tokens).
+
+## Setup
+
+Requires Node.js >= 22 (see `.nvmrc`).
+
+```bash
+git clone https://github.com/bitsocialnet/bitsocial-chain.git
+cd bitsocial-chain
+npm install
+npm run build
+```
+
+## Run the tests
+
+```bash
+npm test
+```
+
+Covers name normalization, the intent codec, every state transition rule (valid/duplicate registration, unauthorized/authorized updates, transfer, revoke, invalid intents), resolver behavior, and — against a real local L1 — end-to-end derivation, deterministic replay (two clean derivations produce the same state hash), persistence/resume, and reorg detection.
+
+## Run the demo
+
+```bash
+npm run demo
+```
+
+The demo starts a local Ethereum L1 (Hardhat node), runs a derivation node against it, then walks the full lifecycle with plain L1 transactions: register `alice.bso` → resolve it → rejected hijack attempts (duplicate registration, non-owner update) → update → transfer → revoke. It finishes by re-deriving the registry from genesis with a second, fresh node and asserting both nodes computed the same state hash.
+
+## Run a node yourself
+
+```bash
+# terminal 1: any local Ethereum dev chain
+npx hardhat node
+
+# terminal 2: the derivation node
+node node/dist/cli.js --rpc-url http://127.0.0.1:8545 --port 4150
+
+# optional: persist state in a local Turso Database file instead of JSON
+node node/dist/cli.js --rpc-url http://127.0.0.1:8545 --store turso --db .bso-chain-data/state.db
+
+# resolve a name over the read API
+curl http://127.0.0.1:4150/v1/names/alice.bso
+curl http://127.0.0.1:4150/v1/status
+```
+
+The default store is the original atomic JSON file. `--store turso` uses Turso Database as an embedded SQLite-compatible local database; in this POC it still persists the canonical node state as one blob, with indexed tables left for future node work.
+
+## Resolver usage
+
+```ts
+import { BsoChainResolver } from "@bitsocial/bso-chain-resolver";
+
+const resolver = new BsoChainResolver({ endpoint: "http://127.0.0.1:4150" });
+
+resolver.canResolve({ name: "alice.bso" }); // true
+await resolver.resolve({ name: "alice.bso" });
+// {
+//   name: "alice.bso",
+//   owner: "0xf39f…",
+//   publicKey: "12D3KooWN5rLmRJ8fWMwTtkDN7w2RgPPGRM4mtWTnfbjpi1Sh7zR",
+//   metadataUri: "ipfs://…",   // optional
+//   version: 1
+// }
+await resolver.destroy();
+```
+
+`canResolve` / `resolve({ name, abortSignal })` / `destroy()` mirror the existing BSO Resolver, so a Bitsocial client can stack this resolver alongside (or behind) the ENS-TXT-record one in the same `nameResolvers` list.
+
+## How this relates to Bitsocial apps
+
+Bitsocial communities and identities are controlled by keys and addressed by public-key hashes; apps, RPCs, discovery, and hosting are all replaceable. What `.bso` names add is a durable, human-readable, **ownable** locator for those keys that no registrar, DNS provider, or platform can seize — because the registry rules live in open derivation code over Ethereum history rather than in any operator's database. Posts, votes, moderation, and feeds never touch the chain; a client resolves `alice.bso` to a public key once, then talks to the P2P network exactly as it does today.
+
+This repo shows the L1-derived pattern works for names. Whether the rest of Bitsocial Chain (tipping, payments, community tokens, AgoraSwap) uses the same pattern or a full rollup is open; see [Production architecture (open)](#production-architecture-open). Either way, social content never goes on-chain.
+
+## Stage 2 disclaimer
+
+This POC follows Stage-2-shaped design targets — no sequencer required for correctness, state derived from L1 only, anyone can run the node, no admin keys in the core rules — but **it is not production Stage 2**. There is no proof system, no challenge game, no exit mechanism, and no security review. [POC_LIMITATIONS.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/POC_LIMITATIONS.md) and the "Path to a real Stage 2" section of [DESIGN.md](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/DESIGN.md) spell out what is missing.
+
+## License
+
+[GPL-3.0-or-later](https://github.com/bitsocialnet/bitsocial-chain/blob/HEAD/LICENSE)

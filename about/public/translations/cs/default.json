@@ -536,7 +536,12 @@
         "images": "Obrázky",
         "codeHosting": "Hosting kódu",
         "encyclopedia": "Encyklopedie",
-        "video": "Video"
+        "video": "Video",
+        "names": "Jména",
+        "offline": "Offline",
+        "predictionMarkets": "Predikční trhy",
+        "socialGraph": "Sociální graf",
+        "tips": "Spropitné"
       },
       "linkLabels": {
         "androidApk": "APK pro Android",
@@ -656,6 +661,46 @@
         "flair-page-sort": {
           "tagline": "Stránky komunity, které obsahují jen příspěvky a odpovědi s vybraným flairem.",
           "description": "Flair Page Sort je vlastní řazení stránek pro vlastníky komunit. Když je uvedeno v nastavení stránek komunity spolu se sadou flairů, uzel publikuje další stránku, která obsahuje jen příspěvky nebo odpovědi s některým z těchto flairů, seřazené podle naposledy přidaného flairu, od nejnovějších, podle popularity nebo od nejlepších. Komunita ji může publikovat jako svou výchozí stránku, takže se na ní klienti otevřou, a ke čtení nemusí klienti nic instalovat. Vyžaduje pkc-js 0.0.143 nebo novější."
+        },
+        "active-page-sort": {
+          "description": "Active Page Sort je vlastní řazení stránek pro vlastníky komunit, které nahrazuje vestavěné pořadí bumpů. Odpověď s řádkem odpovídajícím některému z klíčových slov boardu, například <code>sage</code>, své vlákno nebumpne, a při nastaveném bump limitu může vlákno bumpnout jen několik jeho prvních odpovědí. Taková vlákna klesají, ale nikdy nejsou skrytá. Publikuje se pod stejným klíčem <code>active</code> jako vestavěné řazení, takže klienti zobrazí nové pořadí bez jakékoli změny. Vyžaduje pkc-js 0.0.114 nebo novější.",
+          "tagline": "Pořadí bumpů jako na imageboardu, kde odpovědi se sage vlákno nebumpují a vlákna za bump limitem se přestanou bumpovat."
+        },
+        "base64-challenge": {
+          "description": "Base64 Challenge běží na komunitním uzlu Bitsocial a odmítá každou publikaci, která do libovolného textového pole vkládá URI <code>data:</code> nebo dlouhý úsek base64, od těla a názvu příspěvku po zobrazovaná jména a důvody úprav. Bez ní může komunita skončit tak, že podepisuje, ukládá a poskytuje malý obrázek skrytý v textu příspěvku, který AI moderátor vidí jen jako změť znaků. Kontrola je deterministická a nespouští žádný model, hexadecimální řetězce jako hashe a data transakcí projdou a moderátory lze z kontroly vyjmout.",
+          "tagline": "Odmítá publikace, které ve svém textu skrývají obrázky nebo jiné soubory jako data base64."
+        },
+        "bitsocial-algorithms": {
+          "description": "Bitsocial Algorithms je výzkum algoritmů pro feedy a doporučování jako zaměnitelných služeb napříč klienty Bitsocial. Klient může být dodáván se silným výchozím nastavením a uživatel může přejít k jinému poskytovateli, provozovat vlastního nebo řadit příspěvky lokálně, aniž by musel přesouvat svůj profil, přičemž chronologický feed zůstává dostupný bez jakéhokoli poskytovatele. Poskytovatelé objevují a řadí příspěvky, ale nikdy nevlastní identity, příspěvky ani sociální data, takže žádná jednotlivá firma nerozhoduje o tom, co vidí všichni. Zatím není nic postaveno; repozitář shromažďuje výzkum a přijatou architekturu.",
+          "tagline": "Poskytovatelé feedů a doporučení ve fázi nápadu, které si uživatelé mohou přepnout jako nastavení."
+        },
+        "bitsocial-chain": {
+          "description": "Bitsocial Chain je navrhovaná ekonomická vrstva pro aplikace Bitsocial ve fázi 3 hlavního plánu: Ethereum L2 pro jména .bso, spropitné a platby, komunitní tokeny a AgoraSwap. Nemá vyžadovat žádnou důvěru nad rámec samotné sítě Ethereum: žádné klíče pro upgrade, žádná bezpečnostní rada a žádný privilegovaný operátor. Příspěvky a komunity zůstávají peer-to-peer; nic sociálního nejde na blockchain. Ověření konceptu odvozuje z běžných transakcí sítě Ethereum registr jmen .bso, který si kdokoli může přepočítat. Není auditované ani nasazené.",
+          "tagline": "Ethereum L2 ve fázi nápadu pro jména .bso, spropitné, platby a komunitní tokeny."
+        },
+        "bitsocial-discovery": {
+          "description": "Bitsocial Discovery vychází ze seznamů komunit, zaslaných návrhů, indexerů a záznamů ENS a pak sleduje odkazy, které si komunity navzájem zanechávají: adresy zmíněné v příspěvcích a popisech, crossposty a řetězec předchozích komentářů autora. Každou nalezenou komunitu opakovaně kontroluje, aby věděl, které jsou stále naživu, a výsledky poskytuje jako JSON API pro klienty, indexery a nástroje pro kontrolu. Ukládá metadata komunit, nikdy příspěvky, a dodává se nečinný: zdroje a to, co API zobrazuje, volí provozovatel.",
+          "tagline": "Nachází komunity Bitsocial, které zatím nejsou na žádném seznamu, a ověřuje, které z nich jsou naživu."
+        },
+        "bitsocial-forum": {
+          "description": "Bitsocial Forum je plánované fórum pro projekty Bitsocial a třetí klient Bitsocial po klientech Seedit a 5chan, které má soustředit diskusi, jež je nyní roztříštěná mezi Telegram, Twitter a GitHub. Každá sekce, například pro 5chan nebo pro jména .bso, je adresářem, o který komunity soutěží: komunita na prvním místě ji spravuje se svými vlastními moderátory a jiná ji může převzít, pokud ta první zanikne nebo ji spravuje špatně. Neexistuje žádný server ani globální správce. Raná verze umí číst libovolnou komunitu Bitsocial, ale publikování a profily zatím postavené nejsou.",
+          "tagline": "Fórový klient ve fázi nápadu, kde každá sekce patří té komunitě, která ji vyhraje."
+        },
+        "bitsocial-graph": {
+          "description": "Bitsocial Graph je výzkum otevřeného crawleru, který z veřejných dat protokolu sestavuje sociální graf Bitsocial: autory, komunity a to, jak spolu interagují. Obsah Bitsocial zůstává dostupný jen tak dlouho, dokud ho někdo dál publikuje nebo seeduje, takže graf sleduje i to, co je stále naživu, a ukazuje síť takovou, jaká je teď, nikoli každého, kdo se kdy připojil. Výsledky by byly zveřejněny jako otevřená data a API pro klienty a poskytovatele vyhledávání a feedů, přičemž tento crawler by byl jedním z mnoha poskytovatelů. Komunity, které skrývají identitu autorů, zůstávají nepropojitelné. Zatím není nic postaveno; repozitář shromažďuje výzkum a přijatou architekturu.",
+          "tagline": "Otevřený crawler ve fázi nápadu, který mapuje aktivní autory a komunity na Bitsocial."
+        },
+        "bitsocial-mesh": {
+          "description": "Bitsocial Mesh je plán, jak udržet komunity v provozu během vypnutí internetu nebo katastrofy. Nejprve notebook nebo malý počítač hostuje komunitu a otevře Wi-Fi hotspot, takže lidé v okolí mohou číst, přispívat a moderovat z prohlížeče. Pozdější fáze by tato zařízení propojily po celém městě přes rádio LoRa a jakmile se obnoví jakékoli připojení, odeslaly by příspěvky ven; Bluetooth mezi telefony by přišel na řadu až nakonec, pokud vůbec. Na rozdíl od mesh chatovacích aplikací, jako je bitchat, zachovává komunity s vlastními pravidly, moderátory a ochranou proti spamu. Zatím není nic postaveno ani otestováno; repozitář shromažďuje návrh.",
+          "tagline": "Plán ve fázi nápadu, jak udržet komunity Bitsocial v chodu, když je odpojen internet."
+        },
+        "prediction-markets": {
+          "description": "Prediction Markets je otevřený výzkum aplikací, které spojují predikční trh a diskusi o něm na jednom místě, aby lidé mohli najít otázku, debatovat o důkazech, zaujmout pozici a vrátit se, až bude znám výsledek. Bitsocial by nesl komunity a vlákna, zatímco obchodování a vypořádání by obstarával existující tržní protokol; Trueo je prvním zkoumaným kandidátem. O vypořádání trhu nikdy nerozhoduje hlasování komunity. Nápad je otevřený a postavit ho může kterýkoli vývojář nebo projekt. Zatím není nic postaveno a žádné partnerství není dohodnuto.",
+          "tagline": "Výzkum ve fázi nápadu zaměřený na predikční trhy s komunitou Bitsocial kolem každé otázky."
+        },
+        "tipping-challenge": {
+          "description": "Tipping Challenge umožňuje komunitě zobrazovat ověřené spropitné. Autor pošle token přímo do peněženky jiného autora, pak na komentář, kterému spropitné dává, odpoví s hashem transakce, a uzel komunity transakci vyhledá on-chain a zapíše ověřenou částku do odpovědi. Spropitné může být v tokenech ERC-20, NFT nebo v nativní minci daného blockchainu. Komunita nemůže spropitné zachytit ani zfalšovat a odpovědí bez spropitného se to nijak nedotkne. Implementuje kontrakt <code>tipping/v1</code>, takže klient napsaný podle tohoto kontraktu funguje i s jinými implementacemi.",
+          "tagline": "Ověřené spropitné u odpovědí, posílané z peněženky do peněženky a kontrolované komunitou on-chain."
         }
       }
     },

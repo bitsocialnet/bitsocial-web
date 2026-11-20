@@ -536,7 +536,12 @@
         "images": "Afbeeldingen",
         "codeHosting": "Codehosting",
         "encyclopedia": "Encyclopedie",
-        "video": "Video"
+        "video": "Video",
+        "names": "Namen",
+        "offline": "Offline",
+        "predictionMarkets": "Voorspellingsmarkten",
+        "socialGraph": "Sociale graaf",
+        "tips": "Fooien"
       },
       "linkLabels": {
         "androidApk": "Android-APK",
@@ -663,6 +668,46 @@
         "flair-page-sort": {
           "tagline": "Communitypagina's met alleen de posts en reacties die een gekozen flair dragen.",
           "description": "Flair Page Sort is een aangepaste paginasortering voor community-eigenaren. Opgenomen in de pagina-instellingen van een community met een set flairs laat het de node een extra pagina publiceren met alleen de posts of reacties die een van die flairs dragen, gesorteerd op meest recente flair, nieuw, populair of beste. Een community kan die als standaardpagina publiceren zodat clients erop openen, en clients hoeven niets te installeren om hem te lezen. Vereist pkc-js 0.0.143 of nieuwer."
+        },
+        "active-page-sort": {
+          "description": "Active Page Sort is een aangepaste paginasortering voor community-eigenaren die de ingebouwde bumpvolgorde vervangt. Een reactie met een regel die overeenkomt met een van de trefwoorden van het board, zoals <code>sage</code>, bumpt haar thread niet, en met een ingestelde bumplimiet kunnen alleen de eerste reacties van een thread die thread bumpen. Die threads zakken weg, maar worden nooit verborgen. Het publiceert onder dezelfde <code>active</code>-sleutel als de ingebouwde sortering, zodat clients de nieuwe volgorde zonder enige wijziging tonen. Vereist pkc-js 0.0.114 of nieuwer.",
+          "tagline": "Bumpvolgorde zoals op imageboards, waarin reacties met sage niet bumpen en threads voorbij de bumplimiet niet meer bumpen."
+        },
+        "base64-challenge": {
+          "description": "Base64 Challenge draait op een Bitsocial-communitynode en weigert elke publicatie die in een willekeurig tekstveld een <code>data:</code>-URI of een lange reeks base64 insluit, van de tekst en titel van posts tot weergavenamen en redenen voor bewerkingen. Zonder deze challenge kan een community uiteindelijk een kleine, in de tekst van een post verborgen afbeelding ondertekenen, opslaan en serveren, die een AI-moderator alleen als een muur van tekens ziet. De controle is deterministisch en draait geen model, hexstrings zoals hashes en transactiedata komen erdoor, en moderators kunnen worden vrijgesteld.",
+          "tagline": "Weigert publicaties die afbeeldingen of andere bestanden als base64-data in hun tekst verbergen."
+        },
+        "bitsocial-algorithms": {
+          "description": "Bitsocial Algorithms is onderzoek naar feed- en aanbevelingsalgoritmen als vervangbare diensten in Bitsocial-clients. Een client kan met een sterke standaard worden geleverd, en een gebruiker kan overstappen naar een andere aanbieder, een eigen aanbieder draaien of berichten lokaal rangschikken zonder zijn profiel te verhuizen, terwijl een chronologische feed beschikbaar blijft zonder enige aanbieder. Aanbieders ontdekken en rangschikken berichten, maar bezitten nooit identiteiten, berichten of sociale gegevens, zodat geen enkel bedrijf bepaalt wat iedereen ziet. Er is nog niets gebouwd; de repository verzamelt het onderzoek en de vastgestelde architectuur.",
+          "tagline": "Feed- en aanbevelingsaanbieders in de ideefase die gebruikers kunnen wisselen zoals een instelling."
+        },
+        "bitsocial-chain": {
+          "description": "Bitsocial Chain is de voorgestelde economische laag voor Bitsocial-apps in fase 3 van het masterplan: een Ethereum-L2 voor .bso-namen, fooien en betalingen, communitytokens en AgoraSwap. Het doel is dat er geen vertrouwen nodig is buiten Ethereum zelf: geen upgradesleutels, geen security council en geen bevoorrechte operator. Posts en community's blijven peer-to-peer; niets sociaals gaat on-chain. Een proof of concept leidt uit gewone Ethereum-transacties een .bso-naamregister af dat iedereen kan herberekenen. Deze is niet geaudit en niet uitgerold.",
+          "tagline": "Ethereum-L2 in de ideefase voor .bso-namen, fooien, betalingen en communitytokens."
+        },
+        "bitsocial-discovery": {
+          "description": "Bitsocial Discovery begint bij communitylijsten, inzendingen, indexeerders en ENS-records en volgt daarna de verwijzingen die community's naar elkaar achterlaten: adressen die in posts en beschrijvingen worden genoemd, crossposts en de keten van eerdere reacties van een auteur. Het blijft elke gevonden community opnieuw controleren om bij te houden welke nog actief zijn, en levert de resultaten als JSON API voor clients, indexeerders en beoordelingstools. Het slaat metadata van community's op, nooit posts, en wordt inactief geleverd: de beheerder kiest de bronnen en wat de API toont.",
+          "tagline": "Vindt Bitsocial-community's die nog op geen enkele lijst staan en controleert welke ervan actief zijn."
+        },
+        "bitsocial-forum": {
+          "description": "Bitsocial Forum is een gepland forum voor Bitsocial-projecten en de derde Bitsocial-client na Seedit en 5chan, bedoeld om discussies te bundelen die nu verspreid zijn over Telegram, Twitter en GitHub. Elke sectie, zoals een voor 5chan of voor .bso-namen, is een directory waar community's om strijden: de community die als eerste is gerangschikt beheert haar met haar eigen moderators, en een andere kan haar overnemen als die verdwijnt of haar slecht beheert. Er is geen server en geen globale beheerder. Een vroege build leest elke Bitsocial-community, maar posten en profielen zijn nog niet gebouwd.",
+          "tagline": "Forumclient in de ideefase waarin elke sectie toebehoort aan de community die haar wint."
+        },
+        "bitsocial-graph": {
+          "description": "Bitsocial Graph is onderzoek naar een open crawler die de sociale graaf van Bitsocial opbouwt uit openbare protocoldata: auteurs, community's en hoe ze met elkaar omgaan. Content op Bitsocial blijft alleen bereikbaar zolang iemand die blijft publiceren of seeden, dus houdt de graaf ook bij wat nog actief is en toont hij het netwerk zoals het nu is in plaats van iedereen die ooit is aangesloten. De resultaten zouden worden gepubliceerd als open data en API's voor clients en aanbieders van zoekfuncties en feeds, met deze crawler als één aanbieder onder vele. Community's die de identiteit van auteurs verbergen, blijven onkoppelbaar. Er is nog niets gebouwd; de repository verzamelt het onderzoek en de vastgestelde architectuur.",
+          "tagline": "Open crawler in de ideefase die in kaart brengt welke auteurs en community's actief zijn op Bitsocial."
+        },
+        "bitsocial-mesh": {
+          "description": "Bitsocial Mesh is een plan om communities werkend te houden tijdens een internetafsluiting of een ramp. Eerst host een laptop of kleine computer een community en opent een Wi-Fi-hotspot, zodat mensen in de buurt vanuit een browser kunnen lezen, posten en modereren. Latere fasen zouden deze apparaten via LoRa-radio door een hele stad met elkaar verbinden en berichten naar buiten brengen zodra er weer enige verbinding is, met Bluetooth van telefoon naar telefoon als laatste, als het er al komt. Anders dan mesh-chatapps zoals bitchat behoudt het communities met hun eigen regels, moderators en spamverdediging. Er is nog niets gebouwd of getest; de repository verzamelt het ontwerp.",
+          "tagline": "Plan in de ideefase om Bitsocial-communities draaiende te houden wanneer het internet wordt afgesneden."
+        },
+        "prediction-markets": {
+          "description": "Prediction Markets is open onderzoek naar apps die een voorspellingsmarkt en de discussie erover op één plek samenbrengen, zodat mensen een vraag kunnen vinden, over het bewijs kunnen debatteren, een positie kunnen innemen en kunnen terugkomen voor de uitkomst. Bitsocial zou de community's en threads dragen, terwijl een bestaand marktprotocol de handel en afwikkeling verzorgt; Trueo is de eerste kandidaat die wordt onderzocht. Een markt wordt nooit afgewikkeld via een stemming in de community. Het idee staat open voor elke ontwikkelaar en elk project die het willen bouwen. Er is nog niets gebouwd en er is geen partnerschap overeengekomen.",
+          "tagline": "Onderzoek in de ideefase naar voorspellingsmarkten met een Bitsocial-community rond elke vraag."
+        },
+        "tipping-challenge": {
+          "description": "Tipping Challenge laat een community geverifieerde fooien tonen. Een auteur stuurt een token rechtstreeks naar de wallet van een andere auteur en reageert daarna met de transactiehash op de reactie die de fooi krijgt, waarna de node van de community de transactie on-chain opzoekt en het geverifieerde bedrag in de reactie schrijft. Fooien kunnen ERC-20-tokens, NFT's of de native coin van een chain zijn. De community kan een fooi niet onderscheppen of vervalsen, en reacties zonder fooi worden niet beïnvloed. Het implementeert het <code>tipping/v1</code>-contract, waardoor een client die op dat contract is geschreven blijft werken met andere implementaties.",
+          "tagline": "Geverifieerde fooien op reacties, verstuurd van wallet naar wallet en door de community on-chain gecontroleerd."
         }
       }
     },

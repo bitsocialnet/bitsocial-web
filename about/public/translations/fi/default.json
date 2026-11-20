@@ -536,7 +536,12 @@
         "images": "Kuvat",
         "codeHosting": "Koodin isännöinti",
         "encyclopedia": "Tietosanakirja",
-        "video": "Video"
+        "video": "Video",
+        "names": "Nimet",
+        "offline": "Offline",
+        "predictionMarkets": "Ennustemarkkinat",
+        "socialGraph": "Sosiaalinen graafi",
+        "tips": "Tipit"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -663,6 +668,46 @@
         "flair-page-sort": {
           "tagline": "Yhteisön sivuja, joilla on vain valitulla flairilla merkityt postaukset ja vastaukset.",
           "description": "Flair Page Sort on mukautettu sivujen lajittelu yhteisöjen omistajille. Kun se lisätään yhteisön sivuasetuksiin flair-joukon kanssa, solmu julkaisee ylimääräisen sivun, jolla on vain ne postaukset tai vastaukset, joilla on jokin näistä flaireista, järjestettynä viimeksi saadun flairin, uusimpien, kuumimpien tai parhaiden mukaan. Yhteisö voi julkaista sen oletussivunaan, jolloin asiakasohjelmat avautuvat siihen, eikä asiakasohjelmiin tarvitse asentaa mitään sen lukemiseksi. Se vaatii pkc-js 0.0.143:n tai uudemman."
+        },
+        "active-page-sort": {
+          "description": "Active Page Sort on mukautettu sivujen lajittelu yhteisöjen omistajille, ja se korvaa sisäänrakennetun bump-järjestyksen. Vastaus, jossa on jotakin boardin avainsanaa vastaava rivi, kuten <code>sage</code>, ei nosta threadiaan, ja kun bump-raja on asetettu, vain threadin ensimmäiset vastaukset voivat nostaa sitä. Nämä threadit vajoavat mutta eivät koskaan piiloudu. Se julkaistaan samalla <code>active</code>-avaimella kuin sisäänrakennettu lajittelu, joten asiakasohjelmat näyttävät uuden järjestyksen ilman mitään muutoksia. Se vaatii pkc-js 0.0.114:n tai uudemman.",
+          "tagline": "Imageboard-tyylinen bump-järjestys, jossa sage-vastaukset eivät nosta threadia ja bump-rajan ylittäneet threadit lakkaavat nousemasta."
+        },
+        "base64-challenge": {
+          "description": "Base64 Challenge toimii Bitsocial-yhteisön solmussa ja hylkää jokaisen julkaisun, joka upottaa mihin tahansa tekstikenttään <code>data:</code>-URI:n tai pitkän base64-jakson, postausten leipätekstistä ja otsikoista näyttönimiin ja muokkausten syihin. Ilman sitä yhteisö voi päätyä allekirjoittamaan, tallentamaan ja jakelemaan postauksen tekstiin piilotetun pienen kuvan, jonka AI-moderaattori näkee vain merkkien muurina. Tarkistus on deterministinen eikä aja mitään mallia, heksamerkkijonot kuten hashit ja transaktiodata menevät läpi, ja moderaattorit voidaan vapauttaa tarkistuksesta.",
+          "tagline": "Hylkää julkaisut, jotka piilottavat tekstiinsä kuvia tai muita tiedostoja base64-datana."
+        },
+        "bitsocial-algorithms": {
+          "description": "Bitsocial Algorithms on tutkimusta syöte- ja suosittelualgoritmeista vaihdettavina palveluina eri Bitsocial-asiakasohjelmissa. Asiakasohjelma voi tulla vahvalla oletuksella, ja käyttäjä voi vaihtaa toiseen palveluntarjoajaan, ajaa omaansa tai järjestää julkaisut paikallisesti siirtämättä profiiliaan, samalla kun kronologinen syöte säilyy saatavilla ilman yhtään palveluntarjoajaa. Palveluntarjoajat löytävät ja järjestävät julkaisuja mutta eivät koskaan omista identiteettejä, julkaisuja tai sosiaalisia tietoja, joten mikään yksittäinen yritys ei päätä, mitä kaikki näkevät. Mitään ei ole vielä rakennettu; repositorio kokoaa tutkimuksen ja hyväksytyn arkkitehtuurin.",
+          "tagline": "Ideavaiheen syöte- ja suosittelupalveluntarjoajat, joita käyttäjät voivat vaihtaa kuin asetusta."
+        },
+        "bitsocial-chain": {
+          "description": "Bitsocial Chain on yleissuunnitelman vaiheessa 3 ehdotettu taloudellinen kerros Bitsocial-sovelluksille: Ethereum-L2, jonka on määrä isännöidä .bso-nimiä, tippaamista ja maksuja, yhteisötokeneita sekä AgoraSwapia. Sen ei ole tarkoitus vaatia luottamusta mihinkään muuhun kuin Ethereumiin itseensä: ei päivitysavaimia, ei turvallisuusneuvostoa eikä etuoikeutettua operaattoria. Julkaisut ja yhteisöt pysyvät peer-to-peer-pohjaisina; mitään sosiaalista ei viedä ketjuun. Konseptitodiste johtaa tavallisista Ethereum-transaktioista .bso-nimirekisterin, jonka kuka tahansa voi laskea uudelleen. Sitä ei ole auditoitu eikä otettu käyttöön.",
+          "tagline": "Ideavaiheen Ethereum-L2 .bso-nimille, tipeille, maksuille ja yhteisötokeneille."
+        },
+        "bitsocial-discovery": {
+          "description": "Bitsocial Discovery lähtee liikkeelle yhteisölistoista, ehdotuksista, indeksoijista ja ENS-tietueista ja seuraa sitten viittauksia, joita yhteisöt jättävät toisiinsa: julkaisuissa ja kuvauksissa mainittuja osoitteita, ristiinjulkaisuja sekä kirjoittajan aiempien kommenttien ketjua. Se tarkistaa jokaisen löytämänsä yhteisön yhä uudelleen pitääkseen kirjaa siitä, mitkä ovat yhä elossa, ja tarjoaa tulokset JSON API:na asiakasohjelmille, indeksoijille ja tarkistustyökaluille. Se tallentaa yhteisöjen metatietoja, ei koskaan julkaisuja, ja toimitetaan passiivisena: ylläpitäjä valitsee lähteet ja sen, mitä API näyttää.",
+          "tagline": "Löytää Bitsocial-yhteisöjä, joita mikään lista ei vielä sisällä, ja tarkistaa, mitkä niistä ovat elossa."
+        },
+        "bitsocial-forum": {
+          "description": "Bitsocial Forum on suunniteltu foorumi Bitsocial-projekteille ja kolmas Bitsocial-asiakasohjelma Seeditin ja 5chanin jälkeen. Sen on tarkoitus koota yhteen keskustelu, joka on nyt hajallaan Telegramissa, Twitterissä ja GitHubissa. Jokainen osio, esimerkiksi 5chanille tai .bso-nimille tarkoitettu, on hakemisto, josta yhteisöt kilpailevat: ensimmäiseksi sijoittunut yhteisö pyörittää sitä omilla moderaattoreillaan, ja toinen yhteisö voi ottaa sen haltuunsa, jos edellinen katoaa tai hoitaa sitä huonosti. Palvelinta ei ole, eikä yleistä ylläpitäjää. Varhainen versio lukee mitä tahansa Bitsocial-yhteisöä, mutta julkaisemista ja profiileja ei ole vielä rakennettu.",
+          "tagline": "Ideavaiheen foorumiasiakasohjelma, jossa jokainen osio kuuluu sille yhteisölle, joka sen voittaa."
+        },
+        "bitsocial-graph": {
+          "description": "Bitsocial Graph on tutkimusta avoimesta indeksointirobotista, joka rakentaa Bitsocialin sosiaalisen graafin julkisesta protokolladatasta: kirjoittajat, yhteisöt ja niiden väliset vuorovaikutukset. Bitsocial-sisältö pysyy saatavilla vain niin kauan kuin joku jatkaa sen julkaisemista tai seedaamista, joten graafi seuraa myös sitä, mikä on yhä elossa, ja näyttää verkon sellaisena kuin se on nyt eikä kaikkia, jotka ovat joskus liittyneet. Tulokset julkaistaisiin avoimena datana ja API-rajapintoina asiakasohjelmille sekä haku- ja syötepalveluntarjoajille, ja tämä indeksointirobotti olisi yksi palveluntarjoaja monien joukossa. Yhteisöt, jotka piilottavat kirjoittajien henkilöllisyyden, pysyvät linkittämättöminä. Mitään ei ole vielä rakennettu; repositorio kokoaa tutkimuksen ja hyväksytyn arkkitehtuurin.",
+          "tagline": "Ideavaiheen avoin indeksointirobotti, joka kartoittaa, mitkä kirjoittajat ja yhteisöt ovat aktiivisia Bitsocialissa."
+        },
+        "bitsocial-mesh": {
+          "description": "Bitsocial Mesh on suunnitelma yhteisöjen pitämiseksi toiminnassa internetin sulkemisen tai katastrofin aikana. Ensin kannettava tai pieni tietokone isännöi yhteisöä ja avaa Wi-Fi-tukiaseman, jotta lähellä olevat ihmiset voivat lukea, julkaista ja moderoida selaimesta. Myöhemmät vaiheet yhdistäisivät nämä laitteet koko kaupungin alueella LoRa-radion kautta ja veisivät julkaisut ulos heti, kun mikä tahansa yhteys palaa; puhelimesta puhelimeen toimiva Bluetooth tulisi viimeisenä, jos ollenkaan. Toisin kuin bitchatin kaltaiset mesh-chattisovellukset, se säilyttää yhteisöt omine sääntöineen, moderaattoreineen ja roskapostisuojauksineen. Mitään ei ole vielä rakennettu eikä testattu; repositorio kokoaa suunnitelman.",
+          "tagline": "Ideavaiheen suunnitelma Bitsocial-yhteisöjen pitämiseksi toiminnassa, kun internet katkaistaan."
+        },
+        "prediction-markets": {
+          "description": "Prediction Markets on avointa tutkimusta sovelluksista, jotka tuovat ennustemarkkinan ja siitä käytävän keskustelun samaan paikkaan, jotta ihmiset voivat löytää kysymyksen, väitellä todisteista, ottaa position ja palata katsomaan tuloksen. Bitsocial kantaisi yhteisöt ja keskusteluketjut, kun taas olemassa oleva markkinaprotokolla vastaa kaupankäynnistä ja selvityksestä; Trueo on ensimmäinen tutkittava ehdokas. Markkinaa ei koskaan selvitetä yhteisön äänestyksellä. Idea on vapaasti kenen tahansa kehittäjän tai projektin rakennettavissa. Mitään ei ole vielä rakennettu, eikä kumppanuudesta ole sovittu.",
+          "tagline": "Ideavaiheen tutkimusta ennustemarkkinoista, joissa jokaisen kysymyksen ympärillä on Bitsocial-yhteisö."
+        },
+        "tipping-challenge": {
+          "description": "Tipping Challenge antaa yhteisön näyttää vahvistettuja tippejä. Kirjoittaja lähettää tokenin suoraan toisen kirjoittajan lompakkoon ja vastaa sitten tipattavaan kommenttiin transaktion hashilla, ja yhteisön solmu hakee transaktion on-chain ja kirjoittaa vahvistetun summan vastaukseen. Tipit voivat olla ERC-20-tokeneita, NFT:itä tai ketjun natiivia kolikkoa. Yhteisö ei voi siepata tippiä eikä väärentää sellaista, eivätkä tipittömät vastaukset muutu mitenkään. Se toteuttaa <code>tipping/v1</code>-sopimuksen, joten kyseisen sopimuksen mukaan kirjoitettu asiakasohjelma toimii edelleen muiden toteutusten kanssa.",
+          "tagline": "Vahvistettuja tippejä vastauksissa: lähetetään lompakosta lompakkoon, ja yhteisö tarkistaa ne on-chain."
         }
       }
     },

@@ -536,7 +536,12 @@
         "images": "Imagini",
         "codeHosting": "Găzduire de cod",
         "encyclopedia": "Enciclopedie",
-        "video": "Video"
+        "video": "Video",
+        "names": "Nume",
+        "offline": "Offline",
+        "predictionMarkets": "Piețe de predicție",
+        "socialGraph": "Graf social",
+        "tips": "Bacșișuri"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -663,6 +668,46 @@
         "flair-page-sort": {
           "tagline": "Pagini de comunitate care conțin doar postările și răspunsurile cu un flair ales.",
           "description": "Flair Page Sort este o sortare de pagini personalizată pentru proprietarii de comunități. Trecut în setările de pagini ale unei comunități împreună cu un set de flairuri, face ca nodul să publice o pagină suplimentară care conține doar postările sau răspunsurile cu unul dintre acele flairuri, ordonate după cel mai recent flair, noi, populare sau cele mai bune. O comunitate o poate publica drept pagină implicită, astfel încât clienții să se deschidă pe ea, iar clienții nu trebuie să instaleze nimic pentru a o citi. Necesită pkc-js 0.0.143 sau o versiune ulterioară."
+        },
+        "active-page-sort": {
+          "description": "Active Page Sort este o sortare de pagini personalizată pentru proprietarii de comunități care înlocuiește ordinea de bump integrată. Un răspuns cu un rând care se potrivește cu unul dintre cuvintele-cheie ale boardului, cum ar fi <code>sage</code>, nu își urcă thread-ul, iar cu o limită de bump setată doar primele răspunsuri ale unui thread îl pot urca. Acele thread-uri coboară, dar nu sunt niciodată ascunse. Se publică sub aceeași cheie <code>active</code> ca sortarea integrată, așa că clienții afișează noua ordine fără nicio modificare. Necesită pkc-js 0.0.114 sau o versiune ulterioară.",
+          "tagline": "Ordine de bump ca pe imageboarduri, în care răspunsurile cu sage nu urcă thread-ul, iar thread-urile peste limita de bump nu mai urcă."
+        },
+        "base64-challenge": {
+          "description": "Base64 Challenge rulează pe un nod de comunitate Bitsocial și respinge orice publicare care încorporează un URI <code>data:</code> sau o secvență lungă de base64 în orice câmp de text, de la corpul și titlul postărilor până la numele afișate și motivele editărilor. Fără el, o comunitate poate ajunge să semneze, să stocheze și să servească o imagine mică ascunsă în textul unei postări, pe care un moderator AI o vede doar ca pe un zid de caractere. Verificarea este deterministă și nu rulează niciun model, șirurile hexazecimale precum hashurile și datele tranzacțiilor trec, iar moderatorii pot fi exceptați.",
+          "tagline": "Respinge publicările care ascund imagini sau alte fișiere în textul lor sub formă de date base64."
+        },
+        "bitsocial-algorithms": {
+          "description": "Bitsocial Algorithms este o cercetare privind algoritmii de feed și de recomandare ca servicii înlocuibile în clienții Bitsocial. Un client poate veni cu o setare implicită solidă, iar un utilizator poate trece la alt furnizor, poate rula propriul furnizor sau poate ordona postările local fără să-și mute profilul, în timp ce un feed cronologic rămâne disponibil fără niciun furnizor. Furnizorii descoperă și ordonează postările, dar nu dețin niciodată identitățile, postările sau datele sociale, astfel încât nicio companie nu decide singură ce vede toată lumea. Încă nu s-a construit nimic; repository-ul adună cercetarea și arhitectura adoptată.",
+          "tagline": "Furnizori de feed-uri și recomandări în stadiu de idee, pe care utilizatorii îi pot schimba ca pe o setare."
+        },
+        "bitsocial-chain": {
+          "description": "Bitsocial Chain este stratul economic propus pentru aplicațiile Bitsocial în Faza 3 din Master Plan: un L2 Ethereum care să găzduiască nume .bso, bacșișuri și plăți, tokenuri comunitare și AgoraSwap. Este gândit să nu adauge nicio încredere dincolo de Ethereum însuși, fără chei de upgrade, fără consiliu de securitate și fără operator privilegiat. Postările și comunitățile rămân peer-to-peer; nimic social nu ajunge on-chain. Un proof of concept derivă din tranzacții Ethereum obișnuite un registru de nume .bso pe care oricine îl poate recalcula. Nu este auditat și nici lansat.",
+          "tagline": "L2 Ethereum în stadiu de idee pentru nume .bso, bacșișuri, plăți și tokenuri comunitare."
+        },
+        "bitsocial-discovery": {
+          "description": "Bitsocial Discovery pornește de la liste de comunități, propuneri trimise, indexatori și înregistrări ENS, apoi urmărește indiciile pe care comunitățile le lasă unele altora: adrese menționate în postări și descrieri, crosspost-uri și lanțul comentariilor anterioare ale unui autor. Reverifică în permanență fiecare comunitate pe care o găsește pentru a urmări care sunt încă active și oferă rezultatele ca JSON API pentru clienți, indexatori și instrumente de revizuire. Stochează metadatele comunităților, niciodată postări, și este livrat inactiv: operatorul alege sursele și ce afișează API-ul.",
+          "tagline": "Găsește comunitățile Bitsocial pe care încă nu le include nicio listă și verifică care dintre ele sunt active."
+        },
+        "bitsocial-forum": {
+          "description": "Bitsocial Forum este un forum planificat pentru proiectele Bitsocial și al treilea client Bitsocial după Seedit și 5chan, menit să adune discuțiile împărțite acum între Telegram, Twitter și GitHub. Fiecare secțiune, de exemplu una pentru 5chan sau pentru numele .bso, este un director pentru care concurează comunitățile: comunitatea clasată pe primul loc o administrează cu proprii moderatori, iar alta o poate prelua dacă aceea dispare sau o administrează prost. Nu există server și nici administrator global. O versiune timpurie citește orice comunitate Bitsocial, dar postarea și profilurile nu au fost încă construite.",
+          "tagline": "Client de forum în stadiu de idee, în care fiecare secțiune aparține comunității care o câștigă."
+        },
+        "bitsocial-graph": {
+          "description": "Bitsocial Graph este o cercetare privind un crawler deschis care construiește graful social Bitsocial din date publice ale protocolului: autori, comunități și modul în care interacționează. Conținutul Bitsocial rămâne accesibil doar cât timp cineva continuă să-l publice sau să-i facă seeding, așa că graful urmărește și ce este încă activ și arată rețeaua așa cum este acum, nu pe toți cei care s-au alăturat vreodată. Rezultatele ar fi publicate ca date deschise și API-uri pentru clienți și furnizori de căutare și de feed-uri, acest crawler fiind doar unul dintre numeroșii furnizori. Comunitățile care ascund identitatea autorilor rămân imposibil de asociat. Încă nu s-a construit nimic; repository-ul adună cercetarea și arhitectura acceptată.",
+          "tagline": "Crawler deschis în stadiu de idee, care cartografiază autorii și comunitățile active de pe Bitsocial."
+        },
+        "bitsocial-mesh": {
+          "description": "Bitsocial Mesh este un plan pentru a menține comunitățile funcționale în timpul unei opriri a internetului sau al unui dezastru. Mai întâi, un laptop sau un computer mic găzduiește o comunitate și deschide un hotspot Wi-Fi, astfel încât oamenii din apropiere să poată citi, posta și modera dintr-un browser. Etapele ulterioare ar conecta aceste dispozitive la nivelul unui întreg oraș prin radio LoRa și ar transmite postările în exterior de îndată ce revine orice conexiune, iar Bluetooth de la telefon la telefon ar veni la final, dacă va exista vreodată. Spre deosebire de aplicațiile de chat mesh precum bitchat, păstrează comunități cu propriile reguli, moderatori și apărări împotriva spamului. Încă nu s-a construit și nu s-a testat nimic; repository-ul adună designul.",
+          "tagline": "Plan în stadiu de idee pentru a menține comunitățile Bitsocial funcționale când internetul este întrerupt."
+        },
+        "prediction-markets": {
+          "description": "Prediction Markets este o cercetare deschisă despre aplicații care reunesc într-un singur loc o piață de predicție și discuția despre ea, astfel încât oamenii să poată găsi o întrebare, să dezbată dovezile, să ia o poziție și să revină pentru rezultat. Bitsocial ar găzdui comunitățile și firele de discuție, în timp ce un protocol de piață existent s-ar ocupa de tranzacționare și decontare; Trueo este primul candidat studiat. O piață nu este niciodată decontată printr-un vot al comunității. Ideea este deschisă oricărui dezvoltator sau proiect care vrea să o construiască. Încă nu s-a construit nimic și nu s-a convenit niciun parteneriat.",
+          "tagline": "Cercetare în stadiu de idee despre piețele de predicție, cu o comunitate Bitsocial în jurul fiecărei întrebări."
+        },
+        "tipping-challenge": {
+          "description": "Tipping Challenge îi permite unei comunități să afișeze bacșișuri verificate. Un autor trimite un token direct în portofelul altui autor, apoi răspunde la comentariul care primește bacșișul cu hashul tranzacției, iar nodul comunității caută tranzacția on-chain și scrie suma verificată în răspuns. Bacșișurile pot fi tokenuri ERC-20, NFT-uri sau moneda nativă a unui blockchain. Comunitatea nu poate intercepta și nici falsifica un bacșiș, iar răspunsurile fără bacșiș nu sunt afectate. Implementează contractul <code>tipping/v1</code>, așa că un client scris după acest contract continuă să funcționeze cu alte implementări.",
+          "tagline": "Bacșișuri verificate la răspunsuri, trimise de la portofel la portofel și verificate on-chain de comunitate."
         }
       }
     },

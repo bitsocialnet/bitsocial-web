@@ -36,6 +36,7 @@ Use `https://bitsocial.net/` for the public product overview and `https://docs.b
 - [Spam Blocker](https://bitsocial.net/projects/spam-blocker): Hosted risk-scoring service that helps communities filter spam and ban evasion.
 - [R9K Challenge](https://bitsocial.net/projects/r9k-challenge): Robot9000-style rule that rejects any post repeating text already posted in the community.
 - [Wordfilter Challenge](https://bitsocial.net/projects/wordfilter-challenge): Community wordfilters enforced as a posting rule instead of a display filter.
+- [Base64 Challenge](https://bitsocial.net/projects/base64-challenge): Rejects publications that hide images or other files in their text as base64 data.
 - [Captcha Canvas Challenge](https://bitsocial.net/projects/captcha-canvas-challenge): Custom image captchas for communities that want human verification.
 - [Voucher Challenge](https://bitsocial.net/projects/voucher-challenge): Invite-style voucher codes for communities that prefer controlled growth.
 - [EVM Contract Call](https://bitsocial.net/projects/evm-contract-call): Requires posters to pass an on-chain check, such as holding a token.
@@ -45,6 +46,7 @@ Use `https://bitsocial.net/` for the public product overview and `https://docs.b
 - [Bitsocial Seeder](https://bitsocial.net/projects/bitsocial-seeder): Keeps Bitsocial communities fast and reachable by re-hosting their content, via Docker or npm.
 - [Pubsub Provider](https://bitsocial.net/projects/pubsub-provider): Fallback pubsub relay and routing provider for Bitsocial operators.
 - [Bitsocial Indexer](https://bitsocial.net/projects/bitsocial-indexer): Self-hostable crawler, search index, and web UI for Bitsocial communities.
+- [Bitsocial Discovery](https://bitsocial.net/projects/bitsocial-discovery): Finds Bitsocial communities that no list carries yet and checks which ones are alive.
 - [Bitsocial Previewer](https://bitsocial.net/projects/bitsocial-previewer): Link-preview and redirect server that renders share cards for Bitsocial posts.
 - [Challenge Composer](https://bitsocial.net/projects/challenge-composer): Offline-first editor for a community's anti-spam challenge settings.
 - [Bitsocial Telegram Bots](https://bitsocial.net/projects/telegram-bots): Feed bots that relay new Bitsocial posts into Telegram channels or groups.
@@ -52,11 +54,19 @@ Use `https://bitsocial.net/` for the public product overview and `https://docs.b
 - [AskWise](https://bitsocial.net/projects/askwise): AI reply bot that communities opt into and summon with @askwise.
 - [Subreddit Mirror](https://bitsocial.net/projects/subreddit-mirror): Mirrors a subreddit into a Bitsocial community and keeps what Reddit removes.
 - [Flair Page Sort](https://bitsocial.net/projects/flair-page-sort): Community pages that hold only the posts and replies carrying a chosen flair.
+- [Active Page Sort](https://bitsocial.net/projects/active-page-sort): Imageboard bump order where sage replies and threads past the bump limit stop bumping.
+- [Tipping Challenge](https://bitsocial.net/projects/tipping-challenge): Verified tips on replies, sent wallet to wallet and checked on chain by the community.
 - [5chan Board Manager](https://bitsocial.net/projects/5chan-board-manager): 4chan-style thread archiving, bump limits, and purging for 5chan boards.
 - [WeTube](https://bitsocial.net/projects/wetube): Idea-stage YouTube alternative where each channel is a Bitsocial community its creator owns.
 - [Infinipedia](https://bitsocial.net/projects/infinipedia): Idea-stage encyclopedia where competing editorial groups publish their own versions of each article.
 - [GitCommons](https://bitsocial.net/projects/gitcommons): Idea-stage code collaboration platform that pairs peer-to-peer Git with Bitsocial's social layer.
 - [ModelSwarm](https://bitsocial.net/projects/modelswarm): Idea-stage Hugging Face alternative where open-weight AI models are shared by a swarm of peers.
+- [Bitsocial Forum](https://bitsocial.net/projects/bitsocial-forum): Idea-stage forum client where each section belongs to whichever community wins it.
+- [Bitsocial Graph](https://bitsocial.net/projects/bitsocial-graph): Idea-stage open crawler that maps which authors and communities are active on Bitsocial.
+- [Bitsocial Algorithms](https://bitsocial.net/projects/bitsocial-algorithms): Idea-stage feed and recommendation providers that users can switch like a setting.
+- [Bitsocial Mesh](https://bitsocial.net/projects/bitsocial-mesh): Idea-stage plan to keep Bitsocial communities running when the internet is cut off.
+- [Prediction Markets](https://bitsocial.net/projects/prediction-markets): Idea-stage research into prediction markets with a Bitsocial community around each question.
+- [Bitsocial Chain](https://bitsocial.net/projects/bitsocial-chain): Idea-stage Ethereum L2 for .bso names, tips, payments and community tokens.
 
 ## Docs
 

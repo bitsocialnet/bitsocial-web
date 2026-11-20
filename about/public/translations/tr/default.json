@@ -536,7 +536,12 @@
         "images": "Görseller",
         "codeHosting": "Kod barındırma",
         "encyclopedia": "Ansiklopedi",
-        "video": "Video"
+        "video": "Video",
+        "names": "Adlar",
+        "offline": "Çevrimdışı",
+        "predictionMarkets": "Tahmin piyasaları",
+        "socialGraph": "Sosyal grafik",
+        "tips": "Bahşişler"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -663,6 +668,46 @@
         "flair-page-sort": {
           "tagline": "Yalnızca seçilen bir flair'i taşıyan gönderi ve yanıtları içeren topluluk sayfaları.",
           "description": "Flair Page Sort, topluluk sahipleri için özel bir sayfa sıralamasıdır. Bir topluluğun sayfa ayarlarına bir dizi flair ile birlikte eklendiğinde, düğümün yalnızca bu flair'lerden birini taşıyan gönderileri veya yanıtları içeren ek bir sayfa yayımlamasını sağlar; sıralama en son flair verilen, yeni, popüler veya en iyi ölçütüne göre yapılır. Bir topluluk bunu varsayılan sayfası olarak yayımlayabilir, böylece istemciler bu sayfayla açılır ve istemcilerin onu okumak için hiçbir şey kurması gerekmez. pkc-js 0.0.143 veya sonraki bir sürümü gerektirir."
+        },
+        "active-page-sort": {
+          "description": "Active Page Sort, topluluk sahipleri için yerleşik bump sırasının yerini alan özel bir sayfa sıralamasıdır. Board'un anahtar kelimelerinden biriyle, örneğin <code>sage</code> ile eşleşen bir satır içeren yanıt kendi thread'ini bump'lamaz ve bir bump limiti ayarlandığında bir thread'i yalnızca ilk yanıtları bump'layabilir. Bu thread'ler aşağı iner ama asla gizlenmez. Yerleşik sıralamayla aynı <code>active</code> anahtarı altında yayımlanır, böylece istemciler yeni sırayı hiçbir değişiklik yapmadan gösterir. pkc-js 0.0.114 veya sonraki bir sürümü gerektirir.",
+          "tagline": "sage yanıtlarının thread'i bump'lamadığı ve bump limitini aşan thread'lerin artık bump'lanmadığı imageboard tarzı bump sırası."
+        },
+        "base64-challenge": {
+          "description": "Base64 Challenge bir Bitsocial topluluk düğümünde çalışır ve gönderi gövdeleri ile başlıklarından görünen adlara ve düzenleme gerekçelerine kadar herhangi bir metin alanına <code>data:</code> URI'si veya uzun bir base64 dizisi gömen her yayımı reddeder. O olmadan bir topluluk, bir gönderinin metnine gizlenmiş küçük bir görseli imzalamak, depolamak ve sunmak durumunda kalabilir; bir AI moderatör bunu yalnızca bir karakter duvarı olarak görür. Kontrol deterministiktir ve hiçbir model çalıştırmaz, hash'ler ve işlem verileri gibi onaltılık dizeler geçer, moderatörler de muaf tutulabilir.",
+          "tagline": "Metinlerinde görselleri veya başka dosyaları base64 verisi olarak gizleyen yayımları reddeder."
+        },
+        "bitsocial-algorithms": {
+          "description": "Bitsocial Algorithms, akış ve öneri algoritmalarını Bitsocial istemcilerinde değiştirilebilir hizmetler olarak ele alan bir araştırmadır. Bir istemci güçlü bir varsayılanla gelebilir; kullanıcı ise profilini taşımadan başka bir sağlayıcıya geçebilir, kendi sağlayıcısını çalıştırabilir ya da gönderileri yerel olarak sıralayabilir, bu sırada kronolojik akış hiçbir sağlayıcı olmadan da kullanılabilir kalır. Sağlayıcılar gönderileri keşfeder ve sıralar ama kimliklerin, gönderilerin veya sosyal verilerin asla sahibi olmaz; böylece herkesin ne göreceğine tek bir şirket karar vermez. Henüz hiçbir şey geliştirilmedi; depo araştırmayı ve kabul edilen mimariyi bir araya getiriyor.",
+          "tagline": "Kullanıcıların bir ayar gibi değiştirebildiği, fikir aşamasında akış ve öneri sağlayıcıları."
+        },
+        "bitsocial-chain": {
+          "description": "Bitsocial Chain, Master Planı'nın Aşama 3'ünde Bitsocial uygulamaları için önerilen ekonomik katmandır: .bso adlarını, bahşiş ve ödemeleri, topluluk token'larını ve AgoraSwap'i barındıracak bir Ethereum L2. Ethereum'un kendisinin ötesinde hiçbir güven gerektirmemesi amaçlanıyor: yükseltme anahtarı, güvenlik konseyi veya ayrıcalıklı operatör yok. Gönderiler ve topluluklar peer-to-peer kalır; sosyal hiçbir şey zincire yazılmaz. Bir kavram kanıtı, sıradan Ethereum işlemlerinden herkesin yeniden hesaplayabileceği bir .bso ad kaydı türetiyor. Denetlenmedi ve dağıtılmadı.",
+          "tagline": ".bso adları, bahşişler, ödemeler ve topluluk token'ları için fikir aşamasında bir Ethereum L2."
+        },
+        "bitsocial-discovery": {
+          "description": "Bitsocial Discovery; topluluk listeleri, gönderilen öneriler, dizinleyiciler ve ENS kayıtlarından yola çıkar, ardından toplulukların birbirine bıraktığı işaretçileri takip eder: gönderilerde ve açıklamalarda geçen adresler, çapraz gönderiler ve bir yazarın önceki yorumlarından oluşan zincir. Bulduğu her topluluğu, hangilerinin hâlâ canlı olduğunu izlemek için sürekli yeniden kontrol eder ve sonuçları istemciler, dizinleyiciler ve inceleme araçları için bir JSON API olarak sunar. Topluluk meta verilerini saklar, gönderileri asla saklamaz ve pasif durumda dağıtılır: kaynakları ve API'nin neyi göstereceğini işletmeci seçer.",
+          "tagline": "Henüz hiçbir listede yer almayan Bitsocial topluluklarını bulur ve hangilerinin canlı olduğunu kontrol eder."
+        },
+        "bitsocial-forum": {
+          "description": "Bitsocial Forum, Bitsocial projeleri için planlanan bir forum ve Seedit ile 5chan'den sonra üçüncü Bitsocial istemcisidir; şu anda Telegram, Twitter ve GitHub arasında dağılmış olan tartışmaları bir araya getirmeyi amaçlar. 5chan ya da .bso adları için olan gibi her bölüm, toplulukların uğruna yarıştığı bir dizindir: birinci sıradaki topluluk onu kendi moderatörleriyle yönetir, o topluluk ortadan kalkarsa ya da bölümü kötü yönetirse başka bir topluluk onu devralabilir. Sunucu yok, genel yönetici de yok. Erken bir sürüm herhangi bir Bitsocial topluluğunu okuyabiliyor, ancak gönderi paylaşma ve profiller henüz geliştirilmedi.",
+          "tagline": "Her bölümün onu kazanan topluluğa ait olduğu, fikir aşamasında bir forum istemcisi."
+        },
+        "bitsocial-graph": {
+          "description": "Bitsocial Graph, herkese açık protokol verilerinden Bitsocial sosyal grafiğini (yazarlar, topluluklar ve bunların nasıl etkileşime girdiği) oluşturan açık bir crawler üzerine yapılan bir araştırmadır. Bitsocial içeriği yalnızca biri onu yayımlamaya ya da seed etmeye devam ettiği sürece erişilebilir kalır; bu yüzden grafik canlılığı da izler ve ağı bir zamanlar katılmış herkesi değil, şu anki hâliyle gösterir. Sonuçlar, istemciler ile arama ve akış sağlayıcıları için açık veri ve API'ler olarak yayımlanacak ve bu crawler pek çok sağlayıcıdan yalnızca biri olacak. Yazar kimliklerini gizleyen topluluklar ilişkilendirilemez olarak kalır. Henüz hiçbir şey geliştirilmedi; depo araştırmayı ve kabul edilen mimariyi bir araya getiriyor.",
+          "tagline": "Bitsocial'da hangi yazarların ve toplulukların aktif olduğunu haritalayan, fikir aşamasında açık bir crawler."
+        },
+        "bitsocial-mesh": {
+          "description": "Bitsocial Mesh, internetin kapatıldığı ya da bir afetin yaşandığı durumlarda toplulukların çalışmaya devam etmesini sağlamaya yönelik bir plandır. İlk olarak bir dizüstü veya küçük bir bilgisayar bir topluluğa ev sahipliği yapar ve bir Wi-Fi erişim noktası açar; böylece yakındaki insanlar bir tarayıcıdan okuyabilir, gönderi paylaşabilir ve moderasyon yapabilir. Sonraki aşamalar bu cihazları LoRa telsizi üzerinden şehir çapında birbirine bağlayacak ve herhangi bir bağlantı geri geldiği anda gönderileri dışarı taşıyacak; telefondan telefona Bluetooth ise en sona kalacak, o da olursa. bitchat gibi mesh sohbet uygulamalarının aksine, toplulukları kendi kuralları, moderatörleri ve spam savunmalarıyla birlikte korur. Henüz hiçbir şey geliştirilmedi ya da test edilmedi; depo tasarımı bir araya getiriyor.",
+          "tagline": "İnternet kesildiğinde Bitsocial topluluklarını ayakta tutmaya yönelik, fikir aşamasında bir plan."
+        },
+        "prediction-markets": {
+          "description": "Prediction Markets, bir tahmin piyasasını ve onunla ilgili tartışmayı tek bir yerde buluşturan uygulamalar üzerine açık bir araştırmadır; böylece insanlar bir soru bulabilir, kanıtları tartışabilir, pozisyon alabilir ve sonuç için geri dönebilir. Bitsocial toplulukları ve başlıkları taşırken, alım satımı ve uzlaşmayı mevcut bir piyasa protokolü üstlenecek; incelenen ilk aday Trueo'dur. Hiçbir piyasa topluluk oylamasıyla uzlaştırılmaz. Fikir, herhangi bir geliştiricinin veya projenin hayata geçirmesine açıktır. Henüz hiçbir şey geliştirilmedi ve herhangi bir ortaklık üzerinde anlaşılmadı.",
+          "tagline": "Her sorunun etrafında bir Bitsocial topluluğu bulunan tahmin piyasaları üzerine fikir aşamasında bir araştırma."
+        },
+        "tipping-challenge": {
+          "description": "Tipping Challenge bir topluluğun doğrulanmış bahşişleri göstermesini sağlar. Bir yazar başka bir yazarın cüzdanına doğrudan bir token gönderir, ardından bahşiş verilen yoruma işlem hash'iyle yanıt verir; topluluk düğümü işlemi on-chain olarak bulur ve doğrulanmış tutarı yanıta yazar. Bahşişler ERC-20 token'ları, NFT'ler veya bir zincirin yerel coin'i olabilir. Topluluk bir bahşişi yolda yakalayamaz ya da sahtesini üretemez, bahşiş içermeyen yanıtlar da bundan etkilenmez. <code>tipping/v1</code> sözleşmesini uyguladığı için bu sözleşmeye göre yazılmış bir istemci diğer uygulamalarla da çalışmayı sürdürür.",
+          "tagline": "Yanıtlarda doğrulanmış bahşişler: cüzdandan cüzdana gönderilir ve topluluk tarafından on-chain kontrol edilir."
         }
       }
     },

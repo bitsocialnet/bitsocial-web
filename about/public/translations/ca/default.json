@@ -536,7 +536,12 @@
         "images": "Imatges",
         "codeHosting": "Allotjament de codi",
         "encyclopedia": "Enciclopèdia",
-        "video": "Vídeo"
+        "video": "Vídeo",
+        "names": "Noms",
+        "offline": "Fora de línia",
+        "predictionMarkets": "Mercats de predicció",
+        "socialGraph": "Graf social",
+        "tips": "Propines"
       },
       "linkLabels": {
         "androidApk": "APK d'Android",
@@ -663,6 +668,46 @@
         "flair-page-sort": {
           "tagline": "Pàgines de comunitat que només contenen les publicacions i respostes amb un flair triat.",
           "description": "Flair Page Sort és una ordenació de pàgines personalitzada per a propietaris de comunitats. Un cop afegit a la configuració de pàgines d’una comunitat amb un conjunt de flairs, fa que el node publiqui una pàgina addicional que només conté les publicacions o respostes que porten algun d’aquests flairs, ordenades per flair més recent, noves, populars o millors. Una comunitat la pot publicar com a pàgina predeterminada perquè els clients s’hi obrin, i els clients no han d’instal·lar res per llegir-la. Requereix pkc-js 0.0.143 o posterior."
+        },
+        "active-page-sort": {
+          "description": "Active Page Sort és una ordenació de pàgines personalitzada per a propietaris de comunitats que substitueix l'ordre de bump integrat. Una resposta amb una línia que coincideix amb una de les paraules clau del tauler, com ara <code>sage</code>, no fa pujar el seu fil, i amb un límit de bump establert només les primeres respostes d'un fil el poden fer pujar. Aquests fils s'enfonsen, però mai no s'amaguen. Es publica sota la mateixa clau <code>active</code> que l'ordenació integrada, de manera que els clients mostren el nou ordre sense cap canvi. Requereix pkc-js 0.0.114 o posterior.",
+          "tagline": "Ordre de bump d'imageboard en què les respostes amb sage no fan pujar el fil i els fils que superen el límit de bump deixen de pujar."
+        },
+        "base64-challenge": {
+          "description": "Base64 Challenge s'executa en un node de comunitat de Bitsocial i rebutja qualsevol publicació que inclogui un URI <code>data:</code> o una seqüència llarga de base64 en qualsevol camp de text, des del cos i el títol de les publicacions fins als noms visibles i els motius d'edició. Sense ell, una comunitat pot acabar signant, emmagatzemant i servint una petita imatge amagada al text d'una publicació, que un moderador d'IA només veu com un mur de caràcters. La comprovació és determinista i no executa cap model, les cadenes hexadecimals com ara hashes i dades de transaccions passen, i els moderadors en poden quedar exempts.",
+          "tagline": "Rebutja les publicacions que amaguen imatges o altres fitxers al seu text com a dades base64."
+        },
+        "bitsocial-algorithms": {
+          "description": "Bitsocial Algorithms és una recerca sobre algoritmes de feeds i recomanacions com a serveis substituïbles entre els clients de Bitsocial. Un client pot venir amb una opció per defecte sòlida, i un usuari pot passar a un altre proveïdor, fer funcionar el seu propi o classificar les publicacions localment sense traslladar el seu perfil, mentre que un feed cronològic continua disponible sense cap proveïdor. Els proveïdors descobreixen i classifiquen publicacions, però mai no posseeixen identitats, publicacions ni dades socials, de manera que cap empresa no decideix per si sola què veu tothom. Encara no hi ha res construït; el repositori recull la recerca i l'arquitectura acceptada.",
+          "tagline": "Proveïdors de feeds i recomanacions en fase d'idea que els usuaris poden canviar com una opció de configuració."
+        },
+        "bitsocial-chain": {
+          "description": "Bitsocial Chain és la capa econòmica proposada per a les aplicacions de Bitsocial a la fase 3 del pla director: una L2 d'Ethereum per allotjar noms .bso, propines i pagaments, tokens comunitaris i AgoraSwap. Està pensada per no afegir cap confiança més enllà del mateix Ethereum, sense claus d'actualització, sense consell de seguretat i sense cap operador privilegiat. Les publicacions i les comunitats continuen sent peer-to-peer; no es posa res de social a la cadena. Una prova de concepte deriva, a partir de transaccions d'Ethereum normals, un registre de noms .bso que qualsevol pot recalcular. No està auditada ni desplegada.",
+          "tagline": "L2 d'Ethereum en fase d'idea per a noms .bso, propines, pagaments i tokens comunitaris."
+        },
+        "bitsocial-discovery": {
+          "description": "Bitsocial Discovery parteix de llistes de comunitats, propostes enviades, indexadors i registres ENS, i després segueix les referències que les comunitats es deixen entre elles: adreces esmentades en publicacions i descripcions, publicacions creuades i la cadena de comentaris anteriors d'un autor. Torna a comprovar contínuament cada comunitat que troba per saber quines continuen actives, i ofereix els resultats com una JSON API per a clients, indexadors i eines de revisió. Desa les metadades de les comunitats, mai les publicacions, i es distribueix inactiu: és l'operador qui tria les fonts i què mostra l'API.",
+          "tagline": "Troba comunitats de Bitsocial que encara no figuren a cap llista i comprova quines estan actives."
+        },
+        "bitsocial-forum": {
+          "description": "Bitsocial Forum és un fòrum previst per als projectes de Bitsocial i el tercer client de Bitsocial després de Seedit i 5chan, pensat per reunir la conversa que ara està repartida entre Telegram, Twitter i GitHub. Cada secció, com ara una per a 5chan o per als noms .bso, és un directori pel qual competeixen les comunitats: la comunitat classificada en primer lloc la gestiona amb els seus propis moderadors, i una altra la pot assumir si aquella desapareix o la gestiona malament. No hi ha cap servidor ni cap administrador global. Una versió preliminar llegeix qualsevol comunitat de Bitsocial, però la publicació i els perfils encara no s'han construït.",
+          "tagline": "Client de fòrum en fase d'idea on cada secció pertany a la comunitat que la guanyi."
+        },
+        "bitsocial-graph": {
+          "description": "Bitsocial Graph és una recerca sobre un rastrejador obert que construeix el graf social de Bitsocial a partir de dades públiques del protocol: autors, comunitats i com interactuen. El contingut de Bitsocial només continua accessible mentre algú el continuï publicant o en faci de seeder, així que el graf també registra què continua actiu i mostra la xarxa tal com és ara, en lloc de tothom que s'hi ha unit alguna vegada. Els resultats es publicarien com a dades obertes i APIs per a clients i proveïdors de cerca i de feeds, amb aquest rastrejador com un proveïdor entre molts. Les comunitats que amaguen la identitat dels autors continuen sent impossibles de vincular. Encara no hi ha res construït; el repositori recull la recerca i l'arquitectura acceptada.",
+          "tagline": "Rastrejador obert en fase d'idea que cartografia quins autors i comunitats són actius a Bitsocial."
+        },
+        "bitsocial-mesh": {
+          "description": "Bitsocial Mesh és un pla per mantenir les comunitats en funcionament durant un tall d'internet o un desastre. Primer, un portàtil o un ordinador petit allotja una comunitat i obre un punt d'accés Wi-Fi, perquè la gent dels voltants pugui llegir, publicar i moderar des d'un navegador. Les fases posteriors connectarien aquests aparells per tota una ciutat mitjançant ràdio LoRa i farien arribar les publicacions a l'exterior tan bon punt tornés qualsevol connexió, i el Bluetooth de telèfon a telèfon arribaria en últim lloc, si és que arriba. A diferència de les aplicacions de xat en malla com bitchat, manté comunitats amb les seves pròpies normes, moderadors i defenses antispam. Encara no hi ha res construït ni provat; el repositori recull el disseny.",
+          "tagline": "Pla en fase d'idea per mantenir en marxa les comunitats de Bitsocial quan es talla internet."
+        },
+        "prediction-markets": {
+          "description": "Prediction Markets és una recerca oberta sobre aplicacions que reuneixen en un sol lloc un mercat de predicció i la seva discussió, perquè la gent pugui trobar una pregunta, debatre les proves, prendre una posició i tornar per conèixer el resultat. Bitsocial s'encarregaria de les comunitats i els fils, mentre que un protocol de mercat existent gestionaria la negociació i la liquidació; Trueo és el primer candidat que s'està estudiant. Un mercat mai no es liquida mitjançant una votació de la comunitat. La idea està oberta perquè qualsevol desenvolupador o projecte la construeixi. Encara no hi ha res construït i no s'ha acordat cap col·laboració.",
+          "tagline": "Recerca en fase d'idea sobre mercats de predicció amb una comunitat de Bitsocial al voltant de cada pregunta."
+        },
+        "tipping-challenge": {
+          "description": "Tipping Challenge permet que una comunitat mostri propines verificades. Un autor envia un token directament a la cartera d'un altre autor i després respon al comentari que rep la propina amb el hash de la transacció, i el node de la comunitat cerca la transacció on-chain i escriu l'import verificat a la resposta. Les propines poden ser tokens ERC-20, NFT o la moneda nativa d'una cadena. La comunitat no pot interceptar ni falsificar una propina, i les respostes sense propina no es veuen afectades. Implementa el contracte <code>tipping/v1</code>, de manera que un client escrit segons aquest contracte continua funcionant amb altres implementacions.",
+          "tagline": "Propines verificades a les respostes, enviades de cartera a cartera i comprovades on-chain per la comunitat."
         }
       }
     },

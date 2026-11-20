@@ -536,7 +536,12 @@
         "images": "Hình ảnh",
         "codeHosting": "Lưu trữ mã nguồn",
         "encyclopedia": "Bách khoa toàn thư",
-        "video": "Video"
+        "video": "Video",
+        "names": "Tên",
+        "offline": "Ngoại tuyến",
+        "predictionMarkets": "Thị trường dự đoán",
+        "socialGraph": "Đồ thị xã hội",
+        "tips": "Tiền tip"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -663,6 +668,46 @@
         "flair-page-sort": {
           "tagline": "Các trang cộng đồng chỉ chứa những bài đăng và câu trả lời mang một flair đã chọn.",
           "description": "Flair Page Sort là một kiểu sắp xếp trang tùy chỉnh dành cho chủ sở hữu cộng đồng. Khi được khai báo trong phần cài đặt trang của cộng đồng cùng với một tập flair, nó khiến node xuất bản thêm một trang chỉ chứa những bài đăng hoặc câu trả lời mang một trong các flair đó, sắp xếp theo mới gắn flair nhất, mới, nổi bật hoặc hay nhất. Cộng đồng có thể xuất bản trang này làm trang mặc định để các client mở vào đó, và client không cần cài đặt gì để đọc nó. Yêu cầu pkc-js 0.0.143 trở lên."
+        },
+        "active-page-sort": {
+          "description": "Active Page Sort là một kiểu sắp xếp trang tùy chỉnh dành cho chủ sở hữu cộng đồng, thay thế thứ tự bump tích hợp sẵn. Một câu trả lời có dòng khớp với một trong các từ khóa của board, chẳng hạn <code>sage</code>, sẽ không bump thread của nó, và khi đặt giới hạn bump thì chỉ những câu trả lời đầu tiên của một thread mới có thể bump thread đó. Những thread này chìm xuống nhưng không bao giờ bị ẩn. Nó được xuất bản dưới cùng khóa <code>active</code> như kiểu sắp xếp tích hợp sẵn, nên client hiển thị thứ tự mới mà không cần thay đổi gì. Yêu cầu pkc-js 0.0.114 trở lên.",
+          "tagline": "Thứ tự bump kiểu imageboard, trong đó câu trả lời có sage không đẩy thread lên và thread vượt giới hạn bump sẽ ngừng được bump."
+        },
+        "base64-challenge": {
+          "description": "Base64 Challenge chạy trên một node cộng đồng Bitsocial và từ chối mọi bản đăng nhúng URI <code>data:</code> hoặc một chuỗi base64 dài vào bất kỳ trường văn bản nào, từ nội dung và tiêu đề bài đăng đến tên hiển thị và lý do chỉnh sửa. Nếu không có nó, một cộng đồng có thể rốt cuộc phải ký, lưu trữ và phân phát một hình ảnh nhỏ được giấu trong văn bản của một bài đăng, thứ mà một trình kiểm duyệt AI chỉ thấy như một bức tường ký tự. Việc kiểm tra mang tính tất định và không chạy mô hình nào, các chuỗi hex như hash và dữ liệu giao dịch vẫn được chấp nhận, và có thể miễn kiểm tra cho người kiểm duyệt.",
+          "tagline": "Từ chối các bản đăng giấu hình ảnh hoặc tệp khác trong văn bản dưới dạng dữ liệu base64."
+        },
+        "bitsocial-algorithms": {
+          "description": "Bitsocial Algorithms là nghiên cứu về các thuật toán feed và đề xuất như những dịch vụ có thể thay thế trên các máy khách Bitsocial. Một máy khách có thể đi kèm một lựa chọn mặc định tốt, và người dùng có thể chuyển sang nhà cung cấp khác, tự vận hành nhà cung cấp của riêng mình hoặc xếp hạng bài đăng cục bộ mà không cần chuyển hồ sơ, trong khi feed theo thứ tự thời gian vẫn khả dụng mà không cần nhà cung cấp nào. Các nhà cung cấp khám phá và xếp hạng bài đăng nhưng không bao giờ sở hữu danh tính, bài đăng hay dữ liệu xã hội, nên không một công ty nào quyết định mọi người được thấy gì. Hiện chưa có gì được xây dựng; kho mã nguồn tập hợp phần nghiên cứu và kiến trúc đã được chấp thuận.",
+          "tagline": "Các nhà cung cấp feed và đề xuất ở giai đoạn ý tưởng mà người dùng có thể chuyển đổi như một tùy chọn cài đặt."
+        },
+        "bitsocial-chain": {
+          "description": "Bitsocial Chain là lớp kinh tế được đề xuất cho các ứng dụng Bitsocial trong Giai đoạn 3 của kế hoạch tổng thể: một Ethereum L2 để lưu trữ tên .bso, tiền tip và thanh toán, token cộng đồng và AgoraSwap. Nó được thiết kế để không đòi hỏi thêm bất kỳ sự tin cậy nào ngoài chính Ethereum: không có khóa nâng cấp, không có hội đồng bảo mật và không có nhà vận hành đặc quyền. Bài đăng và cộng đồng vẫn hoạt động peer-to-peer; không có gì mang tính xã hội được đưa lên chuỗi. Một bản chứng minh khái niệm suy ra từ các giao dịch Ethereum thông thường một sổ đăng ký tên .bso mà ai cũng có thể tính lại. Bản này chưa được kiểm toán hay triển khai.",
+          "tagline": "Ethereum L2 ở giai đoạn ý tưởng cho tên .bso, tiền tip, thanh toán và token cộng đồng."
+        },
+        "bitsocial-discovery": {
+          "description": "Bitsocial Discovery bắt đầu từ các danh sách cộng đồng, các đề xuất được gửi, các trình lập chỉ mục và bản ghi ENS, rồi lần theo những dấu vết mà các cộng đồng để lại cho nhau: địa chỉ được nhắc đến trong bài đăng và phần mô tả, bài đăng chéo, và chuỗi bình luận trước đó của một tác giả. Công cụ này liên tục kiểm tra lại mọi cộng đồng tìm thấy để theo dõi cộng đồng nào vẫn còn hoạt động, và cung cấp kết quả dưới dạng JSON API cho client, trình lập chỉ mục và công cụ xét duyệt. Nó lưu siêu dữ liệu của cộng đồng, không bao giờ lưu bài đăng, và khởi đầu ở trạng thái chờ: người vận hành chọn nguồn dữ liệu và những gì API hiển thị.",
+          "tagline": "Tìm các cộng đồng Bitsocial chưa có trong danh sách nào và kiểm tra xem cộng đồng nào còn hoạt động."
+        },
+        "bitsocial-forum": {
+          "description": "Bitsocial Forum là một diễn đàn được lên kế hoạch cho các dự án Bitsocial và là client Bitsocial thứ ba sau Seedit và 5chan, nhằm tập hợp các cuộc thảo luận hiện đang bị chia tách giữa Telegram, Twitter và GitHub. Mỗi chuyên mục, chẳng hạn một chuyên mục cho 5chan hoặc cho tên .bso, là một danh mục mà các cộng đồng cạnh tranh để giành lấy: cộng đồng xếp hạng nhất sẽ vận hành nó với đội ngũ điều hành viên của riêng mình, và một cộng đồng khác có thể tiếp quản nếu cộng đồng đó biến mất hoặc vận hành kém. Không có máy chủ và không có quản trị viên toàn cục. Một bản build sơ khai có thể đọc bất kỳ cộng đồng Bitsocial nào, nhưng tính năng đăng bài và hồ sơ vẫn chưa được xây dựng.",
+          "tagline": "Client diễn đàn ở giai đoạn ý tưởng, nơi mỗi chuyên mục thuộc về cộng đồng nào giành được nó."
+        },
+        "bitsocial-graph": {
+          "description": "Bitsocial Graph là một nghiên cứu về trình thu thập dữ liệu mở xây dựng đồ thị xã hội của Bitsocial từ dữ liệu giao thức công khai: tác giả, cộng đồng và cách họ tương tác với nhau. Nội dung Bitsocial chỉ còn truy cập được khi vẫn có người tiếp tục xuất bản hoặc seed nó, vì vậy đồ thị cũng theo dõi những gì còn hoạt động và hiển thị mạng lưới như hiện tại thay vì tất cả những ai từng tham gia. Kết quả sẽ được công bố dưới dạng dữ liệu mở và API cho client cũng như các nhà cung cấp dịch vụ tìm kiếm và nguồn cấp, trong đó trình thu thập dữ liệu này chỉ là một nhà cung cấp trong số nhiều nhà cung cấp. Các cộng đồng ẩn danh tính tác giả vẫn không thể bị liên kết. Hiện chưa có gì được xây dựng; kho mã nguồn tập hợp phần nghiên cứu và kiến trúc đã được chấp thuận.",
+          "tagline": "Trình thu thập dữ liệu mở ở giai đoạn ý tưởng, lập bản đồ những tác giả và cộng đồng đang hoạt động trên Bitsocial."
+        },
+        "bitsocial-mesh": {
+          "description": "Bitsocial Mesh là kế hoạch giữ cho các cộng đồng tiếp tục hoạt động khi internet bị tắt hoặc khi có thảm họa. Trước tiên, một máy tính xách tay hoặc máy tính nhỏ sẽ lưu trữ một cộng đồng và phát một điểm phát Wi-Fi, để những người ở gần có thể đọc, đăng bài và kiểm duyệt từ trình duyệt. Các giai đoạn sau sẽ kết nối những thiết bị này khắp thành phố qua sóng vô tuyến LoRa và đưa bài đăng ra ngoài ngay khi có bất kỳ kết nối nào trở lại, còn Bluetooth giữa các điện thoại sẽ là bước cuối cùng, nếu có. Khác với các ứng dụng chat mesh như bitchat, nó giữ các cộng đồng với quy tắc, người kiểm duyệt và cơ chế chống spam của riêng họ. Hiện chưa có gì được xây dựng hay thử nghiệm; kho mã nguồn tập hợp phần thiết kế.",
+          "tagline": "Kế hoạch ở giai đoạn ý tưởng nhằm giữ cho các cộng đồng Bitsocial tiếp tục hoạt động khi internet bị cắt."
+        },
+        "prediction-markets": {
+          "description": "Prediction Markets là nghiên cứu mở về các ứng dụng gom thị trường dự đoán và phần thảo luận về nó vào một chỗ, để mọi người có thể tìm một câu hỏi, tranh luận về bằng chứng, mở vị thế và quay lại xem kết quả. Bitsocial sẽ đảm nhận các cộng đồng và luồng thảo luận, trong khi một giao thức thị trường sẵn có xử lý giao dịch và tất toán; Trueo là ứng viên đầu tiên đang được nghiên cứu. Một thị trường không bao giờ được tất toán bằng bỏ phiếu cộng đồng. Ý tưởng này để ngỏ cho bất kỳ nhà phát triển hay dự án nào xây dựng. Hiện chưa có gì được xây dựng và chưa có quan hệ đối tác nào được thỏa thuận.",
+          "tagline": "Nghiên cứu ở giai đoạn ý tưởng về thị trường dự đoán, với một cộng đồng Bitsocial xoay quanh mỗi câu hỏi."
+        },
+        "tipping-challenge": {
+          "description": "Tipping Challenge cho phép một cộng đồng hiển thị tiền tip đã xác minh. Một tác giả gửi token thẳng vào ví của tác giả khác, rồi trả lời bình luận được tip kèm hash của giao dịch, và node của cộng đồng tra cứu giao dịch đó on-chain rồi ghi số tiền đã xác minh vào câu trả lời. Tiền tip có thể là token ERC-20, NFT hoặc coin gốc của một chain. Cộng đồng không thể chặn hay làm giả một khoản tip, và các câu trả lời không kèm tip không bị ảnh hưởng. Dự án hiện thực hợp đồng <code>tipping/v1</code>, nhờ vậy một client viết theo hợp đồng đó vẫn hoạt động được với các bản hiện thực khác.",
+          "tagline": "Tiền tip đã xác minh trên các câu trả lời, gửi từ ví sang ví và được cộng đồng kiểm tra on-chain."
         }
       }
     },

@@ -536,7 +536,12 @@
         "images": "Imazhe",
         "codeHosting": "Hostim kodi",
         "encyclopedia": "Enciklopedi",
-        "video": "Video"
+        "video": "Video",
+        "names": "Emra",
+        "offline": "Jashtë linje",
+        "predictionMarkets": "Tregje parashikimi",
+        "socialGraph": "Grafi social",
+        "tips": "Bakshishe"
       },
       "linkLabels": {
         "androidApk": "APK për Android",
@@ -663,6 +668,46 @@
         "flair-page-sort": {
           "tagline": "Faqe komuniteti që mbajnë vetëm postimet dhe përgjigjet me një flair të zgjedhur.",
           "description": "Flair Page Sort është një renditje e personalizuar faqesh për pronarët e komuniteteve. I shënuar në cilësimet e faqeve të një komuniteti bashkë me një grup flair-esh, ai e bën nyjën të publikojë një faqe shtesë që mban vetëm postimet ose përgjigjet me njërin prej atyre flair-eve, të renditura sipas flair-it më të fundit, më të rejave, më të nxehtave ose më të mirave. Një komunitet mund ta publikojë si faqen e tij të parazgjedhur që klientët të hapen në të, dhe klientët nuk kanë nevojë të instalojnë asgjë për ta lexuar. Kërkon pkc-js 0.0.143 ose më të ri."
+        },
+        "active-page-sort": {
+          "description": "Active Page Sort është një renditje e personalizuar faqesh për pronarët e komuniteteve që zëvendëson renditjen e integruar bump. Një përgjigje me një rresht që përputhet me një nga fjalët kyçe të board-it, si <code>sage</code>, nuk e ngre thread-in e saj, dhe kur është caktuar një limit bump-i, vetëm përgjigjet e para të një thread-i mund ta ngrenë atë. Ato thread-e zhyten, por nuk fshihen kurrë. Publikohet nën të njëjtin çelës <code>active</code> si renditja e integruar, kështu që klientët e shfaqin renditjen e re pa asnjë ndryshim. Kërkon pkc-js 0.0.114 ose më të ri.",
+          "tagline": "Renditje bump si në imageboard, ku përgjigjet me sage nuk e ngrenë thread-in dhe thread-et përtej limitit të bump-it nuk ngrihen më."
+        },
+        "base64-challenge": {
+          "description": "Base64 Challenge ekzekutohet në një nyje komuniteti Bitsocial dhe refuzon çdo publikim që përfshin një URI <code>data:</code> ose një varg të gjatë base64 në cilëndo fushë teksti, nga trupi dhe titulli i postimeve deri te emrat e shfaqur dhe arsyet e redaktimit. Pa të, një komunitet mund të përfundojë duke nënshkruar, ruajtur dhe shërbyer një imazh të vogël të fshehur në tekstin e një postimi, të cilin një moderator AI e sheh vetëm si një mur karakteresh. Kontrolli është determinist dhe nuk ekzekuton asnjë model, vargjet heksadecimale si hash-et dhe të dhënat e transaksioneve kalojnë, dhe moderatorët mund të përjashtohen.",
+          "tagline": "Refuzon publikimet që fshehin imazhe ose skedarë të tjerë në tekstin e tyre si të dhëna base64."
+        },
+        "bitsocial-algorithms": {
+          "description": "Bitsocial Algorithms është një kërkim mbi algoritmet e feed-eve dhe të rekomandimeve si shërbime të zëvendësueshme në klientët e Bitsocial. Një klient mund të vijë me një parazgjedhje të fortë, dhe një përdorues mund të kalojë te një ofrues tjetër, të ekzekutojë ofruesin e vet ose t’i renditë postimet në nivel lokal pa e zhvendosur profilin e vet, ndërsa një feed kronologjik mbetet i disponueshëm pa asnjë ofrues. Ofruesit zbulojnë dhe renditin postimet, por nuk zotërojnë kurrë identitetet, postimet apo të dhënat sociale, kështu që asnjë kompani e vetme nuk vendos se çfarë shohin të gjithë. Ende nuk është ndërtuar asgjë; repozitori mbledh kërkimin dhe arkitekturën e miratuar.",
+          "tagline": "Ofrues feed-esh dhe rekomandimesh në fazën e idesë, që përdoruesit mund t’i ndërrojnë si një cilësim."
+        },
+        "bitsocial-chain": {
+          "description": "Bitsocial Chain është shtresa ekonomike e propozuar për aplikacionet Bitsocial në Fazën 3 të Master Planit: një L2 e Ethereum për të pritur emrat .bso, bakshishet dhe pagesat, tokenët e komunitetit dhe AgoraSwap. Synimi është që të mos shtojë asnjë besim përtej vetë Ethereum, pa çelësa përditësimi, pa këshill sigurie dhe pa operator të privilegjuar. Postimet dhe komunitetet mbeten peer-to-peer; asgjë sociale nuk shkon on-chain. Një provë koncepti nxjerr nga transaksione të zakonshme Ethereum një regjistër emrash .bso që kushdo mund ta rillogarisë. Ajo nuk është audituar dhe as vendosur.",
+          "tagline": "L2 e Ethereum në fazën e idesë për emra .bso, bakshishe, pagesa dhe tokenë të komunitetit."
+        },
+        "bitsocial-discovery": {
+          "description": "Bitsocial Discovery nis nga listat e komuniteteve, propozimet e dërguara, indeksuesit dhe regjistrimet ENS, pastaj ndjek treguesit që komunitetet lënë për njëri-tjetrin: adresat e përmendura në postime dhe përshkrime, postimet e kryqëzuara dhe zinxhirin e komenteve të mëparshme të një autori. Ai rikontrollon vazhdimisht çdo komunitet që gjen për të ndjekur se cilat janë ende aktive, dhe i ofron rezultatet si JSON API për klientët, indeksuesit dhe mjetet e rishikimit. Ruan metadatat e komuniteteve, kurrë postimet, dhe vjen joaktiv: operatori zgjedh burimet dhe çfarë shfaq API-ja.",
+          "tagline": "Gjen komunitete Bitsocial që ende nuk i përfshin asnjë listë dhe kontrollon cilat prej tyre janë aktive."
+        },
+        "bitsocial-forum": {
+          "description": "Bitsocial Forum është një forum i planifikuar për projektet Bitsocial dhe klienti i tretë Bitsocial pas Seedit dhe 5chan, i menduar për të mbledhur diskutimet që tani janë të shpërndara në Telegram, Twitter dhe GitHub. Çdo seksion, si p.sh. një për 5chan ose për emrat .bso, është një direktori për të cilën konkurrojnë komunitetet: komuniteti i renditur i pari e drejton me moderatorët e vet, dhe një tjetër mund ta marrë përsipër nëse ai zhduket ose e drejton keq. Nuk ka server dhe as administrator global. Një version i hershëm lexon çdo komunitet Bitsocial, por postimi dhe profilet ende nuk janë ndërtuar.",
+          "tagline": "Klient forumi në fazën e idesë, ku çdo seksion i përket cilitdo komunitet që e fiton."
+        },
+        "bitsocial-graph": {
+          "description": "Bitsocial Graph është një kërkim mbi një zvarritës të hapur që ndërton grafin social të Bitsocial nga të dhënat publike të protokollit: autorët, komunitetet dhe mënyrën si ndërveprojnë. Përmbajtja e Bitsocial mbetet e arritshme vetëm për sa kohë dikush vazhdon ta publikojë ose ta bëjë seed, prandaj grafi ndjek edhe çfarë është ende aktive dhe e tregon rrjetin ashtu siç është tani, jo të gjithë ata që janë bashkuar ndonjëherë. Rezultatet do të publikoheshin si të dhëna të hapura dhe API për klientët dhe ofruesit e kërkimit dhe të feed-eve, me këtë zvarritës si një ofrues mes shumë të tjerëve. Komunitetet që fshehin identitetin e autorëve mbeten të palidhshme. Ende nuk është ndërtuar asgjë; repozitori mbledh kërkimin dhe arkitekturën e pranuar.",
+          "tagline": "Zvarritës i hapur në fazën e idesë, që harton se cilët autorë dhe komunitete janë aktivë në Bitsocial."
+        },
+        "bitsocial-mesh": {
+          "description": "Bitsocial Mesh është një plan për t’i mbajtur komunitetet në funksion gjatë një mbylljeje të internetit ose një katastrofe. Fillimisht, një laptop ose kompjuter i vogël hoston një komunitet dhe hap një hotspot Wi-Fi, që njerëzit aty pranë të mund të lexojnë, postojnë dhe moderojnë nga një shfletues. Fazat e mëvonshme do t’i lidhnin këto pajisje në mbarë qytetin përmes radios LoRa dhe do t’i nxirrnin postimet jashtë sapo të kthehet çfarëdo lidhjeje, me Bluetooth nga telefoni në telefon në fund, nëse do të ketë fare. Ndryshe nga aplikacionet e bisedës mesh si bitchat, ai i ruan komunitetet me rregullat, moderatorët dhe mbrojtjet e tyre kundër spam-it. Ende nuk është ndërtuar ose testuar asgjë; repozitori mbledh dizajnin.",
+          "tagline": "Plan në fazën e idesë për t’i mbajtur komunitetet Bitsocial në funksion kur interneti ndërpritet."
+        },
+        "prediction-markets": {
+          "description": "Prediction Markets është një kërkim i hapur mbi aplikacione që bashkojnë në një vend të vetëm një treg parashikimi dhe diskutimin rreth tij, që njerëzit të gjejnë një pyetje, të debatojnë provat, të marrin një pozicion dhe të kthehen për rezultatin. Bitsocial do të mbante komunitetet dhe temat e diskutimit, ndërsa një protokoll tregu ekzistues do të merrej me tregtimin dhe shlyerjen; Trueo është kandidati i parë që po studiohet. Një treg nuk shlyhet kurrë me votim të komunitetit. Ideja është e hapur për t'u ndërtuar nga çdo zhvillues ose projekt. Ende nuk është ndërtuar asgjë dhe nuk është rënë dakord për asnjë partneritet.",
+          "tagline": "Kërkim në fazën e idesë për tregjet e parashikimit, me një komunitet Bitsocial rreth çdo pyetjeje."
+        },
+        "tipping-challenge": {
+          "description": "Tipping Challenge i lejon një komuniteti të shfaqë bakshishe të verifikuara. Një autor dërgon një token drejtpërdrejt në portofolin e një autori tjetër, pastaj i përgjigjet komentit që merr bakshishin me hash-in e transaksionit, dhe nyja e komunitetit e kërkon transaksionin on-chain dhe shkruan shumën e verifikuar në përgjigje. Bakshishet mund të jenë token-a ERC-20, NFT ose monedha vendase e një zinxhiri. Komuniteti nuk mund ta përgjojë ose ta falsifikojë një bakshish, dhe përgjigjet pa bakshish nuk preken. Ai zbaton kontratën <code>tipping/v1</code>, prandaj një klient i shkruar sipas asaj kontrate vazhdon të funksionojë edhe me implementime të tjera.",
+          "tagline": "Bakshishe të verifikuara në përgjigje, të dërguara nga portofoli në portofol dhe të kontrolluara on-chain nga komuniteti."
         }
       }
     },

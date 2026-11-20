@@ -536,7 +536,12 @@
         "images": "Képek",
         "codeHosting": "Kódtárhely",
         "encyclopedia": "Enciklopédia",
-        "video": "Videó"
+        "video": "Videó",
+        "names": "Nevek",
+        "offline": "Offline",
+        "predictionMarkets": "Előrejelző piacok",
+        "socialGraph": "Közösségi gráf",
+        "tips": "Borravaló"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -663,6 +668,46 @@
         "flair-page-sort": {
           "tagline": "Közösségi oldalak, amelyek csak a kiválasztott flairrel ellátott posztokat és válaszokat tartalmazzák.",
           "description": "A Flair Page Sort egyéni oldalrendezés közösségtulajdonosoknak. Ha egy közösség oldalbeállításaiban flairek egy készletével együtt szerepel, a csomópont egy további oldalt is közzétesz, amely csak azokat a posztokat vagy válaszokat tartalmazza, amelyeken e flairek valamelyike szerepel, a legutóbb kapott flair, az új, a felkapott vagy a legjobb szerinti sorrendben. A közösség alapértelmezett oldalként is közzéteheti, így a kliensek ezen nyílnak meg, és a klienseknek semmit sem kell telepíteniük az olvasásához. A pkc-js 0.0.143-as vagy újabb verzióját igényli."
+        },
+        "active-page-sort": {
+          "description": "Az Active Page Sort egyéni oldalrendezés közösségtulajdonosoknak, amely a beépített bump-sorrendet váltja fel. Az a válasz, amelyben a board valamelyik kulcsszavára illeszkedő sor szerepel, például <code>sage</code>, nem bumpolja a threadjét, beállított bump limit mellett pedig csak egy thread első válaszai bumpolhatják. Ezek a threadek lesüllyednek, de sosem rejtődnek el. Ugyanazon az <code>active</code> kulcson jelenik meg, mint a beépített rendezés, így a kliensek minden változtatás nélkül az új sorrendet mutatják. A pkc-js 0.0.114-es vagy újabb verzióját igényli.",
+          "tagline": "Imageboard-stílusú bump-sorrend, amelyben a sage-es válaszok nem bumpolják a threadet, a bump limitet túllépő threadek pedig nem bumpolódnak tovább."
+        },
+        "base64-challenge": {
+          "description": "A Base64 Challenge egy Bitsocial közösségi csomóponton fut, és elutasít minden olyan közzétételt, amely bármelyik szövegmezőben <code>data:</code> URI-t vagy hosszú base64-sorozatot ágyaz be, a poszt törzsétől és címétől a megjelenített nevekig és a szerkesztési indoklásokig. Nélküle egy közösség odáig juthat, hogy aláír, tárol és kiszolgál egy poszt szövegébe rejtett kis képet, amelyet egy AI-moderátor csak karakterek falaként lát. Az ellenőrzés determinisztikus, és nem futtat modellt, a hexadecimális karakterláncok, például a hash-ek és a tranzakciós adatok átmennek, a moderátorok pedig mentesíthetők.",
+          "tagline": "Elutasítja azokat a közzétételeket, amelyek base64-adatként képeket vagy más fájlokat rejtenek a szövegükben."
+        },
+        "bitsocial-algorithms": {
+          "description": "A Bitsocial Algorithms a feed- és ajánlóalgoritmusokat kutatja mint cserélhető szolgáltatásokat a Bitsocial-kliensekben. Egy kliens erős alapértelmezéssel érkezhet, a felhasználó pedig a profilja áthelyezése nélkül átválthat egy másik szolgáltatóra, futtathat sajátot, vagy helyben rangsorolhatja a bejegyzéseket, miközben egy időrendi feed bármilyen szolgáltató nélkül is elérhető marad. A szolgáltatók felfedezik és rangsorolják a bejegyzéseket, de soha nem birtokolják az identitásokat, a bejegyzéseket vagy a közösségi adatokat, így egyetlen cég sem dönti el, mit lát mindenki. Még semmi sem készült el; a repository a kutatást és az elfogadott architektúrát gyűjti.",
+          "tagline": "Ötletszakaszban lévő feed- és ajánlásszolgáltatók, amelyeket a felhasználók egy beállításhoz hasonlóan cserélhetnek le."
+        },
+        "bitsocial-chain": {
+          "description": "A Bitsocial Chain a főterv 3. fázisában javasolt gazdasági réteg a Bitsocial-alkalmazások számára: egy Ethereum L2, amely .bso neveket, borravalókat és fizetéseket, közösségi tokeneket és az AgoraSwapot szolgálja ki. A cél az, hogy ne igényeljen bizalmat magán az Ethereumon túl: nincsenek frissítési kulcsok, nincs biztonsági tanács és nincs kiváltságos üzemeltető. A bejegyzések és a közösségek peer-to-peer maradnak; semmilyen közösségi tartalom nem kerül a láncra. Egy koncepcióbizonyítás egyszerű Ethereum-tranzakciókból vezet le egy .bso névregisztert, amelyet bárki újraszámolhat. Nincs auditálva, és nincs telepítve.",
+          "tagline": "Ötletszakaszban lévő Ethereum L2 .bso nevekhez, borravalókhoz, fizetésekhez és közösségi tokenekhez."
+        },
+        "bitsocial-discovery": {
+          "description": "A Bitsocial Discovery közösséglistákból, beküldésekből, indexelőkből és ENS-rekordokból indul ki, majd követi azokat a hivatkozásokat, amelyeket a közösségek egymásra hagynak: a posztokban és leírásokban említett címeket, a crosspostokat és egy szerző korábbi hozzászólásainak láncát. Minden megtalált közösséget újra és újra ellenőriz, hogy nyomon kövesse, melyek élnek még, az eredményeket pedig JSON API-ként szolgálja ki kliensek, indexelők és ellenőrző eszközök számára. A közösségek metaadatait tárolja, posztokat soha, és tétlen állapotban érkezik: a forrásokat és azt, hogy az API mit mutat, az üzemeltető választja ki.",
+          "tagline": "Megtalálja azokat a Bitsocial-közösségeket, amelyeket még egyetlen lista sem tartalmaz, és ellenőrzi, melyek élnek közülük."
+        },
+        "bitsocial-forum": {
+          "description": "A Bitsocial Forum egy tervezett fórum a Bitsocial-projektek számára, és a harmadik Bitsocial-kliens a Seedit és az 5chan után. Célja, hogy összegyűjtse a most a Telegram, a Twitter és a GitHub között szétszórt beszélgetéseket. Minden szekció, például egy az 5chan vagy a .bso nevek számára, egy címtár, amelyért a közösségek versengenek: az első helyre rangsorolt közösség a saját moderátoraival működteti, egy másik pedig átveheti, ha az eltűnik vagy rosszul működteti. Nincs szerver és nincs globális adminisztrátor. Egy korai build bármely Bitsocial-közösséget olvassa, de a posztolás és a profilok még nem készültek el.",
+          "tagline": "Ötletszakaszban lévő fórumkliens, amelyben minden szekció azé a közösségé, amelyik megnyeri."
+        },
+        "bitsocial-graph": {
+          "description": "A Bitsocial Graph egy nyílt bejáró kutatása, amely nyilvános protokolladatokból építi fel a Bitsocial közösségi gráfját: a szerzőket, a közösségeket és azt, hogyan lépnek kapcsolatba egymással. A Bitsocial tartalma csak addig marad elérhető, amíg valaki tovább publikálja vagy seedeli, ezért a gráf azt is követi, mi él még, és a hálózatot olyannak mutatja, amilyen most, nem pedig mindenkit, aki valaha csatlakozott. Az eredmények nyílt adatként és API-kként jelennének meg kliensek, valamint keresési és hírfolyam-szolgáltatók számára, ez a bejáró pedig csak egy szolgáltató lenne a sok közül. Azok a közösségek, amelyek elrejtik a szerzők kilétét, összekapcsolhatatlanok maradnak. Még semmi sem készült el; a repository a kutatást és az elfogadott architektúrát gyűjti.",
+          "tagline": "Ötletszakaszban lévő nyílt bejáró, amely feltérképezi, mely szerzők és közösségek aktívak a Bitsocialon."
+        },
+        "bitsocial-mesh": {
+          "description": "A Bitsocial Mesh egy terv arra, hogy a közösségek internetlekapcsolás vagy katasztrófa idején is működjenek. Először egy laptop vagy kis számítógép hosztol egy közösséget, és Wi-Fi-hotspotot nyit, így a közelben lévők böngészőből olvashatnak, posztolhatnak és moderálhatnak. A későbbi szakaszok LoRa-rádión keresztül egy egész városon át összekötnék ezeket az eszközöket, és amint bármilyen kapcsolat visszatér, kijuttatnák a bejegyzéseket; a telefonok közötti Bluetooth csak utoljára jönne, ha egyáltalán. A mesh csevegőalkalmazásokkal, például a bitchattel ellentétben a közösségeket saját szabályaikkal, moderátoraikkal és spam elleni védelmükkel együtt tartja meg. Még semmi sem készült el, és tesztelve sincs; a repository a terveket gyűjti.",
+          "tagline": "Ötletszakaszban lévő terv, hogy a Bitsocial-közösségek akkor is működjenek, amikor elvágják az internetet."
+        },
+        "prediction-markets": {
+          "description": "A Prediction Markets nyílt kutatás olyan alkalmazásokról, amelyek egy helyre hozzák az előrejelzési piacot és a róla folyó vitát, hogy az emberek megtalálhassanak egy kérdést, megvitathassák a bizonyítékokat, pozíciót nyithassanak, majd visszatérhessenek az eredményért. A Bitsocial vinné a közösségeket és a szálakat, míg egy meglévő piaci protokoll intézné a kereskedést és az elszámolást; a Trueo az első vizsgált jelölt. Egy piac elszámolásáról soha nem közösségi szavazás dönt. Az ötlet nyitott: bármely fejlesztő vagy projekt megépítheti. Még semmi sem készült el, és semmilyen partnerségben nem állapodtak meg.",
+          "tagline": "Ötletszakaszban lévő kutatás az előrejelzési piacokról, minden kérdés körül egy Bitsocial-közösséggel."
+        },
+        "tipping-challenge": {
+          "description": "A Tipping Challenge lehetővé teszi, hogy egy közösség ellenőrzött borravalókat jelenítsen meg. Egy szerző közvetlenül egy másik szerző tárcájába küld egy tokent, majd a tranzakció hash-ével válaszol a borravalóval jutalmazott hozzászólásra, a közösség csomópontja pedig on-chain megkeresi a tranzakciót, és beírja az ellenőrzött összeget a válaszba. A borravaló lehet ERC-20 token, NFT vagy egy lánc natív coinja. A közösség nem tudja elfogni vagy meghamisítani a borravalót, a borravaló nélküli válaszokat pedig ez nem érinti. Megvalósítja a <code>tipping/v1</code> szerződést, így az e szerződés alapján írt kliens más megvalósításokkal is tovább működik.",
+          "tagline": "Ellenőrzött borravaló a válaszokon, tárcából tárcába küldve, a közösség által on-chain ellenőrizve."
         }
       }
     },

@@ -536,7 +536,12 @@
         "images": "Mga larawan",
         "codeHosting": "Pagho-host ng code",
         "encyclopedia": "Ensiklopedya",
-        "video": "Video"
+        "video": "Video",
+        "names": "Mga pangalan",
+        "offline": "Offline",
+        "predictionMarkets": "Mga prediction market",
+        "socialGraph": "Social graph",
+        "tips": "Mga tip"
       },
       "linkLabels": {
         "androidApk": "APK ng Android",
@@ -663,6 +668,46 @@
         "flair-page-sort": {
           "tagline": "Mga page ng komunidad na naglalaman lang ng mga post at reply na may piniling flair.",
           "description": "Ang Flair Page Sort ay custom na page sort para sa mga may-ari ng komunidad. Kapag inilista sa page settings ng isang komunidad kasama ang isang hanay ng mga flair, pinapa-publish nito sa node ang dagdag na page na naglalaman lang ng mga post o reply na may isa sa mga flair na iyon, nakaayos ayon sa pinakahuling nilagyan ng flair, bago, hot, o best. Puwede itong i-publish ng komunidad bilang default na page nito para doon magbukas ang mga client, at walang kailangang i-install ang mga client para mabasa ito. Kailangan nito ng pkc-js 0.0.143 o mas bago."
+        },
+        "active-page-sort": {
+          "description": "Ang Active Page Sort ay custom na page sort para sa mga may-ari ng komunidad na pumapalit sa built-in na bump order. Ang reply na may linyang tumutugma sa isa sa mga keyword ng board, gaya ng <code>sage</code>, ay hindi nagba-bump ng thread nito, at kapag may nakatakdang bump limit, ang mga unang reply lang ng isang thread ang puwedeng mag-bump dito. Lumulubog ang mga thread na iyon pero hindi kailanman itinatago. Nagpa-publish ito sa ilalim ng parehong <code>active</code> key ng built-in na sort, kaya ipinapakita ng mga client ang bagong order nang walang anumang pagbabago. Kailangan nito ng pkc-js 0.0.114 o mas bago.",
+          "tagline": "Bump order ng imageboard kung saan hindi nagba-bump ang mga sage reply at humihinto sa pag-bump ang mga thread na lampas na sa bump limit."
+        },
+        "base64-challenge": {
+          "description": "Tumatakbo ang Base64 Challenge sa isang Bitsocial community node at tinatanggihan ang anumang publikasyong naglalagay ng <code>data:</code> URI o mahabang sunod-sunod na base64 sa anumang text field, mula sa body at title ng post hanggang sa mga display name at dahilan ng pag-edit. Kung wala ito, puwedeng mauwi ang isang komunidad sa pagpirma, pag-iimbak at pag-serve ng maliit na larawang nakatago sa teksto ng isang post, na nakikita lang ng isang AI moderator bilang pader ng mga character. Deterministic ang pagsusuri at walang pinapatakbong model, pumapasa ang mga hex string gaya ng mga hash at transaction data, at puwedeng i-exempt ang mga moderator.",
+          "tagline": "Tinatanggihan ang mga publikasyong nagtatago ng mga larawan o iba pang file sa kanilang teksto bilang base64 data."
+        },
+        "bitsocial-algorithms": {
+          "description": "Ang Bitsocial Algorithms ay pananaliksik sa mga algorithm ng feed at rekomendasyon bilang mga napapalitang serbisyo sa iba't ibang client ng Bitsocial. Puwedeng may kasamang mahusay na default ang isang client, at puwedeng lumipat ang user sa ibang provider, magpatakbo ng sarili niya, o mag-rank ng mga post nang lokal nang hindi inililipat ang kanyang profile, habang nananatiling available ang chronological na feed kahit walang provider. Tumutuklas at nagra-rank ng mga post ang mga provider pero hindi kailanman nagmamay-ari ng mga identity, post, o social data, kaya walang iisang kumpanya ang nagpapasya kung ano ang nakikita ng lahat. Wala pang nabubuo; tinitipon ng repository ang pananaliksik at ang tinanggap na arkitektura.",
+          "tagline": "Mga provider ng feed at rekomendasyon na ideya pa lang, na puwedeng palitan ng mga user na parang isang setting."
+        },
+        "bitsocial-chain": {
+          "description": "Ang Bitsocial Chain ang iminumungkahing economic layer para sa mga Bitsocial app sa Phase 3 ng Master Plan: isang Ethereum L2 na magho-host ng mga .bso name, tipping at bayad, mga token ng komunidad, at AgoraSwap. Layunin nitong hindi magdagdag ng anumang tiwala lampas sa Ethereum mismo, nang walang upgrade key, walang security council, at walang privileged na operator. Nananatiling peer-to-peer ang mga post at komunidad; walang anumang social na napupunta on-chain. Isang patunay ng konsepto ang humahango, mula sa karaniwang mga transaksyon sa Ethereum, ng isang .bso name registry na kayang kalkulahin muli ng sinuman. Hindi pa ito na-audit o na-deploy.",
+          "tagline": "Ethereum L2 na ideya pa lang para sa mga .bso name, tip, bayad, at token ng komunidad."
+        },
+        "bitsocial-discovery": {
+          "description": "Nagsisimula ang Bitsocial Discovery sa mga listahan ng komunidad, mga submission, mga indexer, at mga ENS record, saka sinusundan ang mga pointer na iniiwan ng mga komunidad para sa isa't isa: mga address na binanggit sa mga post at paglalarawan, mga crosspost, at ang kadena ng mga naunang komento ng isang author. Paulit-ulit nitong sinusuring muli ang bawat komunidad na nahahanap nito para masubaybayan kung alin ang aktibo pa, at inihahain ang mga resulta bilang JSON API para sa mga client, indexer, at review tool. Metadata ng komunidad ang iniimbak nito, hindi kailanman ang mga post, at naka-idle ito sa simula: ang operator ang pumipili ng mga source at kung ano ang ipinapakita ng API.",
+          "tagline": "Hinahanap ang mga komunidad ng Bitsocial na wala pa sa anumang listahan at sinusuri kung alin sa mga ito ang aktibo."
+        },
+        "bitsocial-forum": {
+          "description": "Ang Bitsocial Forum ay isang nakaplanong forum para sa mga proyekto ng Bitsocial at ang ikatlong Bitsocial client kasunod ng Seedit at 5chan, na layong tipunin ang talakayang ngayon ay hati-hati sa Telegram, Twitter, at GitHub. Ang bawat seksyon, gaya ng isa para sa 5chan o para sa mga pangalang .bso, ay isang directory na pinag-aagawan ng mga komunidad: ang komunidad na nasa unang puwesto ang nagpapatakbo nito gamit ang sarili nitong mga moderator, at puwede itong akuin ng ibang komunidad kung mawala ang komunidad na iyon o hindi maayos ang pagpapatakbo nito. Walang server at walang pandaigdigang admin. Nababasa ng isang maagang build ang anumang komunidad ng Bitsocial, pero hindi pa nabubuo ang pag-post at mga profile.",
+          "tagline": "Forum client na ideya pa lang, kung saan bawat seksyon ay pag-aari ng alinmang komunidad na manalo rito."
+        },
+        "bitsocial-graph": {
+          "description": "Ang Bitsocial Graph ay pananaliksik sa isang bukas na crawler na bumubuo ng social graph ng Bitsocial mula sa pampublikong data ng protocol: mga author, komunidad, at kung paano sila nag-uugnayan. Naaabot lang ang content ng Bitsocial habang may patuloy na naglalathala o nagse-seed nito, kaya sinusubaybayan din ng graph kung ano ang aktibo pa at ipinapakita ang network kung ano ito ngayon sa halip na lahat ng sumali kailanman. Ilalathala ang mga resulta bilang open data at mga API para sa mga client at mga provider ng search at feed, at isa lang ang crawler na ito sa maraming provider. Ang mga komunidad na nagtatago ng pagkakakilanlan ng mga author ay nananatiling hindi maiuugnay. Wala pang nabubuo; tinitipon ng repository ang pananaliksik at ang tinanggap na arkitektura.",
+          "tagline": "Bukas na crawler na ideya pa lang, na nagmamapa kung aling mga author at komunidad ang aktibo sa Bitsocial."
+        },
+        "bitsocial-mesh": {
+          "description": "Ang Bitsocial Mesh ay isang plano para patuloy na gumana ang mga komunidad sa panahon ng internet shutdown o sakuna. Una, magho-host ng komunidad ang isang laptop o maliit na computer at magbubukas ng Wi-Fi hotspot, para makapagbasa, makapag-post, at makapag-moderate ang mga taong malapit mula sa isang browser. Sa mga susunod na yugto, pagdurugtungin ang mga device na ito sa buong lungsod gamit ang LoRa radio at ilalabas ang mga post sa sandaling bumalik ang anumang koneksyon, at ang Bluetooth mula telepono patungong telepono ang huli, kung mangyayari man. Hindi tulad ng mga mesh chat app gaya ng bitchat, pinananatili nito ang mga komunidad na may sariling patakaran, moderator, at depensa laban sa spam. Wala pang nabubuo o nasusubok; tinitipon ng repository ang disenyo.",
+          "tagline": "Planong ideya pa lang para patuloy na tumakbo ang mga komunidad ng Bitsocial kapag naputol ang internet."
+        },
+        "prediction-markets": {
+          "description": "Ang Prediction Markets ay bukas na pananaliksik sa mga app na pinagsasama sa iisang lugar ang isang prediction market at ang talakayan tungkol dito, para makahanap ang mga tao ng tanong, makapagdebate tungkol sa ebidensya, kumuha ng posisyon, at bumalik para sa resulta. Ang Bitsocial ang magdadala ng mga komunidad at thread, habang ang isang umiiral na market protocol ang hahawak sa trading at settlement; ang Trueo ang unang kandidatong pinag-aaralan. Hindi kailanman sine-settle ang isang market sa pamamagitan ng boto ng komunidad. Bukas ang ideya para buuin ng sinumang developer o proyekto. Wala pang nabubuo at wala pang napagkasunduang partnership.",
+          "tagline": "Pananaliksik na ideya pa lang tungkol sa mga prediction market, na may komunidad ng Bitsocial sa paligid ng bawat tanong."
+        },
+        "tipping-challenge": {
+          "description": "Hinahayaan ng Tipping Challenge ang isang komunidad na magpakita ng mga beripikadong tip. Nagpapadala ang isang author ng token nang direkta sa wallet ng ibang author, saka nagre-reply sa komentong binibigyan ng tip gamit ang transaction hash, at hinahanap ng community node ang transaksyon on-chain at isinusulat ang beripikadong halaga sa reply. Ang mga tip ay puwedeng ERC-20 token, NFT o ang native coin ng isang chain. Hindi kayang harangin o pekein ng komunidad ang isang tip, at hindi naaapektuhan ang mga reply na walang tip. Ipinapatupad nito ang kontratang <code>tipping/v1</code>, kaya ang isang client na isinulat ayon sa kontratang iyon ay patuloy na gumagana sa ibang mga implementasyon.",
+          "tagline": "Mga beripikadong tip sa mga reply, ipinapadala mula wallet patungong wallet at sinusuri on-chain ng komunidad."
         }
       }
     },

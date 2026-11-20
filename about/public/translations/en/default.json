@@ -747,7 +747,12 @@
         "images": "Images",
         "codeHosting": "Code hosting",
         "encyclopedia": "Encyclopedia",
-        "video": "Video"
+        "video": "Video",
+        "names": "Names",
+        "offline": "Offline",
+        "predictionMarkets": "Prediction markets",
+        "socialGraph": "Social graph",
+        "tips": "Tips"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -878,6 +883,46 @@
         "flair-page-sort": {
           "tagline": "Community pages that hold only the posts and replies carrying a chosen flair.",
           "description": "Flair Page Sort is a custom page sort for community owners. Listed in a community's page settings with a set of flairs, it makes the node publish an extra page holding only the posts or replies that carry one of those flairs, ordered by most recently flaired, new, hot, or best. A community can publish it as its default page so clients open on it, and clients need nothing installed to read it. It requires pkc-js 0.0.143 or later."
+        },
+        "active-page-sort": {
+          "description": "Active Page Sort is a custom page sort for community owners that replaces the built-in bump order. A reply with a line matching one of the board's keywords, such as <code>sage</code>, does not bump its thread, and with a bump limit set only a thread's first replies can bump it. Those threads sink but are never hidden. It publishes under the same <code>active</code> key as the built-in sort, so clients show the new order without any change. It requires pkc-js 0.0.114 or later.",
+          "tagline": "Imageboard bump order where sage replies and threads past the bump limit stop bumping."
+        },
+        "base64-challenge": {
+          "description": "Base64 Challenge runs on a Bitsocial community node and rejects any publication that embeds a <code>data:</code> URI or a long run of base64 in any text field, from post bodies and titles to display names and edit reasons. Without it, a community can end up signing, storing and serving a small image hidden in a post's text, which an AI moderator sees only as a wall of characters. The check is deterministic and runs no model, hex strings such as hashes and transaction data pass, and moderators can be exempted.",
+          "tagline": "Rejects publications that hide images or other files in their text as base64 data."
+        },
+        "bitsocial-algorithms": {
+          "description": "Bitsocial Algorithms is research into feed and recommendation algorithms as replaceable services across Bitsocial clients. A client can ship with a strong default, and a user can switch to another provider, run their own or rank posts locally without moving their profile, while a chronological feed stays available without any provider. Providers discover and rank posts but never own identities, posts or social state, so no single company decides what everyone sees. Nothing is built yet; the repository collects the research and the accepted architecture.",
+          "tagline": "Idea-stage feed and recommendation providers that users can switch like a setting."
+        },
+        "bitsocial-chain": {
+          "description": "Bitsocial Chain is the proposed economic layer for Bitsocial apps in Phase 3 of the master plan: an Ethereum L2 to host .bso names, tipping and payments, community tokens and AgoraSwap. It is meant to add no trust beyond Ethereum itself, with no upgrade keys, no security council and no privileged operator. Posts and communities stay peer-to-peer; nothing social goes on chain. A proof of concept derives a .bso name registry from plain Ethereum transactions that anyone can recompute. It is not audited or deployed.",
+          "tagline": "Idea-stage Ethereum L2 for .bso names, tips, payments and community tokens."
+        },
+        "bitsocial-discovery": {
+          "description": "Bitsocial Discovery starts from community lists, submissions, indexers and ENS records, then follows the pointers communities leave to each other: addresses mentioned in posts and descriptions, crossposts, and the chain of an author's previous comments. It keeps rechecking every community it finds to track which are still alive, and serves the results as a JSON API for clients, indexers and review tools. It stores community metadata, never posts, and ships idle: the operator chooses the sources and what the API shows.",
+          "tagline": "Finds Bitsocial communities that no list carries yet and checks which ones are alive."
+        },
+        "bitsocial-forum": {
+          "description": "Bitsocial Forum is a planned forum for Bitsocial projects and the third Bitsocial client after Seedit and 5chan, meant to gather discussion now split across Telegram, Twitter and GitHub. Each section, such as one for 5chan or .bso names, is a directory that communities compete for: the community ranked first runs it with its own moderators, and another can take it over if that one goes away or is run badly. There is no server and no global admin. An early build reads any Bitsocial community, but posting and profiles are not built yet.",
+          "tagline": "Idea-stage forum client where each section belongs to whichever community wins it."
+        },
+        "bitsocial-graph": {
+          "description": "Bitsocial Graph is research into an open crawler that builds the Bitsocial social graph from public protocol data: authors, communities and how they interact. Bitsocial content stays reachable only while someone keeps publishing or seeding it, so the graph also tracks liveness and shows the network as it is now rather than everyone who ever joined. The results would be published as open data and APIs for clients, search and feed providers, with this crawler as one provider among many. Communities that hide author identities stay unlinkable. Nothing is built yet; the repository collects the research and the accepted architecture.",
+          "tagline": "Idea-stage open crawler that maps which authors and communities are active on Bitsocial."
+        },
+        "bitsocial-mesh": {
+          "description": "Bitsocial Mesh is a plan to keep communities working through an internet shutdown or a disaster. First, a laptop or small computer hosts a community and opens a Wi-Fi hotspot, so people nearby can read, post and moderate from a browser. Later stages would link these boxes across a city over LoRa radio and carry posts out once any connection returns, with phone-to-phone Bluetooth last, if at all. Unlike mesh chat apps such as bitchat, it keeps communities with their own rules, moderators and spam defences. Nothing is built or tested yet; the repository collects the design.",
+          "tagline": "Idea-stage plan to keep Bitsocial communities running when the internet is cut off."
+        },
+        "prediction-markets": {
+          "description": "Prediction Markets is open research into apps that put a prediction market and its discussion in one place, so people can find a question, debate the evidence, take a position and come back for the result. Bitsocial would carry the communities and threads, while an existing market protocol handles trading and settlement; Trueo is the first candidate being studied. A community vote never settles a market. The idea is open for any developer or project to build. Nothing is built yet and no partnership is agreed.",
+          "tagline": "Idea-stage research into prediction markets with a Bitsocial community around each question."
+        },
+        "tipping-challenge": {
+          "description": "Tipping Challenge lets a community show verified tips. An author sends a token straight to another author's wallet, then replies to the comment being tipped with the transaction hash, and the community node looks the transaction up on chain and writes the verified amount into the reply. Tips can be ERC-20 tokens, NFTs or a chain's native coin. The community cannot intercept a tip or fake one, and replies without a tip are not affected. It implements the <code>tipping/v1</code> contract, so a client written against that contract keeps working with other implementations.",
+          "tagline": "Verified tips on replies, sent wallet to wallet and checked on chain by the community."
         }
       }
     },

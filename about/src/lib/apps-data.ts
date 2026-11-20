@@ -44,7 +44,16 @@ export type AppIconKey =
   | "link-2"
   | "share-2"
   | "sparkles"
-  | "tag";
+  | "tag"
+  | "coins"
+  | "compass"
+  | "image-off"
+  | "layers"
+  | "list-ordered"
+  | "network"
+  | "radio"
+  | "sliders-horizontal"
+  | "trending-up";
 
 export type DesktopVariant =
   | "windows"
@@ -256,13 +265,18 @@ const APP_TAG_TRANSLATION_KEYS: Record<string, string> = {
   Invites: "apps.catalog.tags.invites",
   Mirrors: "apps.catalog.tags.mirrors",
   Moderation: "apps.catalog.tags.moderation",
+  Names: "apps.catalog.tags.names",
+  Offline: "apps.catalog.tags.offline",
   "On-chain": "apps.catalog.tags.onChain",
   Operator: "apps.catalog.tags.operator",
+  "Prediction markets": "apps.catalog.tags.predictionMarkets",
   "Pubsub relay": "apps.catalog.tags.pubsubRelay",
   "Reference client": "apps.catalog.tags.referenceClient",
   "Risk scores": "apps.catalog.tags.riskScores",
   Search: "apps.catalog.tags.search",
+  "Social graph": "apps.catalog.tags.socialGraph",
   Telegram: "apps.catalog.tags.telegram",
+  Tips: "apps.catalog.tags.tips",
   Verification: "apps.catalog.tags.verification",
   Video: "apps.catalog.tags.video",
 };
@@ -397,6 +411,46 @@ const APP_COPY_TRANSLATION_KEYS: Record<string, { tagline: string; description: 
   modelswarm: {
     tagline: "apps.catalog.items.modelswarm.tagline",
     description: "apps.catalog.items.modelswarm.description",
+  },
+  "base64-challenge": {
+    tagline: "apps.catalog.items.base64-challenge.tagline",
+    description: "apps.catalog.items.base64-challenge.description",
+  },
+  "tipping-challenge": {
+    tagline: "apps.catalog.items.tipping-challenge.tagline",
+    description: "apps.catalog.items.tipping-challenge.description",
+  },
+  "active-page-sort": {
+    tagline: "apps.catalog.items.active-page-sort.tagline",
+    description: "apps.catalog.items.active-page-sort.description",
+  },
+  "bitsocial-discovery": {
+    tagline: "apps.catalog.items.bitsocial-discovery.tagline",
+    description: "apps.catalog.items.bitsocial-discovery.description",
+  },
+  "bitsocial-forum": {
+    tagline: "apps.catalog.items.bitsocial-forum.tagline",
+    description: "apps.catalog.items.bitsocial-forum.description",
+  },
+  "bitsocial-graph": {
+    tagline: "apps.catalog.items.bitsocial-graph.tagline",
+    description: "apps.catalog.items.bitsocial-graph.description",
+  },
+  "bitsocial-algorithms": {
+    tagline: "apps.catalog.items.bitsocial-algorithms.tagline",
+    description: "apps.catalog.items.bitsocial-algorithms.description",
+  },
+  "bitsocial-mesh": {
+    tagline: "apps.catalog.items.bitsocial-mesh.tagline",
+    description: "apps.catalog.items.bitsocial-mesh.description",
+  },
+  "prediction-markets": {
+    tagline: "apps.catalog.items.prediction-markets.tagline",
+    description: "apps.catalog.items.prediction-markets.description",
+  },
+  "bitsocial-chain": {
+    tagline: "apps.catalog.items.bitsocial-chain.tagline",
+    description: "apps.catalog.items.bitsocial-chain.description",
   },
 };
 
@@ -873,6 +927,31 @@ export const APPS: AppData[] = [
     searchTerms: ["wordfilter", "word filter", "replacements", "imageboard", "5chan", "censor"],
   },
   {
+    slug: "base64-challenge",
+    name: "Base64 Challenge",
+    tagline: "Rejects publications that hide images or other files in their text as base64 data.",
+    description:
+      "Base64 Challenge runs on a Bitsocial community node and rejects any publication that embeds a <code>data:</code> URI or a long run of base64 in any text field, from post bodies and titles to display names and edit reasons. Without it, a community can end up signing, storing and serving a small image hidden in a post's text, which an AI moderator sees only as a wall of characters. The check is deterministic and runs no model, hex strings such as hashes and transaction data pass, and moderators can be exempted.",
+    categories: ["anti-spam"],
+    tags: ["Moderation", "Images"],
+    icon: "image-off",
+    githubRepo: "bitsocialnet/base64-challenge",
+    links: [
+      {
+        label: "@bitsocial/base64-challenge",
+        url: "https://www.npmjs.com/package/@bitsocial/base64-challenge",
+        kind: "package",
+      },
+    ],
+    relatedSlugs: [
+      "wordfilter-challenge",
+      "ai-moderation-challenge",
+      "r9k-challenge",
+      "spam-blocker",
+    ],
+    searchTerms: ["base64", "data uri", "embedded images", "inline images", "binary", "files"],
+  },
+  {
     slug: "captcha-canvas-challenge",
     name: "Captcha Canvas Challenge",
     tagline: "Custom image captchas for communities that want human verification.",
@@ -1067,8 +1146,39 @@ export const APPS: AppData[] = [
     links: [
       { label: "Open web app", url: "https://5archive.org", kind: "launch", platform: "web" },
     ],
-    relatedSlugs: ["bitsocial-cli", "bitsocial-seeder", "5chan", "seedit"],
+    relatedSlugs: ["bitsocial-cli", "bitsocial-discovery", "bitsocial-seeder", "5chan", "seedit"],
     searchTerms: ["indexer", "search", "crawler", "archive", "sqlite", "5archive", "self-hosted"],
+  },
+  {
+    slug: "bitsocial-discovery",
+    name: "Bitsocial Discovery",
+    tagline:
+      "Finds Bitsocial communities that no list carries yet and checks which ones are alive.",
+    description:
+      "Bitsocial Discovery starts from community lists, submissions, indexers and ENS records, then follows the pointers communities leave to each other: addresses mentioned in posts and descriptions, crossposts, and the chain of an author's previous comments. It keeps rechecking every community it finds to track which are still alive, and serves the results as a JSON API for clients, indexers and review tools. It stores community metadata, never posts, and ships idle: the operator chooses the sources and what the API shows.",
+    categories: ["tools"],
+    tags: ["Search", "Operator"],
+    icon: "compass",
+    githubRepo: "bitsocialnet/bitsocial-discovery",
+    links: [
+      {
+        label: "ghcr.io/bitsocialnet/bitsocial-discovery",
+        url: "https://github.com/bitsocialnet/bitsocial-discovery/pkgs/container/bitsocial-discovery",
+        kind: "package",
+      },
+    ],
+    relatedSlugs: ["bitsocial-indexer", "bitsocial-cli", "bitsocial-graph"],
+    status: "experimental",
+    searchTerms: [
+      "discovery",
+      "crawler",
+      "communities",
+      "directory",
+      "ens",
+      "crossposts",
+      "docker",
+      "self-hosted",
+    ],
   },
   {
     slug: "bitsocial-previewer",
@@ -1212,9 +1322,73 @@ export const APPS: AppData[] = [
         kind: "package",
       },
     ],
-    relatedSlugs: ["bitsocial-cli", "subreddit-mirror"],
+    relatedSlugs: ["bitsocial-cli", "subreddit-mirror", "active-page-sort"],
     status: "experimental",
     searchTerms: ["flair", "flairs", "page sort", "pageSorts", "filter", "sort", "removed", "feed"],
+  },
+  {
+    slug: "active-page-sort",
+    name: "Active Page Sort",
+    tagline:
+      "Imageboard bump order where sage replies and threads past the bump limit stop bumping.",
+    description:
+      "Active Page Sort is a custom page sort for community owners that replaces the built-in bump order. A reply with a line matching one of the board's keywords, such as <code>sage</code>, does not bump its thread, and with a bump limit set only a thread's first replies can bump it. Those threads sink but are never hidden. It publishes under the same <code>active</code> key as the built-in sort, so clients show the new order without any change. It requires pkc-js 0.0.114 or later.",
+    categories: ["tools"],
+    tags: ["Feeds", "Imageboard"],
+    icon: "list-ordered",
+    githubRepo: "pkcprotocol/active-page-sort",
+    links: [
+      {
+        label: "@pkcprotocol/active-page-sort",
+        url: "https://www.npmjs.com/package/@pkcprotocol/active-page-sort",
+        kind: "package",
+      },
+    ],
+    relatedSlugs: ["5chan", "5chan-board-manager", "flair-page-sort"],
+    status: "experimental",
+    searchTerms: [
+      "sage",
+      "bump",
+      "bump order",
+      "bump limit",
+      "page sort",
+      "pageSorts",
+      "catalog",
+      "imageboard",
+      "5chan",
+    ],
+  },
+  {
+    slug: "tipping-challenge",
+    name: "Tipping Challenge",
+    tagline:
+      "Verified tips on replies, sent wallet to wallet and checked on chain by the community.",
+    description:
+      "Tipping Challenge lets a community show verified tips. An author sends a token straight to another author's wallet, then replies to the comment being tipped with the transaction hash, and the community node looks the transaction up on chain and writes the verified amount into the reply. Tips can be ERC-20 tokens, NFTs or a chain's native coin. The community cannot intercept a tip or fake one, and replies without a tip are not affected. It implements the <code>tipping/v1</code> contract, so a client written against that contract keeps working with other implementations.",
+    categories: ["tools"],
+    tags: ["Tips", "On-chain"],
+    icon: "coins",
+    githubRepo: "bitsocialnet/tipping-challenge",
+    links: [
+      {
+        label: "@bitsocial/tipping-challenge",
+        url: "https://www.npmjs.com/package/@bitsocial/tipping-challenge",
+        kind: "package",
+      },
+    ],
+    relatedSlugs: ["evm-contract-call", "mintpass", "bitsocial-chain"],
+    status: "experimental",
+    searchTerms: [
+      "tips",
+      "tipping",
+      "erc-20",
+      "erc-721",
+      "nft",
+      "payments",
+      "ethereum",
+      "base",
+      "crypto",
+    ],
   },
   {
     slug: "5chan-board-manager",
@@ -1325,6 +1499,144 @@ export const APPS: AppData[] = [
       "safetensors",
       "gguf",
       "llm",
+    ],
+  },
+  {
+    slug: "bitsocial-forum",
+    name: "Bitsocial Forum",
+    tagline: "Idea-stage forum client where each section belongs to whichever community wins it.",
+    description:
+      "Bitsocial Forum is a planned forum for Bitsocial projects and the third Bitsocial client after Seedit and 5chan, meant to gather discussion now split across Telegram, Twitter and GitHub. Each section, such as one for 5chan or .bso names, is a directory that communities compete for: the community ranked first runs it with its own moderators, and another can take it over if that one goes away or is run badly. There is no server and no global admin. An early build reads any Bitsocial community, but posting and profiles are not built yet.",
+    categories: ["concepts"],
+    tags: ["Forums"],
+    icon: "message-square",
+    githubRepo: "bitsocialnet/bitsocial-forum",
+    links: [],
+    relatedSlugs: ["seedit", "5chan", "bitsocial-discovery"],
+    status: "idea",
+    searchTerms: ["forum", "discourse", "sections", "directories", "discussion", "threads"],
+  },
+  {
+    slug: "bitsocial-graph",
+    name: "Bitsocial Graph",
+    tagline:
+      "Idea-stage open crawler that maps which authors and communities are active on Bitsocial.",
+    description:
+      "Bitsocial Graph is research into an open crawler that builds the Bitsocial social graph from public protocol data: authors, communities and how they interact. Bitsocial content stays reachable only while someone keeps publishing or seeding it, so the graph also tracks liveness and shows the network as it is now rather than everyone who ever joined. The results would be published as open data and APIs for clients, search and feed providers, with this crawler as one provider among many. Communities that hide author identities stay unlinkable. Nothing is built yet; the repository collects the research and the accepted architecture.",
+    categories: ["concepts"],
+    tags: ["Social graph", "Search"],
+    icon: "network",
+    githubRepo: "bitsocialnet/bitsocial-graph",
+    links: [],
+    relatedSlugs: ["bitsocial-algorithms", "bitsocial-discovery", "bitsocial-indexer"],
+    status: "idea",
+    searchTerms: [
+      "social graph",
+      "graph",
+      "crawler",
+      "follows",
+      "followers",
+      "liveness",
+      "open data",
+      "discovery",
+    ],
+  },
+  {
+    slug: "bitsocial-algorithms",
+    name: "Bitsocial Algorithms",
+    tagline: "Idea-stage feed and recommendation providers that users can switch like a setting.",
+    description:
+      "Bitsocial Algorithms is research into feed and recommendation algorithms as replaceable services across Bitsocial clients. A client can ship with a strong default, and a user can switch to another provider, run their own or rank posts locally without moving their profile, while a chronological feed stays available without any provider. Providers discover and rank posts but never own identities, posts or social state, so no single company decides what everyone sees. Nothing is built yet; the repository collects the research and the accepted architecture.",
+    categories: ["concepts"],
+    tags: ["Feeds"],
+    icon: "sliders-horizontal",
+    githubRepo: "bitsocialnet/bitsocial-algorithms",
+    links: [],
+    relatedSlugs: ["bitsocial-graph", "wetube", "seedit"],
+    status: "idea",
+    searchTerms: [
+      "algorithm",
+      "algorithms",
+      "feeds",
+      "for you",
+      "recommendations",
+      "ranking",
+      "timeline",
+    ],
+  },
+  {
+    slug: "bitsocial-mesh",
+    name: "Bitsocial Mesh",
+    tagline: "Idea-stage plan to keep Bitsocial communities running when the internet is cut off.",
+    description:
+      "Bitsocial Mesh is a plan to keep communities working through an internet shutdown or a disaster. First, a laptop or small computer hosts a community and opens a Wi-Fi hotspot, so people nearby can read, post and moderate from a browser. Later stages would link these boxes across a city over LoRa radio and carry posts out once any connection returns, with phone-to-phone Bluetooth last, if at all. Unlike mesh chat apps such as bitchat, it keeps communities with their own rules, moderators and spam defences. Nothing is built or tested yet; the repository collects the design.",
+    categories: ["concepts"],
+    tags: ["Offline"],
+    icon: "radio",
+    githubRepo: "bitsocialnet/bitsocial-mesh",
+    links: [],
+    relatedSlugs: ["5chan", "seedit", "bitsocial-cli"],
+    status: "idea",
+    searchTerms: [
+      "mesh",
+      "offline",
+      "bluetooth",
+      "lora",
+      "hotspot",
+      "blackout",
+      "internet shutdown",
+      "disaster",
+      "bitchat",
+    ],
+  },
+  {
+    slug: "prediction-markets",
+    name: "Prediction Markets",
+    tagline:
+      "Idea-stage research into prediction markets with a Bitsocial community around each question.",
+    description:
+      "Prediction Markets is open research into apps that put a prediction market and its discussion in one place, so people can find a question, debate the evidence, take a position and come back for the result. Bitsocial would carry the communities and threads, while an existing market protocol handles trading and settlement; Trueo is the first candidate being studied. A community vote never settles a market. The idea is open for any developer or project to build. Nothing is built yet and no partnership is agreed.",
+    categories: ["concepts"],
+    tags: ["Prediction markets", "On-chain"],
+    icon: "trending-up",
+    githubRepo: "bitsocialnet/prediction-markets",
+    links: [],
+    relatedSlugs: ["5chan", "seedit", "tipping-challenge"],
+    status: "idea",
+    searchTerms: [
+      "prediction markets",
+      "polymarket",
+      "kalshi",
+      "trueo",
+      "forecasting",
+      "betting",
+      "markets",
+    ],
+  },
+  {
+    slug: "bitsocial-chain",
+    name: "Bitsocial Chain",
+    tagline: "Idea-stage Ethereum L2 for .bso names, tips, payments and community tokens.",
+    description:
+      "Bitsocial Chain is the proposed economic layer for Bitsocial apps in Phase 3 of the master plan: an Ethereum L2 to host .bso names, tipping and payments, community tokens and AgoraSwap. It is meant to add no trust beyond Ethereum itself, with no upgrade keys, no security council and no privileged operator. Posts and communities stay peer-to-peer; nothing social goes on chain. A proof of concept derives a .bso name registry from plain Ethereum transactions that anyone can recompute. It is not audited or deployed.",
+    categories: ["concepts"],
+    tags: ["On-chain", "Names"],
+    icon: "layers",
+    githubRepo: "bitsocialnet/bitsocial-chain",
+    links: [{ label: "Open website", url: "https://chain.bitsocial.net", kind: "launch" }],
+    relatedSlugs: ["tipping-challenge", "mintpass", "evm-contract-call"],
+    status: "idea",
+    searchTerms: [
+      "chain",
+      "l2",
+      "rollup",
+      "ethereum",
+      "bso",
+      ".bso",
+      "names",
+      "tokens",
+      "agoraswap",
+      "stage 2",
     ],
   },
 ];

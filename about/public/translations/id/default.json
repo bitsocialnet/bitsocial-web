@@ -536,7 +536,12 @@
         "images": "Gambar",
         "codeHosting": "Hosting kode",
         "encyclopedia": "Ensiklopedia",
-        "video": "Video"
+        "video": "Video",
+        "names": "Nama",
+        "offline": "Luring",
+        "predictionMarkets": "Pasar prediksi",
+        "socialGraph": "Graf sosial",
+        "tips": "Tip"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -663,6 +668,46 @@
         "flair-page-sort": {
           "tagline": "Halaman komunitas yang hanya memuat post dan balasan dengan flair pilihan.",
           "description": "Flair Page Sort adalah pengurutan halaman kustom untuk pemilik komunitas. Saat dicantumkan di pengaturan halaman sebuah komunitas bersama sekumpulan flair, ia membuat node menerbitkan halaman tambahan yang hanya memuat post atau balasan dengan salah satu flair tersebut, diurutkan menurut flair terbaru, baru, populer, atau terbaik. Komunitas dapat menerbitkannya sebagai halaman default agar klien langsung membukanya, dan klien tidak perlu memasang apa pun untuk membacanya. Membutuhkan pkc-js 0.0.143 atau yang lebih baru."
+        },
+        "active-page-sort": {
+          "description": "Active Page Sort adalah pengurutan halaman kustom untuk pemilik komunitas yang menggantikan urutan bump bawaan. Balasan yang berisi baris yang cocok dengan salah satu kata kunci board, seperti <code>sage</code>, tidak mem-bump thread-nya, dan jika bump limit ditetapkan, hanya balasan-balasan pertama sebuah thread yang dapat mem-bump-nya. Thread tersebut tenggelam tetapi tidak pernah disembunyikan. Pengurutan ini diterbitkan dengan kunci <code>active</code> yang sama seperti pengurutan bawaan, sehingga klien menampilkan urutan baru tanpa perubahan apa pun. Membutuhkan pkc-js 0.0.114 atau yang lebih baru.",
+          "tagline": "Urutan bump ala imageboard, di mana balasan sage tidak mem-bump thread dan thread yang melewati bump limit berhenti ter-bump."
+        },
+        "base64-challenge": {
+          "description": "Base64 Challenge berjalan di node komunitas Bitsocial dan menolak setiap publikasi yang menyisipkan URI <code>data:</code> atau rangkaian panjang base64 di kolom teks mana pun, mulai dari isi dan judul post hingga nama tampilan dan alasan edit. Tanpanya, sebuah komunitas bisa berakhir menandatangani, menyimpan, dan menyajikan gambar kecil yang tersembunyi di teks sebuah post, yang oleh moderator AI hanya terlihat sebagai dinding karakter. Pemeriksaannya deterministik dan tidak menjalankan model apa pun, string hex seperti hash dan data transaksi tetap lolos, dan moderator dapat dikecualikan.",
+          "tagline": "Menolak publikasi yang menyembunyikan gambar atau file lain di dalam teksnya sebagai data base64."
+        },
+        "bitsocial-algorithms": {
+          "description": "Bitsocial Algorithms adalah riset tentang algoritma feed dan rekomendasi sebagai layanan yang bisa diganti di berbagai klien Bitsocial. Sebuah klien bisa hadir dengan default yang kuat, dan pengguna bisa beralih ke penyedia lain, menjalankan penyedianya sendiri, atau mengurutkan postingan secara lokal tanpa memindahkan profilnya, sementara feed kronologis tetap tersedia tanpa penyedia apa pun. Penyedia menemukan dan mengurutkan postingan tetapi tidak pernah memiliki identitas, postingan, atau data sosial, sehingga tidak ada satu perusahaan pun yang memutuskan apa yang dilihat semua orang. Belum ada yang dibangun; repositori ini mengumpulkan riset dan arsitektur yang telah disepakati.",
+          "tagline": "Penyedia feed dan rekomendasi yang masih berupa ide, yang bisa diganti pengguna seperti sebuah pengaturan."
+        },
+        "bitsocial-chain": {
+          "description": "Bitsocial Chain adalah lapisan ekonomi yang diusulkan untuk aplikasi Bitsocial dalam Fase 3 rencana induk: sebuah Ethereum L2 untuk menampung nama .bso, tip dan pembayaran, token komunitas, serta AgoraSwap. Rancangannya ditujukan agar tidak menambah kepercayaan apa pun di luar Ethereum itu sendiri, tanpa kunci upgrade, tanpa dewan keamanan, dan tanpa operator istimewa. Postingan dan komunitas tetap peer-to-peer; tidak ada hal sosial yang masuk ke on-chain. Sebuah proof of concept menurunkan, dari transaksi Ethereum biasa, registri nama .bso yang dapat dihitung ulang oleh siapa pun. Proof of concept ini belum diaudit maupun di-deploy.",
+          "tagline": "Ethereum L2 yang masih berupa ide untuk nama .bso, tip, pembayaran, dan token komunitas."
+        },
+        "bitsocial-discovery": {
+          "description": "Bitsocial Discovery berangkat dari daftar komunitas, kiriman, pengindeks, dan catatan ENS, lalu menelusuri petunjuk yang ditinggalkan komunitas satu sama lain: alamat yang disebut dalam postingan dan deskripsi, crosspost, serta rantai komentar sebelumnya dari seorang penulis. Ia terus memeriksa ulang setiap komunitas yang ditemukannya untuk melacak mana yang masih aktif, lalu menyajikan hasilnya sebagai JSON API untuk klien, pengindeks, dan alat peninjauan. Ia menyimpan metadata komunitas, tidak pernah postingan, dan datang dalam keadaan tidak aktif: operatorlah yang memilih sumber dan apa yang ditampilkan API.",
+          "tagline": "Menemukan komunitas Bitsocial yang belum tercantum di daftar mana pun dan memeriksa mana yang aktif."
+        },
+        "bitsocial-forum": {
+          "description": "Bitsocial Forum adalah forum yang direncanakan untuk proyek-proyek Bitsocial sekaligus klien Bitsocial ketiga setelah Seedit dan 5chan, yang dimaksudkan untuk mengumpulkan diskusi yang kini tersebar di Telegram, Twitter, dan GitHub. Setiap bagian, seperti bagian untuk 5chan atau nama .bso, adalah direktori yang diperebutkan komunitas: komunitas di peringkat pertama menjalankannya dengan moderatornya sendiri, dan komunitas lain dapat mengambil alih jika komunitas itu menghilang atau menjalankannya dengan buruk. Tidak ada server dan tidak ada admin global. Build awal dapat membaca komunitas Bitsocial mana pun, tetapi fitur posting dan profil belum dibangun.",
+          "tagline": "Klien forum yang masih berupa ide, di mana setiap bagian menjadi milik komunitas mana pun yang memenangkannya."
+        },
+        "bitsocial-graph": {
+          "description": "Bitsocial Graph adalah riset tentang perayap terbuka yang membangun graf sosial Bitsocial dari data protokol publik: penulis, komunitas, dan cara mereka berinteraksi. Konten Bitsocial hanya tetap dapat dijangkau selama ada yang terus menerbitkan atau melakukan seeding atasnya, sehingga graf ini juga melacak apa yang masih aktif dan menampilkan jaringan sebagaimana adanya sekarang, bukan semua orang yang pernah bergabung. Hasilnya akan diterbitkan sebagai data terbuka dan API bagi klien serta penyedia pencarian dan feed, dengan perayap ini sebagai salah satu dari banyak penyedia. Komunitas yang menyembunyikan identitas penulis tetap tidak dapat ditautkan. Belum ada yang dibangun; repositori ini mengumpulkan riset dan arsitektur yang telah disepakati.",
+          "tagline": "Perayap terbuka yang masih berupa ide, yang memetakan penulis dan komunitas mana saja yang aktif di Bitsocial."
+        },
+        "bitsocial-mesh": {
+          "description": "Bitsocial Mesh adalah rencana untuk menjaga komunitas tetap berfungsi saat internet dimatikan atau terjadi bencana. Pertama, sebuah laptop atau komputer kecil meng-host komunitas dan membuka hotspot Wi-Fi, sehingga orang-orang di sekitar bisa membaca, memposting, dan memoderasi dari browser. Tahap berikutnya akan menghubungkan perangkat-perangkat ini di seluruh kota lewat radio LoRa dan membawa postingan keluar begitu ada koneksi apa pun yang kembali, dengan Bluetooth antarponsel paling akhir, itu pun jika ada. Berbeda dengan aplikasi chat mesh seperti bitchat, Bitsocial Mesh mempertahankan komunitas dengan aturan, moderator, dan pertahanan antispam mereka sendiri. Belum ada yang dibangun atau diuji; repositori ini mengumpulkan desainnya.",
+          "tagline": "Rencana yang masih berupa ide untuk menjaga komunitas Bitsocial tetap berjalan saat internet diputus."
+        },
+        "prediction-markets": {
+          "description": "Prediction Markets adalah riset terbuka tentang aplikasi yang menyatukan pasar prediksi dan diskusinya di satu tempat, sehingga orang dapat menemukan pertanyaan, memperdebatkan bukti, mengambil posisi, dan kembali untuk melihat hasilnya. Bitsocial akan menampung komunitas dan utas, sementara protokol pasar yang sudah ada menangani perdagangan dan penyelesaian; Trueo adalah kandidat pertama yang sedang dikaji. Sebuah pasar tidak pernah diselesaikan lewat pemungutan suara komunitas. Ide ini terbuka untuk dibangun oleh pengembang atau proyek mana pun. Belum ada yang dibangun dan belum ada kemitraan yang disepakati.",
+          "tagline": "Riset yang masih berupa ide tentang pasar prediksi, dengan komunitas Bitsocial di sekitar setiap pertanyaan."
+        },
+        "tipping-challenge": {
+          "description": "Tipping Challenge memungkinkan komunitas menampilkan tip terverifikasi. Seorang penulis mengirim token langsung ke dompet penulis lain, lalu membalas komentar yang diberi tip dengan hash transaksinya, dan node komunitas mencari transaksi itu on-chain lalu menuliskan jumlah yang terverifikasi ke dalam balasan. Tip bisa berupa token ERC-20, NFT, atau koin native sebuah chain. Komunitas tidak dapat mencegat atau memalsukan tip, dan balasan tanpa tip tidak terpengaruh. Proyek ini mengimplementasikan kontrak <code>tipping/v1</code>, sehingga klien yang ditulis mengikuti kontrak itu tetap dapat bekerja dengan implementasi lain.",
+          "tagline": "Tip terverifikasi pada balasan, dikirim dari dompet ke dompet dan diperiksa on-chain oleh komunitas."
         }
       }
     },

@@ -536,7 +536,12 @@
         "images": "Bilder",
         "codeHosting": "Code-Hosting",
         "encyclopedia": "Enzyklopädie",
-        "video": "Video"
+        "video": "Video",
+        "names": "Namen",
+        "offline": "Offline",
+        "predictionMarkets": "Prognosemärkte",
+        "socialGraph": "Social Graph",
+        "tips": "Trinkgelder"
       },
       "linkLabels": {
         "androidApk": "Android-APK",
@@ -663,6 +668,46 @@
         "flair-page-sort": {
           "tagline": "Community-Seiten, die nur die Beiträge und Antworten mit einem ausgewählten Flair enthalten.",
           "description": "Flair Page Sort ist eine benutzerdefinierte Seitensortierung für Community-Inhaber. In den Seiteneinstellungen einer Community zusammen mit einer Reihe von Flairs eingetragen, lässt sie den Knoten eine zusätzliche Seite veröffentlichen, die nur die Beiträge oder Antworten mit einem dieser Flairs enthält, sortiert nach zuletzt vergebenem Flair, Neu, Heiß oder Beste. Eine Community kann sie als Standardseite veröffentlichen, sodass Clients direkt darauf starten, und Clients müssen nichts installieren, um sie zu lesen. Erforderlich ist pkc-js 0.0.143 oder neuer."
+        },
+        "active-page-sort": {
+          "description": "Active Page Sort ist eine benutzerdefinierte Seitensortierung für Community-Inhaber, die die eingebaute Bump-Reihenfolge ersetzt. Eine Antwort mit einer Zeile, die eines der Schlüsselwörter des Boards trifft, etwa <code>sage</code>, bumpt ihren Thread nicht, und bei gesetztem Bump-Limit können nur die ersten Antworten eines Threads ihn bumpen. Diese Threads sinken ab, werden aber nie ausgeblendet. Sie wird unter demselben Schlüssel <code>active</code> wie die eingebaute Sortierung veröffentlicht, sodass Clients die neue Reihenfolge ohne jede Änderung anzeigen. Erforderlich ist pkc-js 0.0.114 oder neuer.",
+          "tagline": "Bump-Reihenfolge wie auf Imageboards, bei der Antworten mit sage nicht bumpen und Threads über dem Bump-Limit nicht mehr gebumpt werden."
+        },
+        "base64-challenge": {
+          "description": "Base64 Challenge läuft auf einem Bitsocial-Community-Node und lehnt jede Veröffentlichung ab, die in einem beliebigen Textfeld eine <code>data:</code>-URI oder eine lange base64-Zeichenfolge einbettet, vom Beitragstext und Titel bis zu Anzeigenamen und Bearbeitungsgründen. Ohne sie kann eine Community am Ende ein kleines, im Text eines Beitrags verstecktes Bild signieren, speichern und ausliefern, das ein KI-Moderator nur als Wand aus Zeichen sieht. Die Prüfung ist deterministisch und führt kein Modell aus, Hex-Strings wie Hashes und Transaktionsdaten kommen durch, und Moderatoren können ausgenommen werden.",
+          "tagline": "Lehnt Veröffentlichungen ab, die Bilder oder andere Dateien als base64-Daten in ihrem Text verstecken."
+        },
+        "bitsocial-algorithms": {
+          "description": "Bitsocial Algorithms erforscht Feed- und Empfehlungsalgorithmen als austauschbare Dienste über Bitsocial-Clients hinweg. Ein Client kann mit einer starken Voreinstellung ausgeliefert werden, und Nutzer können zu einem anderen Anbieter wechseln, einen eigenen betreiben oder Beiträge lokal sortieren, ohne ihr Profil umzuziehen, während ein chronologischer Feed ganz ohne Anbieter verfügbar bleibt. Anbieter entdecken und sortieren Beiträge, besitzen aber nie Identitäten, Beiträge oder soziale Daten, sodass kein einzelnes Unternehmen entscheidet, was alle sehen. Noch ist nichts gebaut; das Repository sammelt die Forschung und die beschlossene Architektur.",
+          "tagline": "Feed- und Empfehlungsanbieter im Ideenstadium, die Nutzer wie eine Einstellung wechseln können."
+        },
+        "bitsocial-chain": {
+          "description": "Bitsocial Chain ist die vorgeschlagene wirtschaftliche Ebene für Bitsocial-Apps in Phase 3 des Masterplans: ein Ethereum-L2 für .bso-Namen, Trinkgelder und Zahlungen, Community-Tokens und AgoraSwap. Dabei soll kein Vertrauen über Ethereum selbst hinaus nötig sein: keine Upgrade-Schlüssel, kein Security Council und kein privilegierter Betreiber. Beiträge und Communities bleiben Peer-to-Peer; nichts Soziales landet on-chain. Ein Proof of Concept leitet aus einfachen Ethereum-Transaktionen ein .bso-Namensregister ab, das jeder nachrechnen kann. Er ist weder auditiert noch bereitgestellt.",
+          "tagline": "Ethereum-L2 im Ideenstadium für .bso-Namen, Trinkgelder, Zahlungen und Community-Tokens."
+        },
+        "bitsocial-discovery": {
+          "description": "Bitsocial Discovery startet bei Community-Listen, Einreichungen, Indexern und ENS-Einträgen und folgt dann den Verweisen, die Communitys aufeinander hinterlassen: in Beiträgen und Beschreibungen erwähnte Adressen, Crossposts und die Kette der früheren Kommentare eines Autors. Jede gefundene Community prüft es laufend erneut, um zu verfolgen, welche noch aktiv sind, und stellt die Ergebnisse als JSON API für Clients, Indexer und Prüfwerkzeuge bereit. Es speichert Community-Metadaten, niemals Beiträge, und wird inaktiv ausgeliefert: Der Betreiber wählt die Quellen und was die API anzeigt.",
+          "tagline": "Findet Bitsocial-Communitys, die noch auf keiner Liste stehen, und prüft, welche davon aktiv sind."
+        },
+        "bitsocial-forum": {
+          "description": "Bitsocial Forum ist ein geplantes Forum für Bitsocial-Projekte und nach Seedit und 5chan der dritte Bitsocial-Client. Es soll Diskussionen bündeln, die heute über Telegram, Twitter und GitHub verstreut sind. Jeder Bereich, etwa einer für 5chan oder für .bso-Namen, ist ein Verzeichnis, um das Communitys konkurrieren: Die erstplatzierte Community betreibt ihn mit ihren eigenen Moderatoren, und eine andere kann ihn übernehmen, wenn diese verschwindet oder ihn schlecht führt. Es gibt keinen Server und keinen globalen Administrator. Ein früher Build liest jede Bitsocial-Community, Posten und Profile sind aber noch nicht gebaut.",
+          "tagline": "Forum-Client im Ideenstadium, bei dem jeder Bereich der Community gehört, die ihn gewinnt."
+        },
+        "bitsocial-graph": {
+          "description": "Bitsocial Graph erforscht einen offenen Crawler, der aus öffentlichen Protokolldaten den sozialen Graphen von Bitsocial aufbaut: Autoren, Communitys und wie sie miteinander interagieren. Inhalte auf Bitsocial bleiben nur erreichbar, solange jemand sie weiter veröffentlicht oder seedet. Deshalb erfasst der Graph auch, was noch aktiv ist, und zeigt das Netzwerk so, wie es jetzt ist, statt aller, die je beigetreten sind. Die Ergebnisse würden als offene Daten und APIs für Clients sowie Such- und Feed-Anbieter veröffentlicht, wobei dieser Crawler ein Anbieter unter vielen wäre. Communitys, die Autorenidentitäten verbergen, bleiben unverknüpfbar. Noch ist nichts gebaut; das Repository sammelt die Forschung und die beschlossene Architektur.",
+          "tagline": "Offener Crawler im Ideenstadium, der kartiert, welche Autoren und Communitys auf Bitsocial aktiv sind."
+        },
+        "bitsocial-mesh": {
+          "description": "Bitsocial Mesh ist ein Plan, um Communities bei einer Internetabschaltung oder einer Katastrophe funktionsfähig zu halten. Zunächst hostet ein Laptop oder kleiner Computer eine Community und öffnet einen Wi-Fi-Hotspot, sodass Menschen in der Nähe über einen Browser lesen, posten und moderieren können. Spätere Phasen würden diese Geräte stadtweit über LoRa-Funk verbinden und Beiträge nach draußen tragen, sobald irgendeine Verbindung zurückkehrt; Bluetooth von Telefon zu Telefon käme zuletzt, wenn überhaupt. Anders als Mesh-Chat-Apps wie bitchat bewahrt es Communities mit eigenen Regeln, Moderatoren und Spam-Abwehr. Noch ist nichts gebaut oder getestet; das Repository sammelt das Design.",
+          "tagline": "Plan im Ideenstadium, um Bitsocial-Communities am Laufen zu halten, wenn das Internet gekappt wird."
+        },
+        "prediction-markets": {
+          "description": "Prediction Markets ist offene Forschung zu Apps, die einen Prognosemarkt und die Diskussion darüber an einem Ort zusammenführen, sodass Menschen eine Frage finden, die Belege diskutieren, eine Position eingehen und für das Ergebnis zurückkommen können. Bitsocial würde die Communities und Threads tragen, während ein bestehendes Marktprotokoll Handel und Abwicklung übernimmt; Trueo ist der erste Kandidat, der geprüft wird. Ein Markt wird nie durch eine Community-Abstimmung abgewickelt. Die Idee steht jedem Entwickler und jedem Projekt zur Umsetzung offen. Noch ist nichts gebaut, und es wurde keine Partnerschaft vereinbart.",
+          "tagline": "Forschung im Ideenstadium zu Prognosemärkten mit einer Bitsocial-Community rund um jede Frage."
+        },
+        "tipping-challenge": {
+          "description": "Tipping Challenge lässt eine Community verifizierte Trinkgelder anzeigen. Ein Autor sendet einen Token direkt an die Wallet eines anderen Autors und antwortet dann mit dem Transaktions-Hash auf den Kommentar, der das Trinkgeld erhält; der Community-Node sucht die Transaktion on-chain und schreibt den verifizierten Betrag in die Antwort. Trinkgelder können ERC-20-Token, NFTs oder der native Coin einer Chain sein. Die Community kann ein Trinkgeld weder abfangen noch fälschen, und Antworten ohne Trinkgeld sind nicht betroffen. Es implementiert den Vertrag <code>tipping/v1</code>, sodass ein gegen diesen Vertrag geschriebener Client weiterhin mit anderen Implementierungen funktioniert.",
+          "tagline": "Verifizierte Trinkgelder auf Antworten, von Wallet zu Wallet gesendet und von der Community on-chain geprüft."
         }
       }
     },

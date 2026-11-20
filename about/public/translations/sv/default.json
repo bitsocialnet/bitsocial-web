@@ -536,7 +536,12 @@
         "images": "Bilder",
         "codeHosting": "Kodhosting",
         "encyclopedia": "Uppslagsverk",
-        "video": "Video"
+        "video": "Video",
+        "names": "Namn",
+        "offline": "Offline",
+        "predictionMarkets": "Prediktionsmarknader",
+        "socialGraph": "Social graf",
+        "tips": "Dricks"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -663,6 +668,46 @@
         "flair-page-sort": {
           "tagline": "Communitysidor som bara innehåller de inlägg och svar som har en vald flair.",
           "description": "Flair Page Sort är en anpassad sidsortering för community-ägare. När den anges i en communitys sidinställningar tillsammans med en uppsättning flairs får den noden att publicera en extra sida som bara innehåller de inlägg eller svar som har någon av dessa flairs, sorterade efter senast tilldelad flair, nya, heta eller bästa. En community kan publicera den som sin standardsida så att klienter öppnas på den, och klienter behöver inte installera något för att läsa den. Den kräver pkc-js 0.0.143 eller senare."
+        },
+        "active-page-sort": {
+          "description": "Active Page Sort är en anpassad sidsortering för community-ägare som ersätter den inbyggda bumpordningen. Ett svar med en rad som matchar något av boardens nyckelord, till exempel <code>sage</code>, bumpar inte sin tråd, och med en bump-gräns inställd kan bara en tråds första svar bumpa den. Sådana trådar sjunker men döljs aldrig. Den publiceras under samma <code>active</code>-nyckel som den inbyggda sorteringen, så klienter visar den nya ordningen utan någon ändring. Den kräver pkc-js 0.0.114 eller senare.",
+          "tagline": "Bumpordning som på imageboards, där sage-svar inte bumpar och trådar som passerat bump-gränsen slutar bumpas."
+        },
+        "base64-challenge": {
+          "description": "Base64 Challenge körs på en Bitsocial-communitynod och avvisar varje publicering som bäddar in en <code>data:</code>-URI eller en lång följd av base64 i något textfält, från inläggens brödtext och rubriker till visningsnamn och redigeringsorsaker. Utan den kan en community till slut signera, lagra och leverera en liten bild som är gömd i ett inläggs text och som en AI-moderator bara ser som en vägg av tecken. Kontrollen är deterministisk och kör ingen modell, hexsträngar som hashar och transaktionsdata släpps igenom, och moderatorer kan undantas.",
+          "tagline": "Avvisar publiceringar som döljer bilder eller andra filer i sin text som base64-data."
+        },
+        "bitsocial-algorithms": {
+          "description": "Bitsocial Algorithms är forskning kring flödes- och rekommendationsalgoritmer som utbytbara tjänster i Bitsocial-klienter. En klient kan levereras med ett starkt standardval, och en användare kan byta till en annan leverantör, köra en egen eller rangordna inlägg lokalt utan att flytta sin profil, medan ett kronologiskt flöde förblir tillgängligt utan någon leverantör. Leverantörer upptäcker och rangordnar inlägg men äger aldrig identiteter, inlägg eller sociala data, så inget enskilt företag bestämmer vad alla ser. Inget är byggt ännu; repositoriet samlar forskningen och den beslutade arkitekturen.",
+          "tagline": "Flödes- och rekommendationsleverantörer på idéstadiet som användare kan byta som en inställning."
+        },
+        "bitsocial-chain": {
+          "description": "Bitsocial Chain är det föreslagna ekonomiska lagret för Bitsocial-appar i fas 3 av översiktsplanen: en Ethereum-L2 för .bso-namn, dricks och betalningar, gemenskapstokens och AgoraSwap. Målet är att inte kräva något förtroende utöver Ethereum självt: inga uppgraderingsnycklar, inget säkerhetsråd och ingen privilegierad operatör. Inlägg och gemenskaper förblir peer-to-peer; inget socialt hamnar on-chain. Ett konceptbevis härleder ur vanliga Ethereum-transaktioner ett .bso-namnregister som vem som helst kan räkna om. Det är varken säkerhetsgranskat eller driftsatt.",
+          "tagline": "Ethereum-L2 på idéstadiet för .bso-namn, dricks, betalningar och gemenskapstokens."
+        },
+        "bitsocial-discovery": {
+          "description": "Bitsocial Discovery utgår från communitylistor, inskickade förslag, indexerare och ENS-poster och följer sedan de hänvisningar som communityer lämnar till varandra: adresser som nämns i inlägg och beskrivningar, korsposter och kedjan av en författares tidigare kommentarer. Den kontrollerar fortlöpande varje community den hittar för att hålla reda på vilka som fortfarande lever, och levererar resultaten som ett JSON API för klienter, indexerare och granskningsverktyg. Den lagrar metadata om communityer, aldrig inlägg, och levereras inaktiv: operatören väljer källorna och vad API:et visar.",
+          "tagline": "Hittar Bitsocial-communityer som ingen lista har med ännu och kontrollerar vilka av dem som lever."
+        },
+        "bitsocial-forum": {
+          "description": "Bitsocial Forum är ett planerat forum för Bitsocial-projekt och den tredje Bitsocial-klienten efter Seedit och 5chan, tänkt att samla diskussioner som i dag är utspridda över Telegram, Twitter och GitHub. Varje sektion, till exempel en för 5chan eller för .bso-namn, är en katalog som communityer tävlar om: den community som rankas först driver den med sina egna moderatorer, och en annan kan ta över den om den försvinner eller sköter den dåligt. Det finns ingen server och ingen global administratör. En tidig version läser vilken Bitsocial-community som helst, men publicering och profiler är inte byggda ännu.",
+          "tagline": "Forumklient på idéstadiet där varje sektion tillhör den community som vinner den."
+        },
+        "bitsocial-graph": {
+          "description": "Bitsocial Graph är forskning kring en öppen crawler som bygger Bitsocials sociala graf utifrån offentliga protokolldata: författare, communityer och hur de interagerar. Innehåll på Bitsocial förblir bara nåbart så länge någon fortsätter att publicera eller seeda det, så grafen håller också reda på vad som fortfarande lever och visar nätverket som det är nu i stället för alla som någonsin har gått med. Resultaten skulle publiceras som öppna data och API:er för klienter och leverantörer av sök och flöden, med den här crawlern som en leverantör bland många. Communityer som döljer författares identitet förblir omöjliga att koppla samman. Inget är byggt ännu; repositoriet samlar forskningen och den beslutade arkitekturen.",
+          "tagline": "Öppen crawler på idéstadiet som kartlägger vilka författare och communityer som är aktiva på Bitsocial."
+        },
+        "bitsocial-mesh": {
+          "description": "Bitsocial Mesh är en plan för att hålla communities igång under en internetavstängning eller en katastrof. Först står en bärbar eller liten dator värd för en community och öppnar en Wi-Fi-hotspot, så att människor i närheten kan läsa, posta och moderera från en webbläsare. Senare faser skulle koppla ihop dessa enheter över en hel stad via LoRa-radio och föra ut inlägg så snart någon anslutning återkommer, med Bluetooth mellan telefoner sist, om alls. Till skillnad från mesh-chattappar som bitchat behåller den communities med egna regler, moderatorer och spamskydd. Inget är byggt eller testat ännu; repositoriet samlar designen.",
+          "tagline": "Plan på idéstadiet för att hålla Bitsocial-communities igång när internet stängs av."
+        },
+        "prediction-markets": {
+          "description": "Prediction Markets är öppen forskning kring appar som samlar en prediktionsmarknad och diskussionen om den på ett ställe, så att människor kan hitta en fråga, debattera bevisen, ta en position och komma tillbaka för att se utfallet. Bitsocial skulle bära gemenskaperna och trådarna, medan ett befintligt marknadsprotokoll sköter handel och avveckling; Trueo är den första kandidaten som undersöks. En marknad avvecklas aldrig genom en omröstning i gemenskapen. Idén är öppen för vilken utvecklare eller vilket projekt som helst att bygga. Inget är byggt ännu och inget partnerskap är överenskommet.",
+          "tagline": "Forskning på idéstadiet om prediktionsmarknader med en Bitsocial-community kring varje fråga."
+        },
+        "tipping-challenge": {
+          "description": "Tipping Challenge låter en community visa verifierad dricks. En författare skickar en token direkt till en annan författares plånbok och svarar sedan på kommentaren som får dricksen med transaktionshashen, och communityns nod slår upp transaktionen on-chain och skriver in det verifierade beloppet i svaret. Dricks kan vara ERC-20-tokens, NFT:er eller en kedjas inbyggda mynt. Communityn kan varken fånga upp eller förfalska dricks, och svar utan dricks påverkas inte. Det implementerar kontraktet <code>tipping/v1</code>, vilket gör att en klient som skrivits mot det kontraktet fortsätter att fungera med andra implementationer.",
+          "tagline": "Verifierad dricks på svar, skickad från plånbok till plånbok och kontrollerad on-chain av communityn."
         }
       }
     },

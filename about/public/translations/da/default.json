@@ -536,7 +536,12 @@
         "images": "Billeder",
         "codeHosting": "Kodehosting",
         "encyclopedia": "Encyklopædi",
-        "video": "Video"
+        "video": "Video",
+        "names": "Navne",
+        "offline": "Offline",
+        "predictionMarkets": "Forudsigelsesmarkeder",
+        "socialGraph": "Social graf",
+        "tips": "Drikkepenge"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -656,6 +661,46 @@
         "flair-page-sort": {
           "tagline": "Fællesskabssider, der kun indeholder de opslag og svar, som har et valgt flair.",
           "description": "Flair Page Sort er en brugerdefineret sidesortering til ejere af fællesskaber. Når den er angivet i et fællesskabs sideindstillinger sammen med et sæt flairs, får den noden til at udgive en ekstra side, der kun indeholder de opslag eller svar, som har et af disse flairs, sorteret efter senest tildelt flair, nyeste, populære eller bedste. Et fællesskab kan udgive den som sin standardside, så klienter åbner på den, og klienter behøver ikke installere noget for at læse den. Den kræver pkc-js 0.0.143 eller nyere."
+        },
+        "active-page-sort": {
+          "description": "Active Page Sort er en brugerdefineret sidesortering til ejere af fællesskaber, der erstatter den indbyggede bump-rækkefølge. Et svar med en linje, der matcher et af boardets nøgleord, f.eks. <code>sage</code>, bumper ikke sin tråd, og når der er sat en bump-grænse, kan kun en tråds første svar bumpe den. Disse tråde synker, men skjules aldrig. Den udgives under samme <code>active</code>-nøgle som den indbyggede sortering, så klienter viser den nye rækkefølge uden nogen ændring. Den kræver pkc-js 0.0.114 eller nyere.",
+          "tagline": "Bump-rækkefølge som på imageboards, hvor sage-svar ikke bumper, og tråde over bump-grænsen holder op med at bumpe."
+        },
+        "base64-challenge": {
+          "description": "Base64 Challenge kører på en Bitsocial-fællesskabsnode og afviser enhver udgivelse, der indlejrer en <code>data:</code>-URI eller en lang række base64 i et hvilket som helst tekstfelt, fra opslagets brødtekst og titel til visningsnavne og redigeringsårsager. Uden den kan et fællesskab ende med at signere, gemme og levere et lille billede skjult i et opslags tekst, som en AI-moderator kun ser som en mur af tegn. Kontrollen er deterministisk og kører ingen model, hex-strenge som hashes og transaktionsdata slipper igennem, og moderatorer kan undtages.",
+          "tagline": "Afviser udgivelser, der skjuler billeder eller andre filer i deres tekst som base64-data."
+        },
+        "bitsocial-algorithms": {
+          "description": "Bitsocial Algorithms er forskning i feed- og anbefalingsalgoritmer som udskiftelige tjenester på tværs af Bitsocial-klienter. En klient kan leveres med en stærk standard, og en bruger kan skifte til en anden udbyder, køre sin egen eller rangere opslag lokalt uden at flytte sin profil, mens et kronologisk feed forbliver tilgængeligt uden nogen udbyder. Udbydere finder og rangerer opslag, men ejer aldrig identiteter, opslag eller sociale data, så ingen enkelt virksomhed bestemmer, hvad alle ser. Intet er bygget endnu; repositoriet samler forskningen og den vedtagne arkitektur.",
+          "tagline": "Feed- og anbefalingsudbydere på idéstadiet, som brugerne kan skifte mellem som en indstilling."
+        },
+        "bitsocial-chain": {
+          "description": "Bitsocial Chain er det foreslåede økonomiske lag for Bitsocial-apps i fase 3 af masterplanen: en Ethereum-L2, der skal rumme .bso-navne, drikkepenge og betalinger, fællesskabstokens og AgoraSwap. Målet er ikke at kræve tillid ud over Ethereum selv: ingen opgraderingsnøgler, intet sikkerhedsråd og ingen privilegeret operatør. Opslag og fællesskaber forbliver peer-to-peer; intet socialt havner on-chain. Et konceptbevis udleder ud fra almindelige Ethereum-transaktioner et .bso-navneregister, som alle kan genberegne. Det er hverken auditeret eller udrullet.",
+          "tagline": "Ethereum-L2 på idéstadiet til .bso-navne, drikkepenge, betalinger og fællesskabstokens."
+        },
+        "bitsocial-discovery": {
+          "description": "Bitsocial Discovery tager udgangspunkt i fællesskabslister, indsendelser, indeksere og ENS-poster og følger derefter de henvisninger, fællesskaberne efterlader til hinanden: adresser nævnt i opslag og beskrivelser, crossposts og kæden af en forfatters tidligere kommentarer. Den bliver ved med at kontrollere hvert fællesskab, den finder, for at holde styr på, hvilke der stadig er i live, og leverer resultaterne som et JSON API til klienter, indeksere og gennemgangsværktøjer. Den gemmer metadata om fællesskaber, aldrig opslag, og leveres inaktiv: operatøren vælger kilderne, og hvad API'et viser.",
+          "tagline": "Finder Bitsocial-fællesskaber, som ingen liste har med endnu, og tjekker, hvilke der er i live."
+        },
+        "bitsocial-forum": {
+          "description": "Bitsocial Forum er et planlagt forum for Bitsocial-projekter og den tredje Bitsocial-klient efter Seedit og 5chan, tænkt til at samle diskussioner, der i dag er spredt over Telegram, Twitter og GitHub. Hver sektion, for eksempel én for 5chan eller for .bso-navne, er et katalog, som fællesskaber konkurrerer om: fællesskabet på førstepladsen driver den med sine egne moderatorer, og et andet kan overtage den, hvis det forsvinder eller driver den dårligt. Der er ingen server og ingen global administrator. En tidlig version kan læse ethvert Bitsocial-fællesskab, men opslag og profiler er ikke bygget endnu.",
+          "tagline": "Forumklient på idéstadiet, hvor hver sektion tilhører det fællesskab, der vinder den."
+        },
+        "bitsocial-graph": {
+          "description": "Bitsocial Graph er forskning i en åben crawler, der opbygger Bitsocials sociale graf ud fra offentlige protokoldata: forfattere, fællesskaber og hvordan de interagerer. Indhold på Bitsocial forbliver kun tilgængeligt, så længe nogen bliver ved med at udgive eller seede det, så grafen holder også styr på, hvad der stadig er i live, og viser netværket, som det er nu, frem for alle, der nogensinde har været med. Resultaterne ville blive udgivet som åbne data og API'er til klienter og udbydere af søgning og feeds, med denne crawler som én udbyder blandt mange. Fællesskaber, der skjuler forfatteres identitet, forbliver umulige at koble sammen. Intet er bygget endnu; repositoriet samler forskningen og den vedtagne arkitektur.",
+          "tagline": "Åben crawler på idéstadiet, der kortlægger, hvilke forfattere og fællesskaber der er aktive på Bitsocial."
+        },
+        "bitsocial-mesh": {
+          "description": "Bitsocial Mesh er en plan for at holde fællesskaber i gang under en internetnedlukning eller en katastrofe. Først hoster en bærbar eller lille computer et fællesskab og åbner et Wi-Fi-hotspot, så folk i nærheden kan læse, poste og moderere fra en browser. Senere faser ville forbinde disse enheder på tværs af en by via LoRa-radio og bringe opslag ud, så snart en hvilken som helst forbindelse vender tilbage, med Bluetooth fra telefon til telefon til sidst, hvis overhovedet. I modsætning til mesh-chatapps som bitchat bevarer det fællesskaber med deres egne regler, moderatorer og spamforsvar. Intet er bygget eller testet endnu; repositoriet samler designet.",
+          "tagline": "Plan på idéstadiet for at holde Bitsocial-fællesskaber kørende, når internettet bliver afbrudt."
+        },
+        "prediction-markets": {
+          "description": "Prediction Markets er åben forskning i apps, der samler et forudsigelsesmarked og diskussionen om det ét sted, så folk kan finde et spørgsmål, debattere beviserne, tage en position og vende tilbage for at se resultatet. Bitsocial ville bære fællesskaberne og trådene, mens en eksisterende markedsprotokol håndterer handel og afregning; Trueo er den første kandidat, der undersøges. Et marked afregnes aldrig ved en afstemning i fællesskabet. Idéen er åben for enhver udvikler eller ethvert projekt at bygge. Intet er bygget endnu, og der er ikke aftalt noget partnerskab.",
+          "tagline": "Forskning på idéstadiet i forudsigelsesmarkeder med et Bitsocial-fællesskab omkring hvert spørgsmål."
+        },
+        "tipping-challenge": {
+          "description": "Tipping Challenge lader et fællesskab vise verificerede drikkepenge. En forfatter sender et token direkte til en anden forfatters wallet og svarer derefter på den kommentar, der får drikkepengene, med transaktions-hashen, og fællesskabets node slår transaktionen op on-chain og skriver det verificerede beløb ind i svaret. Drikkepenge kan være ERC-20-tokens, NFT'er eller en kædes native mønt. Fællesskabet kan hverken opsnappe eller forfalske drikkepenge, og svar uden drikkepenge påvirkes ikke. Den implementerer kontrakten <code>tipping/v1</code>, så en klient skrevet efter den kontrakt fortsat virker med andre implementeringer.",
+          "tagline": "Verificerede drikkepenge på svar, sendt fra wallet til wallet og tjekket on-chain af fællesskabet."
         }
       }
     },
