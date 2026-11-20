@@ -46,7 +46,7 @@ import {
 import { BITSOCIAL_TOPIC_URL, SUBMIT_APP_URL } from "@/lib/apps-urls";
 import { useGraphicsMode } from "@/lib/graphics-mode";
 import { useMediaQuery } from "@/lib/use-media-query";
-import { cn, getScrollBehavior } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 /** Cap on simultaneously active tag + category + platform + status filters: three on desktop, two on mobile. */
 const MAX_FILTER_COUNT_DESKTOP = 3;
@@ -240,13 +240,14 @@ export default function Apps() {
   const resultsRef = useRef<HTMLDivElement>(null);
 
   // A filter clicked on a card or in the sticky sidebar further down replaces the list under
-  // the reader, so bring the "Filtering by" row at the top of the results back into view.
+  // the reader, so jump straight to the "Filtering by" row at the top of the new results.
+  // Instant on purpose: a smooth scroll across a list that is being swapped feels laggy.
   function revealResults() {
     const results = resultsRef.current;
     if (!results) return;
     const scrollMarginTop = Number.parseFloat(getComputedStyle(results).scrollMarginTop) || 0;
     if (results.getBoundingClientRect().top < scrollMarginTop) {
-      results.scrollIntoView({ behavior: getScrollBehavior(), block: "start" });
+      results.scrollIntoView({ behavior: "instant", block: "start" });
     }
   }
 
