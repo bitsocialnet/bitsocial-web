@@ -100,7 +100,7 @@ export default function AppDetail() {
                   <h1 className="project-title optical-display-start min-w-0 break-words font-display font-semibold text-foreground">
                     {app.name}
                   </h1>
-                  <AppStatusBadge status={app.status} />
+                  <AppStatusBadge status={app.status} href={`/projects?status=${app.status}`} />
                 </div>
                 <div className="mt-3 flex flex-wrap items-center gap-2">
                   {categories.map((category) => (

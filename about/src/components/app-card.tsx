@@ -14,6 +14,7 @@ import {
   type AppData,
   type AppLink,
   type AppPlatformSlug,
+  type AppStatus,
   getAppDescription,
   getAppDescriptionKey,
   getAppLinkLabel,
@@ -33,17 +34,19 @@ import { cn } from "@/lib/utils";
 interface AppCardProps {
   activeCategory?: AppCategorySlug | null;
   activePlatform?: AppPlatformSlug | null;
+  activeStatus?: AppStatus | null;
   activeTags?: string[];
   app: AppData;
   buildAppsHref?: (
-    updates: Partial<Record<"category" | "platform" | "tag", string | null>>,
+    updates: Partial<Record<"category" | "platform" | "status" | "tag", string | null>>,
   ) => string;
   compact?: boolean;
   detailHref?: string;
-  /** True when the page is at the tag+category filter cap; disables pills that would add another. */
+  /** True when the page is at the filter cap; disables pills that would add another filter. */
   isAtFilterCap?: boolean;
   onCategorySelect?: (slug: AppCategorySlug) => void;
   onPlatformSelect?: (platform: AppPlatformSlug) => void;
+  onStatusSelect?: (status: AppStatus) => void;
   onTagSelect?: (tag: string) => void;
   preferredPlatform?: AppPlatformSlug | null;
 }
@@ -51,12 +54,14 @@ interface AppCardProps {
 export default function AppCard({
   activeCategory = null,
   activePlatform = null,
+  activeStatus = null,
   activeTags = [],
   app,
   buildAppsHref,
   isAtFilterCap = false,
   onCategorySelect,
   onPlatformSelect,
+  onStatusSelect,
   onTagSelect,
   preferredPlatform = null,
   compact = false,
@@ -72,6 +77,7 @@ export default function AppCard({
   const description = getAppDescription(app, t);
   const descriptionKey = getAppDescriptionKey(app);
   const resolvedDetailHref = detailHref ?? `/projects/${app.slug}`;
+  const statusIsActive = activeStatus === app.status;
 
   return (
     <article
@@ -100,7 +106,19 @@ export default function AppCard({
                 {app.name}
               </Link>
             </h3>
-            <AppStatusBadge status={app.status} />
+            <AppStatusBadge
+              status={app.status}
+              active={statusIsActive}
+              disabled={isAtFilterCap && !activeStatus}
+              href={
+                onStatusSelect
+                  ? undefined
+                  : buildAppsHref
+                    ? buildAppsHref({ status: statusIsActive ? null : app.status })
+                    : `/projects?status=${app.status}`
+              }
+              onClick={onStatusSelect ? () => onStatusSelect(app.status) : undefined}
+            />
           </div>
 
           <p className="mt-2 text-sm font-medium leading-relaxed text-foreground/70">{tagline}</p>

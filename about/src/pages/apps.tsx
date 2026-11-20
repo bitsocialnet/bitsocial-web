@@ -18,11 +18,14 @@ import {
   appMatchesTag,
   type AppPlatformSlug,
   APPS,
+  type AppStatus,
   CATEGORIES,
+  getAppStatusLabel,
   getAppTagLabel,
   getCategoryDescription,
   getCategoryLabel,
   getPlatformShortLabel,
+  isAppStatus,
   parseTagFilter,
   PLATFORM_ORDER,
   serializeTagFilter,
@@ -34,7 +37,7 @@ import { useGraphicsMode } from "@/lib/graphics-mode";
 import { useMediaQuery } from "@/lib/use-media-query";
 import { cn } from "@/lib/utils";
 
-/** Cap on simultaneously active tag + category + platform filters: three on desktop, two on mobile. */
+/** Cap on simultaneously active tag + category + platform + status filters: three on desktop, two on mobile. */
 const MAX_FILTER_COUNT_DESKTOP = 3;
 const MAX_FILTER_COUNT_MOBILE = 2;
 const MOBILE_QUERY = "(max-width: 639px)";
@@ -110,19 +113,22 @@ export default function Apps() {
   const tagParam = searchParams.get("tag");
   const normalizedCategoryParam = categoryParam?.trim().toLowerCase() ?? null;
   const normalizedPlatformParam = platformParam?.trim().toLowerCase() ?? null;
+  const normalizedStatusParam = searchParams.get("status")?.trim().toLowerCase() ?? null;
   const activeCategory = isValidCategory(normalizedCategoryParam) ? normalizedCategoryParam : null;
   const activePlatform = isValidPlatform(normalizedPlatformParam) ? normalizedPlatformParam : null;
-  // Enforce the filter cap across category + platform + tags. If the URL specifies more
-  // filters than the cap allows, drop excess tags first (they're the variable-length axis)
+  const activeStatus = isAppStatus(normalizedStatusParam) ? normalizedStatusParam : null;
+  // Enforce the filter cap across category + platform + status + tags. If the URL specifies
+  // more filters than the cap allows, drop excess tags first (they're the variable-length axis)
   // so the page still loads but only the first N apply.
-  const baseFilterCount = (activeCategory ? 1 : 0) + (activePlatform ? 1 : 0);
+  const baseFilterCount =
+    (activeCategory ? 1 : 0) + (activePlatform ? 1 : 0) + (activeStatus ? 1 : 0);
   const maxTagsAllowed = Math.max(0, maxFilterCount - baseFilterCount);
   const activeTags = parseTagFilter(tagParam).slice(0, maxTagsAllowed);
   const query = searchParams.get("q") ?? "";
 
-  const searchFilteredApps = APPS.filter((app) => appMatchesSearch(app, query, t)).filter((app) =>
-    appMatchesTag(app, activeTags),
-  );
+  const searchFilteredApps = APPS.filter((app) => appMatchesSearch(app, query, t))
+    .filter((app) => appMatchesTag(app, activeTags))
+    .filter((app) => (activeStatus ? app.status === activeStatus : true));
   const appsForCategoryCounts = activePlatform
     ? searchFilteredApps.filter((app) => appMatchesPlatform(app, activePlatform))
     : searchFilteredApps;
@@ -160,7 +166,9 @@ export default function Apps() {
       return left.name.localeCompare(right.name);
     });
 
-  const isFiltered = Boolean(query || activePlatform || activeCategory || activeTags.length > 0);
+  const isFiltered = Boolean(
+    query || activePlatform || activeCategory || activeStatus || activeTags.length > 0,
+  );
   const isAtFilterCap = baseFilterCount + activeTags.length >= maxFilterCount;
   const useSimplifiedSurfaces = graphicsMode === "fallback" || isFirefoxLike;
 
@@ -190,6 +198,16 @@ export default function Apps() {
     updateSearchParams({ platform });
   }
 
+  function handleStatusChange(status: AppStatus | null) {
+    // Adding a status (none currently set) at cap would exceed the limit.
+    if (status && !activeStatus && isAtFilterCap) return;
+    updateSearchParams({ status });
+  }
+
+  function handleStatusSelect(status: AppStatus) {
+    handleStatusChange(activeStatus === status ? null : status);
+  }
+
   function handleTagSelect(tag: string) {
     // Removing an active tag is always allowed; only block fresh adds at cap.
     if (!tagsMatchFilter(activeTags, tag) && isAtFilterCap) return;
@@ -206,12 +224,12 @@ export default function Apps() {
 
   const clearFiltersHref = buildAppsHref(
     searchParams,
-    { q: null, category: null, platform: null, tag: null },
+    { q: null, category: null, platform: null, status: null, tag: null },
     { clearAll: true },
   );
 
   const buildCardFilterHref = (
-    updates: Partial<Record<"category" | "platform" | "tag", string | null>>,
+    updates: Partial<Record<"category" | "platform" | "status" | "tag", string | null>>,
   ) => {
     const nextUpdates: Record<string, string | null> = {};
 
@@ -221,6 +239,10 @@ export default function Apps() {
 
     if ("platform" in updates) {
       nextUpdates.platform = updates.platform ?? null;
+    }
+
+    if ("status" in updates) {
+      nextUpdates.status = updates.status ?? null;
     }
 
     if ("tag" in updates) {
@@ -295,6 +317,13 @@ export default function Apps() {
                           active
                           label={getPlatformShortLabel(activePlatform, t)}
                           onClick={() => handlePlatformChange(null)}
+                        />
+                      ) : null}
+                      {activeStatus ? (
+                        <AppTagPill
+                          active
+                          label={getAppStatusLabel(activeStatus, t)}
+                          onClick={() => handleStatusChange(null)}
                         />
                       ) : null}
                       {activeCategory ? (
@@ -406,6 +435,7 @@ export default function Apps() {
                 {activePlatform ? (
                   <input type="hidden" name="platform" value={activePlatform} />
                 ) : null}
+                {activeStatus ? <input type="hidden" name="status" value={activeStatus} /> : null}
                 {tagParam && tagParam.trim().length > 0 ? (
                   <input type="hidden" name="tag" value={tagParam} />
                 ) : null}
@@ -444,6 +474,13 @@ export default function Apps() {
                             active
                             href={buildAppsHref(searchParams, { platform: null })}
                             label={getPlatformShortLabel(activePlatform, t)}
+                          />
+                        ) : null}
+                        {activeStatus ? (
+                          <AppTagPill
+                            active
+                            href={buildAppsHref(searchParams, { status: null })}
+                            label={getAppStatusLabel(activeStatus, t)}
                           />
                         ) : null}
                         {activeCategory ? (
@@ -632,11 +669,13 @@ export default function Apps() {
                       key={app.slug}
                       activeCategory={activeCategory}
                       activePlatform={activePlatform}
+                      activeStatus={activeStatus}
                       activeTags={activeTags}
                       app={app}
                       isAtFilterCap={isAtFilterCap}
                       onCategorySelect={(slug) => handleCategoryChange(slug)}
                       onPlatformSelect={(platform) => handlePlatformChange(platform)}
+                      onStatusSelect={handleStatusSelect}
                       onTagSelect={handleTagSelect}
                       preferredPlatform={activePlatform}
                     />
@@ -669,6 +708,7 @@ export default function Apps() {
                         key={app.slug}
                         activeCategory={activeCategory}
                         activePlatform={activePlatform}
+                        activeStatus={activeStatus}
                         activeTags={activeTags}
                         app={app}
                         buildAppsHref={buildCardFilterHref}

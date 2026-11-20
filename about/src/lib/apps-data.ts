@@ -110,8 +110,16 @@ export interface AppData {
   relatedSlugs: string[];
   featured?: boolean;
   /** "ready": in production use; "experimental": usable but unproven; "idea": Concepts entries, not built yet. */
-  status: "ready" | "experimental" | "idea";
+  status: AppStatus;
   searchTerms?: string[];
+}
+
+export const APP_STATUSES = ["ready", "experimental", "idea"] as const;
+
+export type AppStatus = (typeof APP_STATUSES)[number];
+
+export function isAppStatus(value: string | null): value is AppStatus {
+  return value !== null && (APP_STATUSES as readonly string[]).includes(value);
 }
 
 export function linkHasVerifiableStatus(link: AppLink) {
@@ -559,6 +567,13 @@ export function getPlatformShortLabel(platform: AppPlatformSlug, t: TFunction) {
     PLATFORM_TRANSLATION_KEYS[platform].shortLabel,
     PLATFORM_META[platform].shortLabel,
   );
+}
+
+export function getAppStatusLabel(status: AppStatus, t: TFunction) {
+  if (status === "ready") return translateCatalogValue(t, "apps.readyToUse", "Ready to use");
+  if (status === "experimental")
+    return translateCatalogValue(t, "apps.experimental", "Experimental");
+  return translateCatalogValue(t, "apps.idea", "Idea");
 }
 
 export function getPlatformDescription(platform: AppPlatformSlug, t: TFunction) {
