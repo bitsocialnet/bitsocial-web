@@ -541,7 +541,8 @@
         "offline": "Offline",
         "predictionMarkets": "Mga prediction market",
         "socialGraph": "Social graph",
-        "tips": "Mga tip"
+        "tips": "Mga tip",
+        "chat": "Chat"
       },
       "linkLabels": {
         "androidApk": "APK ng Android",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "Hinahayaan ng Tipping Challenge ang isang komunidad na magpakita ng mga beripikadong tip. Nagpapadala ang isang author ng token nang direkta sa wallet ng ibang author, saka nagre-reply sa komentong binibigyan ng tip gamit ang transaction hash, at hinahanap ng community node ang transaksyon on-chain at isinusulat ang beripikadong halaga sa reply. Ang mga tip ay puwedeng ERC-20 token, NFT o ang native coin ng isang chain. Hindi kayang harangin o pekein ng komunidad ang isang tip, at hindi naaapektuhan ang mga reply na walang tip. Ipinapatupad nito ang kontratang <code>tipping/v1</code>, kaya ang isang client na isinulat ayon sa kontratang iyon ay patuloy na gumagana sa ibang mga implementasyon.",
           "tagline": "Mga beripikadong tip sa mga reply, ipinapadala mula wallet patungong wallet at sinusuri on-chain ng komunidad."
+        },
+        "bitsocial-chat": {
+          "description": "Ang Bitsocial Chat ay isang plano para sa chat na nakabatay sa mga identity at node na mayroon na ang Bitsocial, para iisang identity at iisang inbox lang ang gamit ng user sa bawat app. Magsisimula ito sa pampublikong live chat sa mga komunidad at sa tabi ng mga post o stream, na ipapadala sa pamamagitan ng pubsub at hindi iimbakin. Susunod ang mga pribadong mensahe: isa-sa-isa, end-to-end encrypted, at nakaimbak bilang ciphertext sa profile node ng tatanggap hanggang mabasa, na magbibigay rin ng modmail sa mga komunidad. Bukas pa ang tanong kung bubuuin ito nang native o gagamitin muli ang isang umiiral na network gaya ng XMTP. Wala pang nabubuo; tinitipon ng repository ang disenyo at ang pananaliksik.",
+          "tagline": "Live chat at mga pribadong mensahe na ideya pa lang, na gumagana sa bawat Bitsocial app."
         }
       }
     },

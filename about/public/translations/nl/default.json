@@ -541,7 +541,8 @@
         "offline": "Offline",
         "predictionMarkets": "Voorspellingsmarkten",
         "socialGraph": "Sociale graaf",
-        "tips": "Fooien"
+        "tips": "Fooien",
+        "chat": "Chat"
       },
       "linkLabels": {
         "androidApk": "Android-APK",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge laat een community geverifieerde fooien tonen. Een auteur stuurt een token rechtstreeks naar de wallet van een andere auteur en reageert daarna met de transactiehash op de reactie die de fooi krijgt, waarna de node van de community de transactie on-chain opzoekt en het geverifieerde bedrag in de reactie schrijft. Fooien kunnen ERC-20-tokens, NFT's of de native coin van een chain zijn. De community kan een fooi niet onderscheppen of vervalsen, en reacties zonder fooi worden niet beïnvloed. Het implementeert het <code>tipping/v1</code>-contract, waardoor een client die op dat contract is geschreven blijft werken met andere implementaties.",
           "tagline": "Geverifieerde fooien op reacties, verstuurd van wallet naar wallet en door de community on-chain gecontroleerd."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat is een plan voor chat die voortbouwt op de identiteiten en knooppunten die Bitsocial al heeft, zodat een gebruiker in elke app één identiteit en één inbox houdt. Het zou beginnen met openbare livechat in communities en naast posts of streams, verzonden via pubsub en niet opgeslagen. Daarna zouden privéberichten volgen: één-op-één, end-to-end versleuteld en als cijfertekst bewaard op het profielknooppunt van de ontvanger tot ze gelezen zijn, wat communities ook modmail zou geven. Of dit native wordt gebouwd of dat een bestaand netwerk zoals XMTP wordt hergebruikt, staat nog open. Er is nog niets gebouwd; de repository verzamelt het ontwerp en het onderzoek.",
+          "tagline": "Livechat en privéberichten in de ideefase die in elke Bitsocial-app werken."
         }
       }
     },

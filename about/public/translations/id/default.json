@@ -541,7 +541,8 @@
         "offline": "Luring",
         "predictionMarkets": "Pasar prediksi",
         "socialGraph": "Graf sosial",
-        "tips": "Tip"
+        "tips": "Tip",
+        "chat": "Chat"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge memungkinkan komunitas menampilkan tip terverifikasi. Seorang penulis mengirim token langsung ke dompet penulis lain, lalu membalas komentar yang diberi tip dengan hash transaksinya, dan node komunitas mencari transaksi itu on-chain lalu menuliskan jumlah yang terverifikasi ke dalam balasan. Tip bisa berupa token ERC-20, NFT, atau koin native sebuah chain. Komunitas tidak dapat mencegat atau memalsukan tip, dan balasan tanpa tip tidak terpengaruh. Proyek ini mengimplementasikan kontrak <code>tipping/v1</code>, sehingga klien yang ditulis mengikuti kontrak itu tetap dapat bekerja dengan implementasi lain.",
           "tagline": "Tip terverifikasi pada balasan, dikirim dari dompet ke dompet dan diperiksa on-chain oleh komunitas."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat adalah rencana untuk chat yang dibangun di atas identitas dan node yang sudah dimiliki Bitsocial, sehingga pengguna tetap memakai satu identitas dan satu kotak masuk di setiap aplikasi. Tahap awalnya adalah live chat publik di dalam komunitas dan di samping postingan atau siaran langsung, yang akan dikirim lewat pubsub dan tidak disimpan. Setelah itu menyusul pesan pribadi: antara dua orang, terenkripsi end-to-end, dan disimpan sebagai ciphertext di node profil penerima sampai dibaca, yang juga akan memberi komunitas modmail. Apakah ini akan dibangun secara native atau memakai ulang jaringan yang sudah ada seperti XMTP masih menjadi pertanyaan terbuka. Belum ada yang dibangun; repositori ini mengumpulkan desain dan risetnya.",
+          "tagline": "Live chat dan pesan pribadi yang masih berupa ide, yang bekerja di semua aplikasi Bitsocial."
         }
       }
     },

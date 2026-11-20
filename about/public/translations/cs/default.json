@@ -541,7 +541,8 @@
         "offline": "Offline",
         "predictionMarkets": "Predikční trhy",
         "socialGraph": "Sociální graf",
-        "tips": "Spropitné"
+        "tips": "Spropitné",
+        "chat": "Chat"
       },
       "linkLabels": {
         "androidApk": "APK pro Android",
@@ -701,6 +702,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge umožňuje komunitě zobrazovat ověřené spropitné. Autor pošle token přímo do peněženky jiného autora, pak na komentář, kterému spropitné dává, odpoví s hashem transakce, a uzel komunity transakci vyhledá on-chain a zapíše ověřenou částku do odpovědi. Spropitné může být v tokenech ERC-20, NFT nebo v nativní minci daného blockchainu. Komunita nemůže spropitné zachytit ani zfalšovat a odpovědí bez spropitného se to nijak nedotkne. Implementuje kontrakt <code>tipping/v1</code>, takže klient napsaný podle tohoto kontraktu funguje i s jinými implementacemi.",
           "tagline": "Ověřené spropitné u odpovědí, posílané z peněženky do peněženky a kontrolované komunitou on-chain."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat je plán chatu postaveného na identitách a uzlech, které Bitsocial už má, takže si uživatel v každé aplikaci ponechá jednu identitu a jednu schránku. Začínal by veřejným živým chatem v komunitách a vedle příspěvků či streamů, který by se posílal přes pubsub a neukládal. Následovaly by soukromé zprávy: mezi dvěma lidmi, koncově šifrované a uložené jako šifrový text na profilovém uzlu příjemce, dokud je nepřečte, což by komunitám přineslo i modmail. Zda to postavit nativně, nebo znovu využít existující síť, jako je XMTP, zůstává otevřenou otázkou. Zatím není nic postaveno; repozitář shromažďuje návrh a výzkum.",
+          "tagline": "Živý chat a soukromé zprávy ve fázi nápadu, které fungují ve všech aplikacích Bitsocial."
         }
       }
     },

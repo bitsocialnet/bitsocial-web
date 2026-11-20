@@ -50,6 +50,7 @@ export type AppIconKey =
   | "image-off"
   | "layers"
   | "list-ordered"
+  | "messages-square"
   | "network"
   | "radio"
   | "sliders-horizontal"
@@ -253,6 +254,7 @@ const APP_TAG_TRANSLATION_KEYS: Record<string, string> = {
   Bots: "apps.catalog.tags.bots",
   CLI: "apps.catalog.tags.cli",
   Captcha: "apps.catalog.tags.captcha",
+  Chat: "apps.catalog.tags.chat",
   "Code hosting": "apps.catalog.tags.codeHosting",
   Contracts: "apps.catalog.tags.contracts",
   Downloadable: "apps.catalog.tags.downloadable",
@@ -431,6 +433,10 @@ const APP_COPY_TRANSLATION_KEYS: Record<string, { tagline: string; description: 
   "bitsocial-forum": {
     tagline: "apps.catalog.items.bitsocial-forum.tagline",
     description: "apps.catalog.items.bitsocial-forum.description",
+  },
+  "bitsocial-chat": {
+    tagline: "apps.catalog.items.bitsocial-chat.tagline",
+    description: "apps.catalog.items.bitsocial-chat.description",
   },
   "bitsocial-graph": {
     tagline: "apps.catalog.items.bitsocial-graph.tagline",
@@ -1515,6 +1521,32 @@ export const APPS: AppData[] = [
     relatedSlugs: ["seedit", "5chan", "bitsocial-discovery"],
     status: "idea",
     searchTerms: ["forum", "discourse", "sections", "directories", "discussion", "threads"],
+  },
+  {
+    slug: "bitsocial-chat",
+    name: "Bitsocial Chat",
+    tagline: "Idea-stage live chat and private messages that work across every Bitsocial app.",
+    description:
+      "Bitsocial Chat is a plan for chat built on the identities and nodes Bitsocial already has, so a user keeps one identity and one inbox in every app. It would start with public live chat in communities and beside posts or streams, sent over pubsub and not stored. Private messages would follow: one-to-one, end-to-end encrypted and held as ciphertext on the recipient's profile node until read, which would also give communities modmail. Whether to build this natively or reuse an existing network such as XMTP is still open. Nothing is built yet; the repository collects the design and the research.",
+    categories: ["concepts"],
+    tags: ["Chat"],
+    icon: "messages-square",
+    githubRepo: "bitsocialnet/bitsocial-chat",
+    links: [],
+    relatedSlugs: ["bitsocial-forum", "seedit", "wetube"],
+    status: "idea",
+    searchTerms: [
+      "chat",
+      "live chat",
+      "dm",
+      "dms",
+      "direct messages",
+      "private messages",
+      "modmail",
+      "messenger",
+      "xmtp",
+      "encryption",
+    ],
   },
   {
     slug: "bitsocial-graph",

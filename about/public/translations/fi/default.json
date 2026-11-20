@@ -541,7 +541,8 @@
         "offline": "Offline",
         "predictionMarkets": "Ennustemarkkinat",
         "socialGraph": "Sosiaalinen graafi",
-        "tips": "Tipit"
+        "tips": "Tipit",
+        "chat": "Chat"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge antaa yhteisön näyttää vahvistettuja tippejä. Kirjoittaja lähettää tokenin suoraan toisen kirjoittajan lompakkoon ja vastaa sitten tipattavaan kommenttiin transaktion hashilla, ja yhteisön solmu hakee transaktion on-chain ja kirjoittaa vahvistetun summan vastaukseen. Tipit voivat olla ERC-20-tokeneita, NFT:itä tai ketjun natiivia kolikkoa. Yhteisö ei voi siepata tippiä eikä väärentää sellaista, eivätkä tipittömät vastaukset muutu mitenkään. Se toteuttaa <code>tipping/v1</code>-sopimuksen, joten kyseisen sopimuksen mukaan kirjoitettu asiakasohjelma toimii edelleen muiden toteutusten kanssa.",
           "tagline": "Vahvistettuja tippejä vastauksissa: lähetetään lompakosta lompakkoon, ja yhteisö tarkistaa ne on-chain."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat on suunnitelma chatista, joka rakentuu Bitsocialin jo olemassa olevien identiteettien ja solmujen varaan, jotta käyttäjällä on jokaisessa sovelluksessa yksi identiteetti ja yksi postilaatikko. Se alkaisi julkisella live-chatilla yhteisöissä sekä julkaisujen tai striimien rinnalla, ja sitä välitettäisiin pubsubin kautta tallentamatta. Sen jälkeen tulisivat yksityisviestit: kahdenkeskiset, päästä päähän salatut ja vastaanottajan profiilisolmuun salatekstinä tallennetut, kunnes ne luetaan, mikä antaisi yhteisöille myös modmailin. On edelleen avoinna, rakennetaanko tämä natiivisti vai käytetäänkö uudelleen olemassa olevaa verkkoa, kuten XMTP:tä. Mitään ei ole vielä rakennettu; repositorio kokoaa suunnitelman ja tutkimuksen.",
+          "tagline": "Ideavaiheen live-chat ja yksityisviestit, jotka toimivat jokaisessa Bitsocial-sovelluksessa."
         }
       }
     },

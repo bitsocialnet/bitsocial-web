@@ -541,7 +541,8 @@
         "offline": "Hors ligne",
         "predictionMarkets": "Marchés prédictifs",
         "socialGraph": "Graphe social",
-        "tips": "Pourboires"
+        "tips": "Pourboires",
+        "chat": "Chat"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge permet à une communauté d'afficher des pourboires vérifiés. Un auteur envoie un token directement au portefeuille d'un autre auteur, puis répond au commentaire qui reçoit le pourboire avec le hash de la transaction, et le nœud de la communauté recherche la transaction on-chain et inscrit le montant vérifié dans la réponse. Les pourboires peuvent être des tokens ERC-20, des NFT ou la monnaie native d'une chaîne. La communauté ne peut ni intercepter ni falsifier un pourboire, et les réponses sans pourboire ne sont pas affectées. Il implémente le contrat <code>tipping/v1</code>, si bien qu'un client écrit pour ce contrat continue de fonctionner avec d'autres implémentations.",
           "tagline": "Des pourboires vérifiés sur les réponses, envoyés de portefeuille à portefeuille et contrôlés on-chain par la communauté."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat est un plan de chat bâti sur les identités et les nœuds dont Bitsocial dispose déjà, afin qu'un utilisateur garde une seule identité et une seule boîte de réception dans toutes les applications. Il commencerait par un chat public en direct dans les communautés et à côté des publications ou des diffusions, envoyé via pubsub et non stocké. Viendraient ensuite les messages privés : en tête-à-tête, chiffrés de bout en bout et conservés sous forme de texte chiffré sur le nœud de profil du destinataire jusqu'à leur lecture, ce qui offrirait aussi un modmail aux communautés. Reste à décider s'il faut le construire nativement ou réutiliser un réseau existant comme XMTP. Rien n'est encore construit ; le dépôt rassemble la conception et la recherche.",
+          "tagline": "Chat en direct et messages privés au stade de l’idée, qui fonctionnent dans toutes les applications Bitsocial."
         }
       }
     },

@@ -541,7 +541,8 @@
         "offline": "Fora de línia",
         "predictionMarkets": "Mercats de predicció",
         "socialGraph": "Graf social",
-        "tips": "Propines"
+        "tips": "Propines",
+        "chat": "Xat"
       },
       "linkLabels": {
         "androidApk": "APK d'Android",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge permet que una comunitat mostri propines verificades. Un autor envia un token directament a la cartera d'un altre autor i després respon al comentari que rep la propina amb el hash de la transacció, i el node de la comunitat cerca la transacció on-chain i escriu l'import verificat a la resposta. Les propines poden ser tokens ERC-20, NFT o la moneda nativa d'una cadena. La comunitat no pot interceptar ni falsificar una propina, i les respostes sense propina no es veuen afectades. Implementa el contracte <code>tipping/v1</code>, de manera que un client escrit segons aquest contracte continua funcionant amb altres implementacions.",
           "tagline": "Propines verificades a les respostes, enviades de cartera a cartera i comprovades on-chain per la comunitat."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat és un pla per a un xat construït sobre les identitats i els nodes que Bitsocial ja té, de manera que un usuari conserva una sola identitat i una sola safata d'entrada a totes les aplicacions. Començaria amb un xat públic en directe a les comunitats i al costat de publicacions o emissions, enviat per pubsub i sense emmagatzemar-se. Després vindrien els missatges privats: d'un a un, xifrats d'extrem a extrem i desats com a text xifrat al node de perfil del destinatari fins que es llegeixin, cosa que també donaria modmail a les comunitats. Queda per decidir si construir-ho de manera nativa o reutilitzar una xarxa existent com ara XMTP. Encara no hi ha res construït; el repositori recull el disseny i la recerca.",
+          "tagline": "Xat en directe i missatges privats en fase d'idea que funcionen a totes les aplicacions de Bitsocial."
         }
       }
     },

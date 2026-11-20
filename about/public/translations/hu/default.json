@@ -541,7 +541,8 @@
         "offline": "Offline",
         "predictionMarkets": "Előrejelző piacok",
         "socialGraph": "Közösségi gráf",
-        "tips": "Borravaló"
+        "tips": "Borravaló",
+        "chat": "Csevegés"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "A Tipping Challenge lehetővé teszi, hogy egy közösség ellenőrzött borravalókat jelenítsen meg. Egy szerző közvetlenül egy másik szerző tárcájába küld egy tokent, majd a tranzakció hash-ével válaszol a borravalóval jutalmazott hozzászólásra, a közösség csomópontja pedig on-chain megkeresi a tranzakciót, és beírja az ellenőrzött összeget a válaszba. A borravaló lehet ERC-20 token, NFT vagy egy lánc natív coinja. A közösség nem tudja elfogni vagy meghamisítani a borravalót, a borravaló nélküli válaszokat pedig ez nem érinti. Megvalósítja a <code>tipping/v1</code> szerződést, így az e szerződés alapján írt kliens más megvalósításokkal is tovább működik.",
           "tagline": "Ellenőrzött borravaló a válaszokon, tárcából tárcába küldve, a közösség által on-chain ellenőrizve."
+        },
+        "bitsocial-chat": {
+          "description": "A Bitsocial Chat egy terv a Bitsocial meglévő identitásaira és csomópontjaira épülő csevegésre, hogy a felhasználónak minden alkalmazásban egyetlen identitása és egyetlen postafiókja legyen. Először nyilvános élő csevegés indulna a közösségekben, valamint bejegyzések vagy streamek mellett; ezt pubsubon keresztül küldenék, és nem tárolnák. Ezt követnék a privát üzenetek: négyszemközti, végponttól végpontig titkosított üzenetek, amelyeket titkosított szövegként a címzett profilcsomópontján tárolnának, amíg el nem olvassák; ez a közösségeknek modmailt is adna. Nyitott kérdés, hogy natívan építsék-e meg, vagy egy meglévő hálózatot, például az XMTP-t használják újra. Még semmi sem készült el; a repository a terveket és a kutatást gyűjti.",
+          "tagline": "Ötletszakaszban lévő élő csevegés és privát üzenetek, amelyek minden Bitsocial-alkalmazásban működnek."
         }
       }
     },

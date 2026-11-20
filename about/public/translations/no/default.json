@@ -541,7 +541,8 @@
         "offline": "Offline",
         "predictionMarkets": "Prediksjonsmarkeder",
         "socialGraph": "Sosial graf",
-        "tips": "Tips"
+        "tips": "Tips",
+        "chat": "Chat"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge lar et fellesskap vise verifiserte tips. En forfatter sender et token direkte til en annen forfatters lommebok og svarer deretter på kommentaren som får tipset, med transaksjonshashen, og fellesskapets node slår opp transaksjonen on-chain og skriver det verifiserte beløpet inn i svaret. Tips kan være ERC-20-tokens, NFT-er eller en kjedes native mynt. Fellesskapet kan verken fange opp eller forfalske et tips, og svar uten tips påvirkes ikke. Den implementerer kontrakten <code>tipping/v1</code>, slik at en klient skrevet mot den kontrakten fortsatt fungerer med andre implementasjoner.",
           "tagline": "Verifiserte tips på svar, sendt fra lommebok til lommebok og sjekket on-chain av fellesskapet."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat er en plan for chat bygget på identitetene og nodene Bitsocial allerede har, slik at en bruker beholder én identitet og én innboks i alle apper. Den ville starte med offentlig livechat i fellesskap og ved siden av innlegg eller strømmer, sendt over pubsub og ikke lagret. Deretter ville private meldinger følge: én-til-én, ende-til-ende-kryptert og lagret som chiffertekst på mottakerens profilnode til de er lest, noe som også ville gi fellesskap modmail. Om dette skal bygges nativt, eller om man skal gjenbruke et eksisterende nettverk som XMTP, er fortsatt åpent. Ingenting er bygget ennå; repositoriet samler designet og forskningen.",
+          "tagline": "Livechat og private meldinger på idéstadiet som fungerer i alle Bitsocial-apper."
         }
       }
     },

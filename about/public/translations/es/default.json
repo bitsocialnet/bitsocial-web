@@ -541,7 +541,8 @@
         "offline": "Sin conexión",
         "predictionMarkets": "Mercados de predicción",
         "socialGraph": "Grafo social",
-        "tips": "Propinas"
+        "tips": "Propinas",
+        "chat": "Chat"
       },
       "linkLabels": {
         "androidApk": "APK de Android",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge permite que una comunidad muestre propinas verificadas. Un autor envía un token directamente a la billetera de otro autor y luego responde al comentario que recibe la propina con el hash de la transacción, y el nodo de la comunidad busca la transacción on-chain y escribe el importe verificado en la respuesta. Las propinas pueden ser tokens ERC-20, NFT o la moneda nativa de una cadena. La comunidad no puede interceptar ni falsificar una propina, y las respuestas sin propina no se ven afectadas. Implementa el contrato <code>tipping/v1</code>, así que un cliente escrito conforme a ese contrato sigue funcionando con otras implementaciones.",
           "tagline": "Propinas verificadas en respuestas, enviadas de billetera a billetera y comprobadas on-chain por la comunidad."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat es un plan para un chat construido sobre las identidades y los nodos que Bitsocial ya tiene, de modo que cada usuario conserve una sola identidad y una sola bandeja de entrada en todas las apps. Empezaría con un chat público en directo en las comunidades y junto a publicaciones o transmisiones, enviado por pubsub y sin almacenarse. Después llegarían los mensajes privados: uno a uno, cifrados de extremo a extremo y guardados como texto cifrado en el nodo de perfil del destinatario hasta que se lean, lo que también daría modmail a las comunidades. Aún está por decidir si construirlo de forma nativa o reutilizar una red existente como XMTP. Todavía no hay nada construido; el repositorio recoge el diseño y la investigación.",
+          "tagline": "Chat en directo y mensajes privados en fase de idea que funcionan en todas las apps de Bitsocial."
         }
       }
     },

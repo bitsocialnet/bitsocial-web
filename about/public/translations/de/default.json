@@ -541,7 +541,8 @@
         "offline": "Offline",
         "predictionMarkets": "Prognosemärkte",
         "socialGraph": "Social Graph",
-        "tips": "Trinkgelder"
+        "tips": "Trinkgelder",
+        "chat": "Chat"
       },
       "linkLabels": {
         "androidApk": "Android-APK",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge lässt eine Community verifizierte Trinkgelder anzeigen. Ein Autor sendet einen Token direkt an die Wallet eines anderen Autors und antwortet dann mit dem Transaktions-Hash auf den Kommentar, der das Trinkgeld erhält; der Community-Node sucht die Transaktion on-chain und schreibt den verifizierten Betrag in die Antwort. Trinkgelder können ERC-20-Token, NFTs oder der native Coin einer Chain sein. Die Community kann ein Trinkgeld weder abfangen noch fälschen, und Antworten ohne Trinkgeld sind nicht betroffen. Es implementiert den Vertrag <code>tipping/v1</code>, sodass ein gegen diesen Vertrag geschriebener Client weiterhin mit anderen Implementierungen funktioniert.",
           "tagline": "Verifizierte Trinkgelder auf Antworten, von Wallet zu Wallet gesendet und von der Community on-chain geprüft."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat ist ein Plan für einen Chat, der auf den Identitäten und Knoten aufbaut, die Bitsocial bereits hat, sodass Nutzer in jeder App dieselbe Identität und denselben Posteingang behalten. Den Anfang würde ein öffentlicher Livechat in Communities und neben Beiträgen oder Streams machen, der über pubsub gesendet und nicht gespeichert wird. Danach kämen private Nachrichten: zwischen zwei Personen, Ende-zu-Ende-verschlüsselt und als Geheimtext auf dem Profilknoten des Empfängers gespeichert, bis sie gelesen werden, womit Communities auch Modmail bekämen. Ob das nativ gebaut oder ein bestehendes Netzwerk wie XMTP wiederverwendet wird, ist weiterhin offen. Noch ist nichts gebaut; das Repository sammelt das Design und die Forschung.",
+          "tagline": "Livechat und private Nachrichten im Ideenstadium, die in jeder Bitsocial-App funktionieren."
         }
       }
     },

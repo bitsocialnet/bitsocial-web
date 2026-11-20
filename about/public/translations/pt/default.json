@@ -541,7 +541,8 @@
         "offline": "Offline",
         "predictionMarkets": "Mercados de previsão",
         "socialGraph": "Grafo social",
-        "tips": "Gorjetas"
+        "tips": "Gorjetas",
+        "chat": "Chat"
       },
       "linkLabels": {
         "androidApk": "APK do Android",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "O Tipping Challenge permite que uma comunidade mostre gorjetas verificadas. Um autor envia um token diretamente para a carteira de outro autor e depois responde ao comentário que recebe a gorjeta com o hash da transação, e o nó da comunidade busca a transação on-chain e grava o valor verificado na resposta. As gorjetas podem ser tokens ERC-20, NFTs ou a moeda nativa de uma chain. A comunidade não consegue interceptar nem falsificar uma gorjeta, e respostas sem gorjeta não são afetadas. Ele implementa o contrato <code>tipping/v1</code>, de modo que um cliente escrito para esse contrato continua funcionando com outras implementações.",
           "tagline": "Gorjetas verificadas em respostas, enviadas de carteira para carteira e conferidas on-chain pela comunidade."
+        },
+        "bitsocial-chat": {
+          "description": "O Bitsocial Chat é um plano de chat construído sobre as identidades e os nós que o Bitsocial já tem, para que cada usuário mantenha uma única identidade e uma única caixa de entrada em todos os apps. Ele começaria com um chat público ao vivo nas comunidades e ao lado de publicações ou transmissões, enviado via pubsub e não armazenado. Em seguida viriam as mensagens privadas: um a um, criptografadas de ponta a ponta e guardadas como texto cifrado no nó de perfil do destinatário até serem lidas, o que também daria modmail às comunidades. Ainda está em aberto se isso será construído de forma nativa ou se será reutilizada uma rede existente, como o XMTP. Nada foi construído ainda; o repositório reúne o design e a pesquisa.",
+          "tagline": "Chat ao vivo e mensagens privadas em fase de ideia que funcionam em todos os apps do Bitsocial."
         }
       }
     },

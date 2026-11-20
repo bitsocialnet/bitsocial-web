@@ -541,7 +541,8 @@
         "offline": "Offline",
         "predictionMarkets": "Forudsigelsesmarkeder",
         "socialGraph": "Social graf",
-        "tips": "Drikkepenge"
+        "tips": "Drikkepenge",
+        "chat": "Chat"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -701,6 +702,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge lader et fællesskab vise verificerede drikkepenge. En forfatter sender et token direkte til en anden forfatters wallet og svarer derefter på den kommentar, der får drikkepengene, med transaktions-hashen, og fællesskabets node slår transaktionen op on-chain og skriver det verificerede beløb ind i svaret. Drikkepenge kan være ERC-20-tokens, NFT'er eller en kædes native mønt. Fællesskabet kan hverken opsnappe eller forfalske drikkepenge, og svar uden drikkepenge påvirkes ikke. Den implementerer kontrakten <code>tipping/v1</code>, så en klient skrevet efter den kontrakt fortsat virker med andre implementeringer.",
           "tagline": "Verificerede drikkepenge på svar, sendt fra wallet til wallet og tjekket on-chain af fællesskabet."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat er en plan for chat bygget på de identiteter og noder, Bitsocial allerede har, så en bruger beholder én identitet og én indbakke i alle apps. Den ville begynde med offentlig livechat i fællesskaber og ved siden af opslag eller streams, sendt via pubsub og ikke gemt. Derefter ville private beskeder følge: én-til-én og end-to-end-krypterede, opbevaret som chiffertekst på modtagerens profilnode, indtil de er læst, hvilket også ville give fællesskaber modmail. Om det skal bygges nativt, eller om et eksisterende netværk som XMTP skal genbruges, er stadig åbent. Intet er bygget endnu; repositoriet samler designet og forskningen.",
+          "tagline": "Livechat og private beskeder på idéstadiet, der virker på tværs af alle Bitsocial-apps."
         }
       }
     },

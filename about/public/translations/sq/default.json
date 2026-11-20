@@ -541,7 +541,8 @@
         "offline": "Jashtë linje",
         "predictionMarkets": "Tregje parashikimi",
         "socialGraph": "Grafi social",
-        "tips": "Bakshishe"
+        "tips": "Bakshishe",
+        "chat": "Bisedë"
       },
       "linkLabels": {
         "androidApk": "APK për Android",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge i lejon një komuniteti të shfaqë bakshishe të verifikuara. Një autor dërgon një token drejtpërdrejt në portofolin e një autori tjetër, pastaj i përgjigjet komentit që merr bakshishin me hash-in e transaksionit, dhe nyja e komunitetit e kërkon transaksionin on-chain dhe shkruan shumën e verifikuar në përgjigje. Bakshishet mund të jenë token-a ERC-20, NFT ose monedha vendase e një zinxhiri. Komuniteti nuk mund ta përgjojë ose ta falsifikojë një bakshish, dhe përgjigjet pa bakshish nuk preken. Ai zbaton kontratën <code>tipping/v1</code>, prandaj një klient i shkruar sipas asaj kontrate vazhdon të funksionojë edhe me implementime të tjera.",
           "tagline": "Bakshishe të verifikuara në përgjigje, të dërguara nga portofoli në portofol dhe të kontrolluara on-chain nga komuniteti."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat është një plan për biseda të ndërtuara mbi identitetet dhe nyjet që Bitsocial i ka tashmë, që një përdorues të mbajë një identitet të vetëm dhe një kuti hyrëse të vetme në çdo aplikacion. Do të niste me bisedë publike në kohë reale në komunitete dhe pranë postimeve ose transmetimeve, të dërguar përmes pubsub dhe pa u ruajtur. Më pas do të vinin mesazhet private: një-me-një, të enkriptuara nga skaji në skaj dhe të mbajtura si tekst i shifruar në nyjen e profilit të marrësit derisa të lexohen, gjë që do t’u jepte komuniteteve edhe modmail. Nëse kjo do të ndërtohet në mënyrë native apo do të ripërdoret një rrjet ekzistues si XMTP, mbetet ende e hapur. Ende nuk është ndërtuar asgjë; repozitori mbledh dizajnin dhe kërkimin.",
+          "tagline": "Bisedë në kohë reale dhe mesazhe private në fazën e idesë, që funksionojnë në çdo aplikacion Bitsocial."
         }
       }
     },

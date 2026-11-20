@@ -541,7 +541,8 @@
         "offline": "Offline",
         "predictionMarkets": "Prediktionsmarknader",
         "socialGraph": "Social graf",
-        "tips": "Dricks"
+        "tips": "Dricks",
+        "chat": "Chatt"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge låter en community visa verifierad dricks. En författare skickar en token direkt till en annan författares plånbok och svarar sedan på kommentaren som får dricksen med transaktionshashen, och communityns nod slår upp transaktionen on-chain och skriver in det verifierade beloppet i svaret. Dricks kan vara ERC-20-tokens, NFT:er eller en kedjas inbyggda mynt. Communityn kan varken fånga upp eller förfalska dricks, och svar utan dricks påverkas inte. Det implementerar kontraktet <code>tipping/v1</code>, vilket gör att en klient som skrivits mot det kontraktet fortsätter att fungera med andra implementationer.",
           "tagline": "Verifierad dricks på svar, skickad från plånbok till plånbok och kontrollerad on-chain av communityn."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat är en plan för chatt byggd på de identiteter och noder som Bitsocial redan har, så att en användare behåller en identitet och en inkorg i varje app. Den skulle börja med offentlig livechatt i communities och bredvid inlägg eller strömmar, skickad över pubsub och inte lagrad. Därefter skulle privata meddelanden följa: en-till-en, end-to-end-krypterade och lagrade som chiffertext på mottagarens profilnod tills de har lästs, vilket också skulle ge communities modmail. Om detta ska byggas nativt eller om ett befintligt nätverk som XMTP ska återanvändas är fortfarande öppet. Inget är byggt ännu; repositoriet samlar designen och forskningen.",
+          "tagline": "Livechatt och privata meddelanden på idéstadiet som fungerar i alla Bitsocial-appar."
         }
       }
     },

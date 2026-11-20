@@ -541,7 +541,8 @@
         "offline": "Offline",
         "predictionMarkets": "Rynki predykcyjne",
         "socialGraph": "Graf społecznościowy",
-        "tips": "Napiwki"
+        "tips": "Napiwki",
+        "chat": "Czat"
       },
       "linkLabels": {
         "androidApk": "APK na Androida",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge pozwala społeczności pokazywać zweryfikowane napiwki. Autor wysyła token bezpośrednio do portfela innego autora, a potem odpowiada na komentarz, któremu daje napiwek, podając hash transakcji, a węzeł społeczności wyszukuje transakcję on-chain i wpisuje zweryfikowaną kwotę do odpowiedzi. Napiwki mogą być tokenami ERC-20, NFT lub natywną monetą danego łańcucha. Społeczność nie może przechwycić ani sfałszować napiwku, a odpowiedzi bez napiwku pozostają bez zmian. Projekt implementuje kontrakt <code>tipping/v1</code>, dzięki czemu klient napisany zgodnie z tym kontraktem nadal działa z innymi implementacjami.",
           "tagline": "Zweryfikowane napiwki pod odpowiedziami, wysyłane z portfela do portfela i sprawdzane przez społeczność on-chain."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat to plan czatu zbudowanego na tożsamościach i węzłach, które Bitsocial już ma, tak aby użytkownik zachowywał jedną tożsamość i jedną skrzynkę odbiorczą w każdej aplikacji. Na początek byłby to publiczny czat na żywo w społecznościach oraz obok postów lub transmisji, przesyłany przez pubsub i nieprzechowywany. Następnie pojawiłyby się prywatne wiadomości: jeden na jeden, szyfrowane end-to-end i przechowywane jako szyfrogram w węźle profilu odbiorcy do momentu przeczytania, co dałoby społecznościom także modmail. Nadal otwarte pozostaje pytanie, czy zbudować to natywnie, czy ponownie wykorzystać istniejącą sieć, taką jak XMTP. Nic jeszcze nie zostało zbudowane; repozytorium gromadzi projekt i badania.",
+          "tagline": "Czat na żywo i prywatne wiadomości na etapie pomysłu, działające w każdej aplikacji Bitsocial."
         }
       }
     },

@@ -541,7 +541,8 @@
         "offline": "Ngoại tuyến",
         "predictionMarkets": "Thị trường dự đoán",
         "socialGraph": "Đồ thị xã hội",
-        "tips": "Tiền tip"
+        "tips": "Tiền tip",
+        "chat": "Trò chuyện"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge cho phép một cộng đồng hiển thị tiền tip đã xác minh. Một tác giả gửi token thẳng vào ví của tác giả khác, rồi trả lời bình luận được tip kèm hash của giao dịch, và node của cộng đồng tra cứu giao dịch đó on-chain rồi ghi số tiền đã xác minh vào câu trả lời. Tiền tip có thể là token ERC-20, NFT hoặc coin gốc của một chain. Cộng đồng không thể chặn hay làm giả một khoản tip, và các câu trả lời không kèm tip không bị ảnh hưởng. Dự án hiện thực hợp đồng <code>tipping/v1</code>, nhờ vậy một client viết theo hợp đồng đó vẫn hoạt động được với các bản hiện thực khác.",
           "tagline": "Tiền tip đã xác minh trên các câu trả lời, gửi từ ví sang ví và được cộng đồng kiểm tra on-chain."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat là kế hoạch xây dựng tính năng trò chuyện dựa trên các danh tính và nút mà Bitsocial đã có, để mỗi người dùng giữ một danh tính và một hộp thư đến duy nhất trong mọi ứng dụng. Bước đầu sẽ là trò chuyện trực tiếp công khai trong các cộng đồng và bên cạnh bài đăng hoặc buổi phát trực tiếp, được gửi qua pubsub và không được lưu trữ. Tiếp theo sẽ là tin nhắn riêng: một-một, được mã hóa đầu cuối và lưu dưới dạng bản mã trên nút hồ sơ của người nhận cho đến khi được đọc, điều này cũng sẽ mang lại modmail cho các cộng đồng. Việc tự xây dựng tính năng này hay tái sử dụng một mạng có sẵn như XMTP vẫn còn để ngỏ. Hiện chưa có gì được xây dựng; kho mã nguồn tập hợp phần thiết kế và nghiên cứu.",
+          "tagline": "Trò chuyện trực tiếp và tin nhắn riêng ở giai đoạn ý tưởng, hoạt động trên mọi ứng dụng Bitsocial."
         }
       }
     },

@@ -752,7 +752,8 @@
         "offline": "Offline",
         "predictionMarkets": "Prediction markets",
         "socialGraph": "Social graph",
-        "tips": "Tips"
+        "tips": "Tips",
+        "chat": "Chat"
       },
       "linkLabels": {
         "androidApk": "Android APK",
@@ -923,6 +924,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge lets a community show verified tips. An author sends a token straight to another author's wallet, then replies to the comment being tipped with the transaction hash, and the community node looks the transaction up on chain and writes the verified amount into the reply. Tips can be ERC-20 tokens, NFTs or a chain's native coin. The community cannot intercept a tip or fake one, and replies without a tip are not affected. It implements the <code>tipping/v1</code> contract, so a client written against that contract keeps working with other implementations.",
           "tagline": "Verified tips on replies, sent wallet to wallet and checked on chain by the community."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat is a plan for chat built on the identities and nodes Bitsocial already has, so a user keeps one identity and one inbox in every app. It would start with public live chat in communities and beside posts or streams, sent over pubsub and not stored. Private messages would follow: one-to-one, end-to-end encrypted and held as ciphertext on the recipient's profile node until read, which would also give communities modmail. Whether to build this natively or reuse an existing network such as XMTP is still open. Nothing is built yet; the repository collects the design and the research.",
+          "tagline": "Idea-stage live chat and private messages that work across every Bitsocial app."
         }
       }
     },

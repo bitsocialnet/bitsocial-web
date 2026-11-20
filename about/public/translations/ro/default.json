@@ -541,7 +541,8 @@
         "offline": "Offline",
         "predictionMarkets": "Piețe de predicție",
         "socialGraph": "Graf social",
-        "tips": "Bacșișuri"
+        "tips": "Bacșișuri",
+        "chat": "Chat"
       },
       "linkLabels": {
         "androidApk": "APK Android",
@@ -708,6 +709,10 @@
         "tipping-challenge": {
           "description": "Tipping Challenge îi permite unei comunități să afișeze bacșișuri verificate. Un autor trimite un token direct în portofelul altui autor, apoi răspunde la comentariul care primește bacșișul cu hashul tranzacției, iar nodul comunității caută tranzacția on-chain și scrie suma verificată în răspuns. Bacșișurile pot fi tokenuri ERC-20, NFT-uri sau moneda nativă a unui blockchain. Comunitatea nu poate intercepta și nici falsifica un bacșiș, iar răspunsurile fără bacșiș nu sunt afectate. Implementează contractul <code>tipping/v1</code>, așa că un client scris după acest contract continuă să funcționeze cu alte implementări.",
           "tagline": "Bacșișuri verificate la răspunsuri, trimise de la portofel la portofel și verificate on-chain de comunitate."
+        },
+        "bitsocial-chat": {
+          "description": "Bitsocial Chat este un plan pentru un chat construit pe identitățile și nodurile pe care Bitsocial le are deja, astfel încât un utilizator să păstreze o singură identitate și o singură căsuță de mesaje în fiecare aplicație. Ar începe cu un chat live public în comunități și lângă postări sau transmisiuni, trimis prin pubsub și nestocat. Ar urma mesajele private: unu-la-unu, criptate end-to-end și păstrate ca text cifrat pe nodul de profil al destinatarului până la citire, ceea ce le-ar oferi comunităților și modmail. Rămâne încă deschisă întrebarea dacă acesta va fi construit nativ sau dacă va fi reutilizată o rețea existentă precum XMTP. Încă nu s-a construit nimic; repository-ul adună designul și cercetarea.",
+          "tagline": "Chat live și mesaje private în stadiu de idee, care funcționează în fiecare aplicație Bitsocial."
         }
       }
     },
