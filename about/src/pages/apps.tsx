@@ -239,8 +239,8 @@ export default function Apps() {
 
   const resultsRef = useRef<HTMLDivElement>(null);
 
-  // A filter clicked on a card further down replaces the list under the reader, so bring
-  // the "Filtering by" row at the top of the results back into view.
+  // A filter clicked on a card or in the sticky sidebar further down replaces the list under
+  // the reader, so bring the "Filtering by" row at the top of the results back into view.
   function revealResults() {
     const results = resultsRef.current;
     if (!results) return;
@@ -248,6 +248,11 @@ export default function Apps() {
     if (results.getBoundingClientRect().top < scrollMarginTop) {
       results.scrollIntoView({ behavior: getScrollBehavior(), block: "start" });
     }
+  }
+
+  function handleSidebarCategoryChange(category: AppCategorySlug | null) {
+    handleCategoryChange(category);
+    revealResults();
   }
 
   const clearFiltersHref = buildAppsHref(
@@ -581,7 +586,7 @@ export default function Apps() {
                   <CategoryFilter
                     categories={categorySummaries}
                     activeCategory={activeCategory}
-                    onCategoryChange={handleCategoryChange}
+                    onCategoryChange={handleSidebarCategoryChange}
                     allLabel={t("apps.allProjects")}
                     allDescription={t("apps.allProjectsDescription")}
                     directoryLabel={t("apps.directoryLabel")}
@@ -597,7 +602,7 @@ export default function Apps() {
                 <CategoryFilter
                   categories={categorySummaries}
                   activeCategory={activeCategory}
-                  onCategoryChange={handleCategoryChange}
+                  onCategoryChange={handleSidebarCategoryChange}
                   allLabel={t("apps.allProjects")}
                   allDescription={t("apps.allProjectsDescription")}
                   directoryLabel={t("apps.directoryLabel")}
