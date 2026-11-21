@@ -16,7 +16,12 @@
   "workspaces": {
     "chain": {
       // One module per HTML entry: Knip's Vite plugin only follows the root index.html.
-      "entry": ["src/main.tsx!", "src/rich-list-main.tsx!", "src/chart-main.tsx!"],
+      "entry": [
+        "src/main.tsx!",
+        "src/rich-list-main.tsx!",
+        "src/chart-main.tsx!",
+        "src/names-main.tsx!",
+      ],
     },
   },
 }

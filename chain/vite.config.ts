@@ -93,12 +93,14 @@ export default defineConfig(({ mode }) => ({
     minify: mode === "profiling" ? false : undefined,
     sourcemap: mode === "profiling",
     emptyOutDir: true,
-    // Three static pages: the landing page, the rich list at /rich-list/ and the chart at /chart/.
+    // Four static pages: the landing page, the rich list at /rich-list/, the chart at /chart/ and
+    // the .bso domains page at /domains/.
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, "index.html"),
         richList: path.resolve(__dirname, "rich-list/index.html"),
         chart: path.resolve(__dirname, "chart/index.html"),
+        domains: path.resolve(__dirname, "domains/index.html"),
       },
     },
   },

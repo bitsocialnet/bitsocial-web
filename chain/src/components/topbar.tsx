@@ -15,7 +15,13 @@ import HamburgerButton from "@/components/hamburger-button";
 import LanguageSelector, { NoJsLanguageSelector } from "@/components/language-selector";
 import MobileMenu from "@/components/mobile-menu";
 import { NoJsThemeToggle, ThemeToggle } from "@/components/theme-toggle";
-import { BITSOCIAL_URL, CHART_PATH, RICH_LIST_PATH, type ExternalLink } from "@/lib/site";
+import {
+  BITSOCIAL_URL,
+  CHART_PATH,
+  type ExternalLink,
+  DOMAINS_PATH,
+  RICH_LIST_PATH,
+} from "@/lib/site";
 import { cn, getScrollBehavior } from "@/lib/utils";
 
 // Every topbar control is an explicit 44px flex-centred box on every pointer type, matching the
@@ -62,7 +68,7 @@ function NavLink({
 
 const FAQ_ID = "faq";
 
-export type TopbarPage = "home" | "rich-list" | "chart";
+export type TopbarPage = "home" | "rich-list" | "chart" | "domains";
 
 // Which HTML entry renders the topbar. The FAQ only exists on the landing page.
 const TopbarPageContext = createContext<TopbarPage>("home");
@@ -71,7 +77,8 @@ function FaqNavLink({ onClick, className }: { onClick?: () => void; className?: 
   const { t } = useTranslation();
   const page = useContext(TopbarPageContext);
 
-  if (page !== "home") {
+  // The landing and domains pages have their own FAQ; the other pages link to the landing one.
+  if (page !== "home" && page !== "domains") {
     return (
       <a href={`/#${FAQ_ID}`} className={cn(navLinkClassName, className)} onClick={onClick}>
         {t("nav.faq")}
@@ -82,9 +89,10 @@ function FaqNavLink({ onClick, className }: { onClick?: () => void; className?: 
   return <HomeFaqNavLink onClick={onClick} className={className} />;
 }
 
-// The landing page's in-page FAQ link. The href keeps it working without JavaScript; with it, the
-// click scrolls smoothly (unless reduced motion is on) like bitsocial.net's topbar FAQ instead of
-// the anchor's instant jump, and replaces the hash so the jump does not stack history entries.
+// The in-page FAQ link on pages with their own FAQ. The href keeps it working without JavaScript;
+// with it, the click scrolls smoothly (unless reduced motion is on) like bitsocial.net's topbar FAQ
+// instead of the anchor's instant jump, and replaces the hash so the jump does not stack history
+// entries.
 function HomeFaqNavLink({ onClick, className }: { onClick?: () => void; className?: string }) {
   const { t } = useTranslation();
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -152,6 +160,13 @@ function SiteNavLinks({ onClick, className }: { onClick?: () => void; className?
 
   return (
     <>
+      <PageNavLink
+        page="domains"
+        href={DOMAINS_PATH}
+        label={t("nav.domains")}
+        onClick={onClick}
+        className={className}
+      />
       <PageNavLink
         page="chart"
         href={CHART_PATH}

@@ -1,5 +1,7 @@
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { scrollToMailingListSection } from "@/lib/mailing-list-nav";
+import { DOMAINS_PATH } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const chainStatusCtaClassName = cn(
@@ -25,6 +27,10 @@ export default function ChainStatusCta() {
       <button type="button" className={chainStatusCtaClassName} onClick={scrollToNewsletter}>
         {t("hero.statusCta")}
       </button>
+      <a href={DOMAINS_PATH} className={cn(chainStatusCtaClassName, "gap-1")}>
+        {t("hero.domainsCta")}
+        <ArrowRight aria-hidden className="h-3.5 w-3.5 rtl:-scale-x-100" />
+      </a>
     </div>
   );
 }

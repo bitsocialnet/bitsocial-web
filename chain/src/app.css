@@ -48,7 +48,10 @@
 .hero-status {
   grid-column: 1 / -1;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  /* Wide enough that the pills' 44px touch areas do not overlap. */
+  gap: 1rem;
   margin-bottom: calc(-1 * clamp(1rem, 3vw, 2.75rem));
 }
 
